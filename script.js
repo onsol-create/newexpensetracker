@@ -1,21 +1,21 @@
 // --- CATEGORIES DEFINITION ---
 const CATEGORIES = {
     EXPENSE: [
-        { id: 'food', name: 'Food & Dining', icon: 'fa-utensils', color: '#f59e0b', badgeClass: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
-        { id: 'transport', name: 'Transportation', icon: 'fa-car', color: '#3b82f6', badgeClass: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
-        { id: 'housing', name: 'Housing & Rent', icon: 'fa-house', color: '#8b5cf6', badgeClass: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
-        { id: 'utilities', name: 'Utilities & Bills', icon: 'fa-bolt', color: '#eab308', badgeClass: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' },
-        { id: 'shopping', name: 'Shopping & Gear', icon: 'fa-bag-shopping', color: '#ec4899', badgeClass: 'bg-pink-500/10 text-pink-400 border-pink-500/20' },
-        { id: 'entertainment', name: 'Entertainment', icon: 'fa-film', color: '#06b6d4', badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20' },
-        { id: 'health', name: 'Health & Fitness', icon: 'fa-heart-pulse', color: '#10b981', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-        { id: 'other_exp', name: 'Other Expenses', icon: 'fa-ellipsis', color: '#64748b', badgeClass: 'bg-slate-500/10 text-slate-400 border-slate-500/20' }
+        { id: 'food', name: 'Food & Dining', icon: 'fa-utensils', color: '#f59e0b', badgeClass: 'bg-amber-500/10 text-amber-500 dark:text-amber-400 border-amber-500/20' },
+        { id: 'transport', name: 'Transportation', icon: 'fa-car', color: '#3b82f6', badgeClass: 'bg-blue-500/10 text-blue-500 dark:text-blue-400 border-blue-500/20' },
+        { id: 'housing', name: 'Housing & Rent', icon: 'fa-house', color: '#8b5cf6', badgeClass: 'bg-purple-500/10 text-purple-500 dark:text-purple-400 border-purple-500/20' },
+        { id: 'utilities', name: 'Utilities & Bills', icon: 'fa-bolt', color: '#eab308', badgeClass: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20' },
+        { id: 'shopping', name: 'Shopping & Gear', icon: 'fa-bag-shopping', color: '#ec4899', badgeClass: 'bg-pink-500/10 text-pink-500 dark:text-pink-400 border-pink-500/20' },
+        { id: 'entertainment', name: 'Entertainment', icon: 'fa-film', color: '#06b6d4', badgeClass: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20' },
+        { id: 'health', name: 'Health & Fitness', icon: 'fa-heart-pulse', color: '#10b981', badgeClass: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' },
+        { id: 'other_exp', name: 'Other Expenses', icon: 'fa-ellipsis', color: '#64748b', badgeClass: 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20' }
     ],
     INCOME: [
-        { id: 'salary', name: 'Salary & Wages', icon: 'fa-briefcase', color: '#10b981', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-        { id: 'freelance', name: 'Freelance & Side', icon: 'fa-laptop-code', color: '#0284c7', badgeClass: 'bg-sky-500/10 text-sky-400 border-sky-500/20' },
-        { id: 'investments', name: 'Investments', icon: 'fa-chart-line', color: '#8b5cf6', badgeClass: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
-        { id: 'gifts', name: 'Gifts & Refunds', icon: 'fa-gift', color: '#f43f5e', badgeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/20' },
-        { id: 'other_inc', name: 'Other Income', icon: 'fa-wallet', color: '#64748b', badgeClass: 'bg-slate-500/10 text-slate-400 border-slate-500/20' }
+        { id: 'salary', name: 'Salary & Wages', icon: 'fa-briefcase', color: '#10b981', badgeClass: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' },
+        { id: 'freelance', name: 'Freelance & Side', icon: 'fa-laptop-code', color: '#0284c7', badgeClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20' },
+        { id: 'investments', name: 'Investments', icon: 'fa-chart-line', color: '#8b5cf6', badgeClass: 'bg-purple-500/10 text-purple-500 dark:text-purple-400 border-purple-500/20' },
+        { id: 'gifts', name: 'Gifts & Refunds', icon: 'fa-gift', color: '#f43f5e', badgeClass: 'bg-rose-500/10 text-rose-500 dark:text-rose-400 border-rose-500/20' },
+        { id: 'other_inc', name: 'Other Income', icon: 'fa-wallet', color: '#64748b', badgeClass: 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20' }
     ]
 };
 
@@ -51,6 +51,33 @@ let dashTrendChartInstance = null;
 let dashCategoryChartInstance = null;
 let analyticsBarChartInstance = null;
 let analyticsDoughnutChartInstance = null;
+
+// THEME TOGGLE LOGIC
+function initTheme() {
+    const savedTheme = localStorage.getItem('spendSmart_theme');
+    if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+    } else if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.classList.remove('dark');
+    }
+}
+// Init on load
+initTheme();
+
+function toggleTheme() {
+    const htmlClassList = document.documentElement.classList;
+    if (htmlClassList.contains('dark')) {
+        htmlClassList.remove('dark');
+        localStorage.setItem('spendSmart_theme', 'light');
+    } else {
+        htmlClassList.add('dark');
+        localStorage.setItem('spendSmart_theme', 'dark');
+    }
+    // Re-render views to update chart colors dynamically based on theme
+    renderAllViews();
+}
 
 // Sample initial data generator
 function getSampleData() {
@@ -118,26 +145,26 @@ function switchPage(pageId) {
 
     // Update navbar UI links (Sidebar)
     document.querySelectorAll('.nav-item').forEach(el => {
-        el.classList.remove('bg-indigo-600/10', 'text-indigo-400', 'border-r-2', 'border-indigo-500');
-        el.classList.add('text-slate-400');
+        el.classList.remove('bg-indigo-50', 'dark:bg-indigo-600/10', 'text-indigo-600', 'dark:text-indigo-400', 'border-r-2', 'border-indigo-500');
+        el.classList.add('text-slate-500', 'dark:text-slate-400');
     });
 
     const activeNav = document.getElementById(`nav-${pageId}`);
     if (activeNav) {
-        activeNav.classList.add('bg-indigo-600/10', 'text-indigo-400', 'border-r-2', 'border-indigo-500');
-        activeNav.classList.remove('text-slate-400');
+        activeNav.classList.add('bg-indigo-50', 'dark:bg-indigo-600/10', 'text-indigo-600', 'dark:text-indigo-400', 'border-r-2', 'border-indigo-500');
+        activeNav.classList.remove('text-slate-500', 'dark:text-slate-400');
     }
 
     // Update bottom navbar UI links (Mobile Bottom Bar)
     document.querySelectorAll('.bnav-item').forEach(el => {
-        el.classList.remove('text-indigo-400', 'font-bold');
-        el.classList.add('text-slate-400');
+        el.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        el.classList.add('text-slate-500', 'dark:text-slate-400');
     });
 
     const activeBnav = document.getElementById(`bnav-${pageId}`);
     if (activeBnav) {
-        activeBnav.classList.add('text-indigo-400', 'font-bold');
-        activeBnav.classList.remove('text-slate-400');
+        activeBnav.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        activeBnav.classList.remove('text-slate-500', 'dark:text-slate-400');
     }
 
     // Update page headers
@@ -222,15 +249,20 @@ function renderMetrics() {
     const statusEl = document.getElementById('metricBalanceStatus');
     if (netBalance >= 0) {
         statusEl.textContent = 'Surplus';
-        statusEl.className = 'font-semibold text-emerald-400 truncate';
+        statusEl.className = 'font-semibold text-emerald-500 dark:text-emerald-400 truncate';
     } else {
         statusEl.textContent = 'Deficit';
-        statusEl.className = 'font-semibold text-rose-400 truncate';
+        statusEl.className = 'font-semibold text-rose-500 dark:text-rose-400 truncate';
     }
 }
 
 // Dashboard Visualizer Charts
 function renderDashCharts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const tickColor = isDark ? '#64748b' : '#94a3b8'; // slate-500 dark, slate-400 light
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+    const donutBorderColor = isDark ? '#1e293b' : '#ffffff'; 
+
     // Category Chart
     const catCtx = document.getElementById('dashCategoryChart').getContext('2d');
     const noDataEl = document.getElementById('dashNoChartData');
@@ -262,13 +294,13 @@ function renderDashCharts() {
             type: 'doughnut',
             data: {
                 labels: labels,
-                datasets: [{ data: data, backgroundColor: colors, borderWidth: 2, borderColor: '#1e293b' }]
+                datasets: [{ data: data, backgroundColor: colors, borderWidth: 2, borderColor: donutBorderColor }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 9 }, boxWidth: 8 } },
+                    legend: { position: 'bottom', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } },
                     tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${formatMoney(ctx.parsed)}` } }
                 },
                 cutout: '68%'
@@ -307,11 +339,11 @@ function renderDashCharts() {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 9 } } },
-                y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 9 }, callback: (v) => `${appState.currency}${v}` } }
+                x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 9 } } },
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => `${appState.currency}${v}` } }
             },
             plugins: {
-                legend: { position: 'top', labels: { color: '#94a3b8', font: { size: 9 }, boxWidth: 8 } }
+                legend: { position: 'top', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } }
             }
         }
     });
@@ -323,27 +355,27 @@ function renderDashRecentTable() {
 
     tableBody.innerHTML = '';
     if (recent.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-500">No recent transactions</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-400 dark:text-slate-500">No recent transactions</td></tr>`;
         return;
     }
 
     recent.forEach(tx => {
         const isIncome = tx.type === 'INCOME';
         const catList = isIncome ? CATEGORIES.INCOME : CATEGORIES.EXPENSE;
-        const catObj = catList.find(c => c.id === tx.category) || { name: tx.category, badgeClass: 'bg-slate-500/10 text-slate-400 border-slate-500/20' };
+        const catObj = catList.find(c => c.id === tx.category) || { name: tx.category, badgeClass: 'bg-slate-100 dark:bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-500/20' };
 
         const tr = `
-                    <tr class="hover:bg-slate-800/40 transition">
-                        <td class="py-2.5 px-4 font-semibold text-white truncate max-w-[140px]">${escapeHtml(tx.title)}</td>
-                        <td class="py-2.5 px-4">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-medium border ${catObj.badgeClass}">${catObj.name}</span>
-                        </td>
-                        <td class="py-2.5 px-4 text-slate-400 whitespace-nowrap">${tx.date}</td>
-                        <td class="py-2.5 px-4 text-right font-bold whitespace-nowrap ${isIncome ? 'text-emerald-400' : 'text-slate-100'}">
-                            ${isIncome ? '+' : '-'}${formatMoney(tx.amount)}
-                        </td>
-                    </tr>
-                `;
+            <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+                <td class="py-2.5 px-4 font-semibold text-slate-900 dark:text-white truncate max-w-[140px]">${escapeHtml(tx.title)}</td>
+                <td class="py-2.5 px-4">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium border ${catObj.badgeClass}">${catObj.name}</span>
+                </td>
+                <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${tx.date}</td>
+                <td class="py-2.5 px-4 text-right font-bold whitespace-nowrap ${isIncome ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-100'}">
+                    ${isIncome ? '+' : '-'}${formatMoney(tx.amount)}
+                </td>
+            </tr>
+        `;
         tableBody.innerHTML += tr;
     });
 }
@@ -374,6 +406,11 @@ function renderAnalyticsView() {
     const netSurplus = totalInc - totalExp;
     document.getElementById('statNetSurplus').textContent = formatMoney(netSurplus);
 
+    const isDark = document.documentElement.classList.contains('dark');
+    const tickColor = isDark ? '#64748b' : '#94a3b8';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+    const donutBorderColor = isDark ? '#1e293b' : '#ffffff';
+
     // Analytics Bar Chart
     const barCtx = document.getElementById('analyticsBarChart').getContext('2d');
     const datesMap = {};
@@ -399,10 +436,10 @@ function renderAnalyticsView() {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                x: { ticks: { color: '#64748b', font: { size: 9 } } },
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b', font: { size: 9 } } }
+                x: { ticks: { color: tickColor, font: { size: 9 } } },
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 } } }
             },
-            plugins: { legend: { labels: { color: '#94a3b8', font: { size: 9 } } } }
+            plugins: { legend: { labels: { color: tickColor, font: { size: 9 } } } }
         }
     });
 
@@ -425,12 +462,12 @@ function renderAnalyticsView() {
         type: 'doughnut',
         data: {
             labels: catLabels,
-            datasets: [{ data: catData, backgroundColor: catColors, borderWidth: 2, borderColor: '#1e293b' }]
+            datasets: [{ data: catData, backgroundColor: catColors, borderWidth: 2, borderColor: donutBorderColor }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 9 } } } }
+            plugins: { legend: { position: 'bottom', labels: { color: tickColor, font: { size: 9 } } } }
         }
     });
 }
@@ -460,34 +497,34 @@ function renderBudgets() {
         const catObj = CATEGORIES.EXPENSE.find(c => c.id === catId) || { name: catId, icon: 'fa-circle-dot' };
 
         let barColor = 'bg-indigo-500';
-        let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">${percent}%</span>`;
+        let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700">${percent}%</span>`;
 
         if (percent >= 100) {
             barColor = 'bg-rose-500';
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">Over Limit</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">Over Limit</span>`;
         } else if (percent >= 80) {
             barColor = 'bg-amber-500';
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Warning</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Warning</span>`;
         }
 
         const cardHtml = `
-                    <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-medium text-slate-200 flex items-center gap-1.5 truncate">
-                                <i class="fa-solid ${catObj.icon} text-slate-400 text-xs"></i>
-                                ${catObj.name}
-                            </span>
-                            ${statusBadge}
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1.5">
-                            <span>Spent: <strong class="text-slate-200">${formatMoney(spent)}</strong></span>
-                            <span>Limit: ${formatMoney(limit)}</span>
-                        </div>
-                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full ${barColor} transition-all duration-300" style="width: ${percent}%"></div>
-                        </div>
-                    </div>
-                `;
+            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-1.5 truncate">
+                        <i class="fa-solid ${catObj.icon} text-slate-400 text-xs"></i>
+                        ${catObj.name}
+                    </span>
+                    ${statusBadge}
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">
+                    <span>Spent: <strong class="text-slate-700 dark:text-slate-200">${formatMoney(spent)}</strong></span>
+                    <span>Limit: ${formatMoney(limit)}</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full ${barColor} transition-all duration-300" style="width: ${percent}%"></div>
+                </div>
+            </div>
+        `;
         container.innerHTML += cardHtml;
     });
 }
@@ -505,27 +542,27 @@ function renderGoals() {
         const percent = Math.min(100, Math.round((goal.current / goal.target) * 100));
 
         const goalCard = `
-                    <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-xs font-semibold text-slate-200 truncate pr-2">${escapeHtml(goal.title)}</span>
-                            <div class="flex items-center gap-1 flex-shrink-0">
-                                <button onclick="openDepositModal('${goal.id}')" title="Deposit" class="px-2 py-0.5 text-[10px] font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 rounded-md transition">
-                                    + Deposit
-                                </button>
-                                <button onclick="confirmDeleteGoal('${goal.id}')" title="Delete Goal" class="p-1 text-slate-500 hover:text-rose-400 transition text-xs">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1.5">
-                            <span>${formatMoney(goal.current)} / ${formatMoney(goal.target)}</span>
-                            <span class="font-bold text-emerald-400">${percent}%</span>
-                        </div>
-                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-emerald-500 transition-all duration-300" style="width: ${percent}%"></div>
-                        </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate pr-2">${escapeHtml(goal.title)}</span>
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                        <button onclick="openDepositModal('${goal.id}')" title="Deposit" class="px-2 py-0.5 text-[10px] font-medium bg-emerald-100 dark:bg-emerald-500/10 hover:bg-emerald-200 dark:hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 rounded-md transition">
+                            + Deposit
+                        </button>
+                        <button onclick="confirmDeleteGoal('${goal.id}')" title="Delete Goal" class="p-1 text-slate-400 dark:text-slate-500 hover:text-rose-500 dark:hover:text-rose-400 transition text-xs">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
                     </div>
-                `;
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">
+                    <span>${formatMoney(goal.current)} / ${formatMoney(goal.target)}</span>
+                    <span class="font-bold text-emerald-500 dark:text-emerald-400">${percent}%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-500 transition-all duration-300" style="width: ${percent}%"></div>
+                </div>
+            </div>
+        `;
         container.innerHTML += goalCard;
     });
 }
@@ -585,39 +622,39 @@ function renderTransactions() {
 
     filtered.forEach(tx => {
         const allCatList = tx.type === 'INCOME' ? CATEGORIES.INCOME : CATEGORIES.EXPENSE;
-        const catObj = allCatList.find(c => c.id === tx.category) || { name: tx.category, icon: 'fa-tag', badgeClass: 'bg-slate-500/10 text-slate-400 border-slate-500/20' };
+        const catObj = allCatList.find(c => c.id === tx.category) || { name: tx.category, icon: 'fa-tag', badgeClass: 'bg-slate-100 dark:bg-slate-500/10 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-500/20' };
 
         const isIncome = tx.type === 'INCOME';
         const amountFormatted = `${isIncome ? '+' : '-'}${formatMoney(tx.amount)}`;
-        const amountColor = isIncome ? 'text-emerald-400' : 'text-slate-100';
+        const amountColor = isIncome ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-100';
 
         const trHtml = `
-                    <tr class="hover:bg-slate-800/40 transition">
-                        <td class="py-3 px-4">
-                            <div class="font-semibold text-white truncate max-w-[150px] sm:max-w-xs">${escapeHtml(tx.title)}</div>
-                            ${tx.notes ? `<div class="text-[11px] text-slate-400 mt-0.5 truncate max-w-[150px] sm:max-w-xs">${escapeHtml(tx.notes)}</div>` : ''}
-                        </td>
-                        <td class="py-3 px-4">
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium border ${catObj.badgeClass}">
-                                <i class="fa-solid ${catObj.icon}"></i>
-                                ${catObj.name}
-                            </span>
-                        </td>
-                        <td class="py-3 px-4 text-slate-400 whitespace-nowrap">${tx.date}</td>
-                        <td class="py-3 px-4 text-slate-400 whitespace-nowrap">${escapeHtml(tx.paymentMethod || 'N/A')}</td>
-                        <td class="py-3 px-4 text-right font-bold whitespace-nowrap ${amountColor}">
-                            ${amountFormatted}
-                        </td>
-                        <td class="py-3 px-4 text-center whitespace-nowrap">
-                            <button onclick="editTransaction('${tx.id}')" title="Edit" class="p-1.5 text-slate-400 hover:text-indigo-400 transition">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button onclick="confirmDeleteTransaction('${tx.id}')" title="Delete" class="p-1.5 text-slate-400 hover:text-rose-400 transition ml-1">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
+            <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+                <td class="py-3 px-4">
+                    <div class="font-semibold text-slate-900 dark:text-white truncate max-w-[150px] sm:max-w-xs">${escapeHtml(tx.title)}</div>
+                    ${tx.notes ? `<div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate max-w-[150px] sm:max-w-xs">${escapeHtml(tx.notes)}</div>` : ''}
+                </td>
+                <td class="py-3 px-4">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium border ${catObj.badgeClass}">
+                        <i class="fa-solid ${catObj.icon}"></i>
+                        ${catObj.name}
+                    </span>
+                </td>
+                <td class="py-3 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${tx.date}</td>
+                <td class="py-3 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${escapeHtml(tx.paymentMethod || 'N/A')}</td>
+                <td class="py-3 px-4 text-right font-bold whitespace-nowrap ${amountColor}">
+                    ${amountFormatted}
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                    <button onclick="editTransaction('${tx.id}')" title="Edit" class="p-1.5 text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button onclick="confirmDeleteTransaction('${tx.id}')" title="Delete" class="p-1.5 text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 transition ml-1">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </td>
+            </tr>
+        `;
         tableBody.innerHTML += trHtml;
     });
 }
@@ -631,11 +668,11 @@ function setTxType(type) {
 
     if (type === 'EXPENSE') {
         btnExpense.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 bg-rose-600 text-white shadow-md';
-        btnIncome.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white';
+        btnIncome.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
         catSelect.innerHTML = CATEGORIES.EXPENSE.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
     } else {
         btnIncome.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 bg-emerald-600 text-white shadow-md';
-        btnExpense.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white';
+        btnExpense.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
         catSelect.innerHTML = CATEGORIES.INCOME.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
     }
 }
@@ -660,11 +697,11 @@ function openTransactionModal(editId = null) {
             document.getElementById('txPaymentMethod').value = tx.paymentMethod || 'Credit Card';
             document.getElementById('txNotes').value = tx.notes || '';
 
-            modalTitle.innerHTML = `<i class="fa-solid fa-pen-to-square text-indigo-400"></i> Edit Transaction`;
+            modalTitle.innerHTML = `<i class="fa-solid fa-pen-to-square text-indigo-500 dark:text-indigo-400"></i> Edit Transaction`;
         }
     } else {
         setTxType('EXPENSE');
-        modalTitle.innerHTML = `<i class="fa-solid fa-circle-plus text-indigo-400"></i> Add Transaction`;
+        modalTitle.innerHTML = `<i class="fa-solid fa-circle-plus text-indigo-500 dark:text-indigo-400"></i> Add Transaction`;
     }
 
     document.getElementById('transactionModal').classList.remove('hidden');
@@ -728,16 +765,16 @@ function openBudgetModal() {
     CATEGORIES.EXPENSE.forEach(cat => {
         const currentLimit = appState.budgets[cat.id] || 0;
         const itemHtml = `
-                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-                        <span class="text-xs font-medium text-slate-200 flex items-center gap-2 truncate pr-2">
-                            <i class="fa-solid ${cat.icon} text-slate-400"></i> ${cat.name}
-                        </span>
-                        <div class="relative w-28 sm:w-32 flex-shrink-0">
-                            <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${appState.currency}</span>
-                            <input type="number" min="0" step="10" value="${currentLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-white outline-none focus:ring-1 focus:ring-indigo-500">
-                        </div>
-                    </div>
-                `;
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2 truncate pr-2">
+                    <i class="fa-solid ${cat.icon} text-slate-400"></i> ${cat.name}
+                </span>
+                <div class="relative w-28 sm:w-32 flex-shrink-0">
+                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${appState.currency}</span>
+                    <input type="number" min="0" step="10" value="${currentLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-indigo-500">
+                </div>
+            </div>
+        `;
         listEl.innerHTML += itemHtml;
     });
 
@@ -878,8 +915,8 @@ function confirmClearAll() {
 function showToast(message) {
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
-    toast.className = 'glass-modal text-white px-3.5 py-2 rounded-xl text-xs shadow-xl flex items-center gap-2 border border-slate-700/80 transform transition-all duration-300 translate-y-2 opacity-0';
-    toast.innerHTML = `<i class="fa-solid fa-circle-check text-indigo-400"></i> ${escapeHtml(message)}`;
+    toast.className = 'glass-modal text-slate-900 dark:text-white px-3.5 py-2 rounded-xl text-xs shadow-xl flex items-center gap-2 border border-slate-200 dark:border-slate-700/80 transform transition-all duration-300 translate-y-2 opacity-0';
+    toast.innerHTML = `<i class="fa-solid fa-circle-check text-indigo-500 dark:text-indigo-400"></i> ${escapeHtml(message)}`;
 
     container.appendChild(toast);
 
