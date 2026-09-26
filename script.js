@@ -19,9 +19,53 @@ const CATEGORIES = {
     ]
 };
 
+// --- CURRENCY CONFIG ---
+const CURRENCY_CONFIG = {
+    USD: { symbol: '$', locale: 'en-US', decimals: 2, prepend: true },
+    EUR: { symbol: '€', locale: 'de-DE', decimals: 2, prepend: false },
+    GBP: { symbol: '£', locale: 'en-GB', decimals: 2, prepend: true },
+    JPY: { symbol: '¥', locale: 'ja-JP', decimals: 0, prepend: true },
+    INR: { symbol: '₹', locale: 'en-IN', decimals: 2, prepend: true },
+    VND: { symbol: '₫', locale: 'vi-VN', decimals: 0, prepend: false },
+};
+
+// Symbol → Code migration map (for legacy localStorage data)
+const SYMBOL_TO_CODE = { '$': 'USD', '€': 'EUR', '£': 'GBP', '¥': 'JPY', '₹': 'INR', '₫': 'VND' };
+
+// --- EXCHANGE RATES ---
+let exchangeRates = { USD: 1 }; // Fallback: 1:1 (all amounts treated as USD)
+
+async function fetchExchangeRates() {
+    const CACHE_KEY = 'er_cache';
+    const CACHE_TTL = 60 * 60 * 1000; // 1 hour in ms
+    try {
+        const cached = sessionStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.timestamp < CACHE_TTL) {
+                exchangeRates = parsed.rates;
+                renderAllViews();
+                return;
+            }
+        }
+        // Fetch fresh rates
+        const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        exchangeRates = data.rates;
+        exchangeRates.USD = 1; // Ensure base is set
+        const ts = Date.now();
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ rates: exchangeRates, timestamp: ts }));
+        renderAllViews();
+    } catch (err) {
+        console.warn('Exchange rate fetch failed, using fallback rates:', err);
+        exchangeRates = { USD: 1 }; // Silent fallback
+    }
+}
+
 // --- APP STATE ---
 let appState = {
-    currency: '$',
+    currency: 'USD',
     currentPage: 'dashboard',
     transactions: [],
     budgets: {
@@ -107,6 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTxType('EXPENSE');
     document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
     switchPage('dashboard');
+    fetchExchangeRates(); // Fetch rates silently in background
 });
 
 // Local Storage
@@ -126,8 +171,21 @@ function loadStateFromLocalStorage() {
     } else {
         appState.transactions = getSampleData();
     }
-    document.getElementById('currencySelect').value = appState.currency || '$';
-    document.getElementById('txCurrencySymbol').textContent = appState.currency || '$';
+
+    // --- Legacy migration: symbol → code ---
+    if (appState.currency && SYMBOL_TO_CODE[appState.currency]) {
+        appState.currency = SYMBOL_TO_CODE[appState.currency];
+    }
+    if (!CURRENCY_CONFIG[appState.currency]) {
+        appState.currency = 'USD';
+    }
+
+    const code = appState.currency;
+    const cfg = CURRENCY_CONFIG[code];
+    document.getElementById('currencySelect').value = code;
+    const settingsSelect = document.getElementById('settingsCurrencySelect');
+    if (settingsSelect) settingsSelect.value = code;
+    document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
     document.getElementById('sidebarTxCount').textContent = `${appState.transactions.length} transactions recorded`;
 }
 
@@ -206,17 +264,30 @@ function renderAllViews() {
     }
 }
 
-function formatMoney(amount) {
-    return `${appState.currency}${parseFloat(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+function formatMoney(amountUSD) {
+    const code = appState.currency || 'USD';
+    const cfg = CURRENCY_CONFIG[code] || CURRENCY_CONFIG['USD'];
+    const rate = exchangeRates[code] || 1;
+    const converted = parseFloat(amountUSD) * rate;
+    const formatted = new Intl.NumberFormat(cfg.locale, {
+        minimumFractionDigits: cfg.decimals,
+        maximumFractionDigits: cfg.decimals
+    }).format(converted);
+    return cfg.prepend ? `${cfg.symbol}${formatted}` : `${formatted} ${cfg.symbol}`;
 }
 
-function changeCurrency(newCurr) {
-    appState.currency = newCurr;
-    document.getElementById('currencySelect').value = newCurr;
-    document.getElementById('txCurrencySymbol').textContent = newCurr;
+function changeCurrency(newCode) {
+    if (!CURRENCY_CONFIG[newCode]) return;
+    appState.currency = newCode;
+    const cfg = CURRENCY_CONFIG[newCode];
+    // Sync both dropdowns
+    document.getElementById('currencySelect').value = newCode;
+    const settingsSelect = document.getElementById('settingsCurrencySelect');
+    if (settingsSelect) settingsSelect.value = newCode;
+    document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
     saveStateToLocalStorage();
     renderAllViews();
-    showToast(`Currency updated to ${newCurr}`);
+    showToast(`Currency changed to ${newCode} (${cfg.symbol})`);
 }
 
 function renderMetrics() {
@@ -261,7 +332,7 @@ function renderDashCharts() {
     const isDark = document.documentElement.classList.contains('dark');
     const tickColor = isDark ? '#64748b' : '#94a3b8'; // slate-500 dark, slate-400 light
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
-    const donutBorderColor = isDark ? '#1e293b' : '#ffffff'; 
+    const donutBorderColor = isDark ? '#1e293b' : '#ffffff';
 
     // Category Chart
     const catCtx = document.getElementById('dashCategoryChart').getContext('2d');
@@ -340,7 +411,7 @@ function renderDashCharts() {
             maintainAspectRatio: false,
             scales: {
                 x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 9 } } },
-                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => `${appState.currency}${v}` } }
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => formatMoney(v) } }
             },
             plugins: {
                 legend: { position: 'top', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } }
@@ -691,7 +762,11 @@ function openTransactionModal(editId = null) {
             document.getElementById('editTxId').value = tx.id;
             setTxType(tx.type);
             document.getElementById('txTitle').value = tx.title;
-            document.getElementById('txAmount').value = tx.amount;
+            // Show amount in current display currency (tx.amount is stored in USD)
+            const editRate = exchangeRates[appState.currency] || 1;
+            const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
+            const displayAmount = parseFloat(tx.amount) * editRate;
+            document.getElementById('txAmount').value = parseFloat(displayAmount.toFixed(cfg.decimals));
             document.getElementById('txCategory').value = tx.category;
             document.getElementById('txDate').value = tx.date;
             document.getElementById('txPaymentMethod').value = tx.paymentMethod || 'Credit Card';
@@ -725,16 +800,20 @@ function handleTransactionSubmit(e) {
 
     if (!title || isNaN(amount) || amount <= 0) return;
 
+    // Always store amounts in USD (base currency). Convert from current display currency.
+    const saveRate = exchangeRates[appState.currency] || 1;
+    const amountUSD = amount / saveRate;
+
     if (editId) {
         const index = appState.transactions.findIndex(t => t.id === editId);
         if (index !== -1) {
-            appState.transactions[index] = { id: editId, type, title, amount, category, date, paymentMethod, notes };
+            appState.transactions[index] = { id: editId, type, title, amount: amountUSD, category, date, paymentMethod, notes };
             showToast('Transaction updated');
         }
     } else {
         appState.transactions.push({
             id: 'tx_' + Date.now(),
-            type, title, amount, category, date, paymentMethod, notes
+            type, title, amount: amountUSD, category, date, paymentMethod, notes
         });
         showToast('New transaction added');
     }
@@ -770,7 +849,7 @@ function openBudgetModal() {
                     <i class="fa-solid ${cat.icon} text-slate-400"></i> ${cat.name}
                 </span>
                 <div class="relative w-28 sm:w-32 flex-shrink-0">
-                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${appState.currency}</span>
+                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${(CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD']).symbol}</span>
                     <input type="number" min="0" step="10" value="${currentLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-indigo-500">
                 </div>
             </div>
