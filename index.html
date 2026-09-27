@@ -73,36 +73,36 @@
                 <button onclick="switchPage('dashboard')" id="nav-dashboard"
                     class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition group">
                     <i class="fa-solid fa-chart-line text-sm w-5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition"></i>
-                    <span>Dashboard</span>
+                    <span data-i18n="nav_dashboard">Dashboard</span>
                 </button>
 
                 <button onclick="switchPage('transactions')" id="nav-transactions"
                     class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition group">
                     <i class="fa-solid fa-list-check text-sm w-5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition"></i>
-                    <span>Transactions</span>
+                    <span data-i18n="nav_transactions">Transactions</span>
                 </button>
 
                 <button onclick="switchPage('analytics')" id="nav-analytics"
                     class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition group">
                     <i class="fa-solid fa-chart-pie text-sm w-5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition"></i>
-                    <span>Analytics & Reports</span>
+                    <span data-i18n="nav_analytics">Analytics & Reports</span>
                 </button>
 
                 <button onclick="switchPage('budgets')" id="nav-budgets"
                     class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition group">
                     <i class="fa-solid fa-bullseye text-sm w-5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition"></i>
-                    <span>Budgets & Goals</span>
+                    <span data-i18n="nav_budgets">Budgets & Goals</span>
                 </button>
 
                 <button onclick="switchPage('settings')" id="nav-settings"
                     class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition group">
                     <i class="fa-solid fa-gear text-sm w-5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition"></i>
-                    <span>Settings & Data</span>
+                    <span data-i18n="nav_settings">Settings & Data</span>
                 </button>
             </nav>
         </div>
 
-        <!-- Sidebar Footer Status -->
+<!-- Sidebar Footer Status -->
         <div class="p-4 border-t border-slate-200 dark:border-slate-800/80 mb-16 md:mb-0">
             <div class="bg-slate-50 dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800/80 flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></div>
@@ -114,7 +114,7 @@
         </div>
     </aside>
 
-    <!-- Main Content Wrapper -->
+    <!-- Main Content Wrapper (ĐÃ ĐƯỢC BỔ SUNG LẠI THẺ BỌC NÀY ĐỂ KHÔNG BỊ VỠ GIAO DIỆN) -->
     <div class="flex-1 flex flex-col min-w-0 min-h-screen pb-20 md:pb-6">
 
         <!-- Top App Bar Navigation Header -->
@@ -126,14 +126,12 @@
                     <i class="fa-solid fa-bars text-base"></i>
                 </button>
                 <div class="truncate">
-                    <h2 id="pageTitle" class="text-sm sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">Dashboard
-                    </h2>
-                    <p id="pageSubtitle" class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Overview of your financial
-                        balance and activity</p>
+                    <h2 id="pageTitle" class="text-sm sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">Dashboard</h2>
+                    <p id="pageSubtitle" class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Overview of your financial balance and activity</p>
                 </div>
             </div>
 
-            <!-- Global Action Controls -->
+            <!-- Global Action Controls (Đã căn chỉnh khoảng cách đều nhau, không bị sát) -->
             <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
                 <!-- Theme Toggle -->
                 <button onclick="toggleTheme()" class="flex items-center justify-center w-9 h-9 rounded-xl bg-white dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 text-slate-500 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition cursor-pointer">
@@ -156,16 +154,27 @@
                     </select>
                 </div>
 
+                <!-- Language Picker -->
+                <div class="relative flex items-center">
+                    <span class="absolute left-2.5 text-slate-500 dark:text-slate-400 text-xs pointer-events-none">
+                        <i class="fa-solid fa-language text-indigo-500 dark:text-indigo-400"></i>
+                    </span>
+                    <select id="langSelect" onchange="changeLanguage(this.value)"
+                        class="bg-white dark:bg-slate-800/90 text-xs font-semibold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700/80 rounded-xl pl-7 pr-2.5 py-2 outline-none focus:ring-2 focus:ring-indigo-500 transition cursor-pointer">
+                        <option value="en">English</option>
+                        <option value="vi">Tiếng Việt</option>
+                    </select>
+                </div>
+
                 <!-- Add Transaction Button -->
                 <button onclick="openTransactionModal()"
                     class="flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-xs font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all active:scale-95 whitespace-nowrap">
                     <i class="fa-solid fa-plus text-xs"></i>
-                    <span class="hidden sm:inline">Add Transaction</span>
-                    <span class="sm:hidden">Add</span>
+                    <span class="hidden sm:inline" data-i18n="add_transaction">Add Transaction</span>
+                    <span class="sm:hidden" data-i18n="add">Add</span>
                 </button>
             </div>
-        </header>
-
+        </header>        
         <!-- Dynamic Pages Container -->
         <main class="p-3 sm:p-6 max-w-7xl w-full mx-auto flex-grow">
 
@@ -176,30 +185,31 @@
                     <!-- Net Balance Card -->
                     <div class="glass-card p-4 sm:p-5 rounded-2xl relative overflow-hidden group">
                         <div class="flex items-center justify-between mb-2 sm:mb-3">
-                            <span class="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Net
-                                Balance</span>
-                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center">
+                            <!-- Thêm class truncate để chữ tự thu gọn khi dài -->
+                            <span class="text-[9px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate pr-1" data-i18n="net_balance">Net Balance</span>
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-indigo-500/15 border border-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-scale-balanced text-xs sm:text-sm"></i>
                             </div>
                         </div>
-                        <h2 id="metricTotalBalance" class="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 truncate">$0.00</h2>
+                        <h2 id="metricTotalBalance" class="text-base sm:text-2xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 truncate">$0.00</h2>
                         <div class="flex items-center justify-between text-[10px] sm:text-xs pt-2 border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
-                            <span>Status</span>
+                            <span data-i18n="status">Status</span>
                             <span id="metricBalanceStatus" class="font-semibold text-emerald-500 dark:text-emerald-400 truncate">Positive</span>
                         </div>
                     </div>
 
+
                     <!-- Income Card -->
-                    <div class="glass-card p-4 sm:p-5 rounded-2xl relative overflow-hidden group">
+                   <div class="glass-card p-4 sm:p-5 rounded-2xl relative overflow-hidden group">
                         <div class="flex items-center justify-between mb-2 sm:mb-3">
-                            <span class="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Income</span>
-                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 dark:text-emerald-400 flex items-center justify-center">
+                            <span class="text-[9px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate pr-1" data-i18n="total_income">Total Income</span>
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-arrow-down-left text-xs sm:text-sm"></i>
                             </div>
                         </div>
-                        <h2 id="metricTotalIncome" class="text-lg sm:text-2xl font-bold text-emerald-500 dark:text-emerald-400 mb-1 sm:mb-2 truncate">$0.00</h2>
+                        <h2 id="metricTotalIncome" class="text-base sm:text-2xl font-bold text-emerald-500 dark:text-emerald-400 mb-1 sm:mb-2 truncate">$0.00</h2>
                         <div class="flex items-center justify-between text-[10px] sm:text-xs pt-2 border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
-                            <span>Inflow</span>
+                            <span data-i18n="inflow">Inflow</span>
                             <span id="metricIncomeCount" class="font-medium text-slate-700 dark:text-slate-300">0 items</span>
                         </div>
                     </div>
@@ -207,14 +217,14 @@
                     <!-- Expenses Card -->
                     <div class="glass-card p-4 sm:p-5 rounded-2xl relative overflow-hidden group">
                         <div class="flex items-center justify-between mb-2 sm:mb-3">
-                            <span class="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Expenses</span>
-                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-500 dark:text-rose-400 flex items-center justify-center">
+                            <span class="text-[9px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate pr-1" data-i18n="total_expenses">Total Expenses</span>
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-500 dark:text-rose-400 flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-arrow-up-right text-xs sm:text-sm"></i>
                             </div>
                         </div>
-                        <h2 id="metricTotalExpense" class="text-lg sm:text-2xl font-bold text-rose-500 dark:text-rose-400 mb-1 sm:mb-2 truncate">$0.00</h2>
+                        <h2 id="metricTotalExpense" class="text-base sm:text-2xl font-bold text-rose-500 dark:text-rose-400 mb-1 sm:mb-2 truncate">$0.00</h2>
                         <div class="flex items-center justify-between text-[10px] sm:text-xs pt-2 border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
-                            <span>Outflow</span>
+                            <span data-i18n="outflow">Outflow</span>
                             <span id="metricExpenseCount" class="font-medium text-slate-700 dark:text-slate-300">0 items</span>
                         </div>
                     </div>
@@ -222,82 +232,85 @@
                     <!-- Savings Rate Card -->
                     <div class="glass-card p-4 sm:p-5 rounded-2xl relative overflow-hidden group">
                         <div class="flex items-center justify-between mb-2 sm:mb-3">
-                            <span class="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Savings Rate</span>
-                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-500 dark:text-sky-400 flex items-center justify-center">
+                            <span class="text-[9px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate pr-1" data-i18n="savings_rate">Savings Rate</span>
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-500 dark:text-sky-400 flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-percent text-xs sm:text-sm"></i>
                             </div>
                         </div>
-                        <h2 id="metricSavingsRate" class="text-lg sm:text-2xl font-bold text-sky-500 dark:text-sky-400 mb-1 sm:mb-2 truncate">0%</h2>
+                        <h2 id="metricSavingsRate" class="text-base sm:text-2xl font-bold text-sky-500 dark:text-sky-400 mb-1 sm:mb-2 truncate">0%</h2>
                         <div class="flex items-center justify-between text-[10px] sm:text-xs pt-2 border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
-                            <span>Target</span>
+                            <span data-i18n="target">Target</span>
                             <span class="font-medium text-slate-700 dark:text-slate-300">&gt; 20%</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Charts Overview Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
-                    <div class="lg:col-span-8 glass-card p-4 sm:p-5 rounded-2xl flex flex-col">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                                <i class="fa-solid fa-chart-column text-indigo-500 dark:text-indigo-400"></i>
-                                Recent Financial Activity
-                            </h3>
-                            <button onclick="switchPage('analytics')" class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium">Details &rarr;</button>
+                    <!-- Charts Overview Row -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+                        <!-- Biểu đồ cột (Chiếm 8 cột) -->
+                        <div class="lg:col-span-8 glass-card p-4 sm:p-5 rounded-2xl flex flex-col">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-column text-indigo-500 dark:text-indigo-400"></i>
+                                    Recent Financial Activity
+                                </h3>
+                                <button onclick="switchPage('analytics')" class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium">Details &rarr;</button>
+                            </div>
+                            <div class="relative flex-grow h-48 sm:h-64">
+                                <canvas id="dashTrendChart"></canvas>
+                            </div>
                         </div>
-                        <div class="relative flex-grow h-48 sm:h-64">
-                            <canvas id="dashTrendChart"></canvas>
-                        </div>
-                    </div>
 
-                    <div class="lg:col-span-4 glass-card p-4 sm:p-5 rounded-2xl flex flex-col">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                                <i class="fa-solid fa-chart-pie text-indigo-500 dark:text-indigo-400"></i>
-                                Expense Distribution
-                            </h3>
-                            <span class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">By Category</span>
-                        </div>
-                        <div class="relative flex-grow flex items-center justify-center h-48 sm:h-64">
-                            <canvas id="dashCategoryChart"></canvas>
-                            <div id="dashNoChartData"
-                                class="hidden absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 text-xs">
-                                <i class="fa-solid fa-chart-pie text-3xl mb-2 opacity-40"></i>
-                                <p>No expense data recorded</p>
+                        <!-- Biểu đồ tròn phân bổ (Chiếm 4 cột) -->
+                        <div class="lg:col-span-4 glass-card p-4 sm:p-5 rounded-2xl flex flex-col">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-pie text-indigo-500 dark:text-indigo-400"></i>
+                                    Expense Distribution
+                                </h3>
+                                <span class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">By Category</span>
+                            </div>
+                            <div class="relative flex-grow flex items-center justify-center h-48 sm:h-64">
+                                <canvas id="dashCategoryChart"></canvas>
+                                <div id="dashNoChartData"
+                                    class="hidden absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 text-xs">
+                                    <i class="fa-solid fa-chart-pie text-3xl mb-2 opacity-40"></i>
+                                    <p>No expense data recorded</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+            
 
-                <!-- Recent Activity Preview Snippet -->
-                <div class="glass-card p-4 sm:p-5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                            <i class="fa-solid fa-clock-rotate-left text-indigo-500 dark:text-indigo-400"></i>
-                            Recent Transactions Preview
-                        </h3>
-                        <button onclick="switchPage('transactions')"
-                            class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium">View All &rarr;</button>
-                    </div>
+                    <!-- Recent Activity Preview Snippet -->
+                    <div class="glass-card p-4 sm:p-5 rounded-2xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-indigo-500 dark:text-indigo-400"></i>
+                                Recent Transactions Preview
+                            </h3>
+                            <button onclick="switchPage('transactions')"
+                                class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium">View All &rarr;</button>
+                        </div>
 
-                    <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
-                        <table class="w-full text-left text-xs min-w-[500px]">
-                            <thead
-                                class="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
-                                <tr>
-                                    <th scope="col" class="py-3 px-4">Transaction</th>
-                                    <th scope="col" class="py-3 px-4">Category</th>
-                                    <th scope="col" class="py-3 px-4">Date</th>
-                                    <th scope="col" class="py-3 px-4 text-right">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody id="dashRecentTableBody" class="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-700 dark:text-slate-200">
-                                <!-- Dynamic Preview Rows -->
-                            </tbody>
-                        </table>
+                        <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                            <table class="w-full text-left text-xs min-w-[500px]">
+                                <thead
+                                    class="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+                                    <tr>
+                                        <th scope="col" class="py-3 px-4">Transaction</th>
+                                        <th scope="col" class="py-3 px-4">Category</th>
+                                        <th scope="col" class="py-3 px-4">Date</th>
+                                        <th scope="col" class="py-3 px-4 text-right">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashRecentTableBody" class="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-700 dark:text-slate-200">
+                                    <!-- Dynamic Preview Rows -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
             <!-- PAGE 2: TRANSACTIONS VIEW -->
             <section id="page-transactions" class="page-view hidden space-y-4 sm:space-y-6">
@@ -350,12 +363,12 @@
                             <thead
                                 class="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
                                 <tr>
-                                    <th scope="col" class="py-3 px-4">Transaction</th>
-                                    <th scope="col" class="py-3 px-4">Category</th>
-                                    <th scope="col" class="py-3 px-4">Date</th>
-                                    <th scope="col" class="py-3 px-4">Payment Method</th>
-                                    <th scope="col" class="py-3 px-4 text-right">Amount</th>
-                                    <th scope="col" class="py-3 px-4 text-center">Actions</th>
+                                    <th scope="col" class="py-3 px-4" data-i18n="th_transaction">Transaction</th>
+                                    <th scope="col" class="py-3 px-4" data-i18n="th_category">Category</th>
+                                    <th scope="col" class="py-3 px-4" data-i18n="th_date">Date</th>
+                                    <th scope="col" class="py-3 px-4" data-i18n="th_payment">Payment Method</th>
+                                    <th scope="col" class="py-3 px-4 text-right" data-i18n="th_amount">Amount</th>
+                                    <th scope="col" class="py-3 px-4 text-center" data-i18n="th_actions">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="transactionTableBody" class="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-700 dark:text-slate-200">
