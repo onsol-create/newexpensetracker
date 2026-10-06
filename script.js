@@ -1,6 +1,10 @@
 // --- TRANSLATIONS DICTIONARY ---
 const translations = {
   en: {
+    app_subtitle: "Expense Tracker",
+    local_sync: "Local Storage Sync",
+    tx_recorded: "transactions recorded",
+
     nav_dashboard: "Dashboard",
     nav_transactions: "Transactions",
     nav_analytics: "Analytics & Reports",
@@ -9,8 +13,8 @@ const translations = {
     
     page_dashboard_title: "Dashboard Overview",
     page_dashboard_subtitle: "Summary of financial balance, activity, and key metrics",
-    page_transactions_title: "Transaction Records",
-    page_transactions_subtitle: "Manage, search, and audit your income and expenses",
+    page_transactions_title: "Transaction History",
+    page_transactions_subtitle: "Filter, search, edit, and audit your records",
     page_analytics_title: "Analytics & Financial Insights",
     page_analytics_subtitle: "Detailed visual breakdown of spending habits and trends",
     page_budgets_title: "Budgets & Savings Targets",
@@ -27,7 +31,7 @@ const translations = {
     negative: "Deficit",
     inflow: "Inflow",
     outflow: "Outflow",
-    target: "Target",
+    target: "Target Amount",
     
     recent_activity: "Recent Financial Activity",
     expense_distribution: "Expense Distribution",
@@ -60,9 +64,10 @@ const translations = {
     monthly_budgets: "Monthly Budgets",
     budget_desc: "Control spending limits",
     manage_limits: "Manage Limits",
+    limits: "Limits",
     savings_targets: "Savings Targets",
     goals_desc: "Track long term savings progress",
-    new_goal: "+ New Goal",
+    new_goal: "New Goal",
     
     general_preferences: "General Preferences",
     default_currency: "Default Currency Symbol",
@@ -88,14 +93,25 @@ const translations = {
     label_payment: "Payment Method",
     label_notes: "Notes (Optional)",
     placeholder_notes: "Additional details...",
+    
     btn_cancel: "Cancel",
     btn_save: "Save Transaction",
     btn_done: "Done",
+    btn_create_target: "Create Target",
+    add_funds: "Add Funds",
+    btn_add_funds: "Add Funds",
+    
+    confirm_action: "Confirm Action",
+    confirm_desc: "Are you sure you want to proceed?",
     
     no_transactions: "No matching transactions found",
     no_recent: "No recent transactions"
   },
   vi: {
+    app_subtitle: "Theo dõi chi tiêu",
+    local_sync: "Đồng bộ bộ nhớ tạm",
+    tx_recorded: "giao dịch đã ghi",
+
     nav_dashboard: "Tổng quan",
     nav_transactions: "Giao dịch",
     nav_analytics: "Phân tích & Báo cáo",
@@ -106,9 +122,9 @@ const translations = {
     page_dashboard_subtitle: "Tóm tắt số dư, hoạt động và các chỉ số tài chính chính",
     page_transactions_title: "Lịch sử giao dịch",
     page_transactions_subtitle: "Quản lý, tìm kiếm và kiểm tra các khoản thu chi của bạn",
-    page_analytics_title: "Phân tích & Báo cáo tài chính",
+    page_analytics_title: "Phân tích & Báo cáo",
     page_analytics_subtitle: "Chi tiết trực quan về thói quen chi tiêu và xu hướng",
-    page_budgets_title: "Ngân sách & Mục tiêu tiết kiệm",
+    page_budgets_title: "Ngân sách & Mục tiêu",
     page_budgets_subtitle: "Kiểm soát giới hạn chi tiêu và theo dõi mục tiêu tiết kiệm",
     page_settings_title: "Cài đặt & Quản lý dữ liệu",
     page_settings_subtitle: "Cấu hình tiền tệ và sao lưu dữ liệu JSON",
@@ -146,8 +162,8 @@ const translations = {
     reset_filters: "Đặt lại bộ lọc",
     
     avg_daily_spend: "Chi tiêu TB/ngày",
-    top_category: "Danh mục hàng đầu",
-    top_payment: "Thanh toán hàng đầu",
+    top_category: "Danh mục phổ biến",
+    top_payment: "Thanh toán phổ biến",
     net_surplus: "Thặng dư ròng",
     income_vs_expense: "Xu hướng Thu nhập & Chi tiêu",
     category_breakdown: "Chi tiết danh mục chi tiêu",
@@ -155,9 +171,10 @@ const translations = {
     monthly_budgets: "Ngân sách hàng tháng",
     budget_desc: "Kiểm soát giới hạn chi tiêu",
     manage_limits: "Quản lý hạn mức",
+    limits: "Hạn mức",
     savings_targets: "Mục tiêu tiết kiệm",
     goals_desc: "Theo dõi tiến độ tiết kiệm dài hạn",
-    new_goal: "+ Mục tiêu mới",
+    new_goal: "Mục tiêu mới",
     
     general_preferences: "Tùy chọn chung",
     default_currency: "Ký hiệu tiền tệ mặc định",
@@ -183,9 +200,16 @@ const translations = {
     label_payment: "Phương thức thanh toán",
     label_notes: "Ghi chú (Tùy chọn)",
     placeholder_notes: "Chi tiết bổ sung...",
+    
     btn_cancel: "Hủy",
     btn_save: "Lưu giao dịch",
     btn_done: "Xong",
+    btn_create_target: "Tạo mục tiêu",
+    add_funds: "Nạp tiền",
+    btn_add_funds: "Thêm tiền",
+    
+    confirm_action: "Xác nhận hành động",
+    confirm_desc: "Bạn có chắc chắn muốn tiếp tục hành động này không?",
     
     no_transactions: "Không tìm thấy giao dịch phù hợp",
     no_recent: "Chưa có giao dịch gần đây"
@@ -249,6 +273,7 @@ let analyticsDoughnutChartInstance = null;
 function changeLanguage(lang) {
     localStorage.setItem('spendSmart_lang', lang);
 
+    // Dịch các thẻ có chứa data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -256,6 +281,7 @@ function changeLanguage(lang) {
         }
     });
 
+    // Cập nhật Placeholder
     const searchInput = document.getElementById('searchInput');
     if (searchInput && translations[lang]['search_placeholder']) {
         searchInput.placeholder = translations[lang]['search_placeholder'];
@@ -266,8 +292,22 @@ function changeLanguage(lang) {
     const txNotes = document.getElementById('txNotes');
     if (txNotes) txNotes.placeholder = translations[lang]['placeholder_notes'];
 
+    // Cập nhật các select box
     populateCategoryFilterOptions();
+    populateTypeFilterOptions();
+    updateSidebarTxCount();
+    
+    // Cập nhật lại giao diện trang hiện tại
+    switchPage(appState.currentPage); 
     renderAllViews();
+}
+
+function updateSidebarTxCount() {
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const txCountEl = document.getElementById('sidebarTxCount');
+    if(txCountEl) {
+        txCountEl.textContent = `${appState.transactions.length} ${translations[lang].tx_recorded}`;
+    }
 }
 
 function getCategoryName(catId, type = 'EXPENSE') {
@@ -334,6 +374,7 @@ function getSampleData() {
 window.addEventListener('DOMContentLoaded', () => {
     loadStateFromLocalStorage();
     populateCategoryFilterOptions();
+    populateTypeFilterOptions();
     setTxType('EXPENSE');
     document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
     
@@ -347,7 +388,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function saveStateToLocalStorage() {
     localStorage.setItem('spendSmart_tw_data', JSON.stringify(appState));
-    document.getElementById('sidebarTxCount').textContent = `${appState.transactions.length} transactions recorded`;
+    updateSidebarTxCount();
 }
 
 function loadStateFromLocalStorage() {
@@ -361,9 +402,17 @@ function loadStateFromLocalStorage() {
     } else {
         appState.transactions = getSampleData();
     }
-    document.getElementById('currencySelect').value = appState.currency || '$';
+    
+    // Đồng bộ menu loại tiền tệ ở Header
+    const currencySelectHeader = document.getElementById('currencySelect');
+    if(currencySelectHeader) currencySelectHeader.value = appState.currency || '$';
+    
+    // Đồng bộ menu loại tiền tệ ở Settings
+    const settingCurrencySelect = document.getElementById('settingCurrencySelect');
+    if(settingCurrencySelect) settingCurrencySelect.value = appState.currency || '$';
+
     document.getElementById('txCurrencySymbol').textContent = appState.currency || '$';
-    document.getElementById('sidebarTxCount').textContent = `${appState.transactions.length} transactions recorded`;
+    updateSidebarTxCount();
 }
 
 function toggleSidebar() {
@@ -446,12 +495,16 @@ function formatMoney(amount) {
 }
 
 function changeCurrency(newCurr) {
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
     appState.currency = newCurr;
+    
     document.getElementById('currencySelect').value = newCurr;
+    document.getElementById('settingCurrencySelect').value = newCurr;
     document.getElementById('txCurrencySymbol').textContent = newCurr;
+    
     saveStateToLocalStorage();
     renderAllViews();
-    showToast(`Currency updated to ${newCurr}`);
+    showToast(lang === 'vi' ? `Đã cập nhật tiền tệ thành ${newCurr}` : `Currency updated to ${newCurr}`);
 }
 
 function renderMetrics() {
@@ -805,6 +858,10 @@ function populateCategoryFilterOptions() {
     const filterSelect = document.getElementById('categoryFilter');
     if (!filterSelect) return;
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    
+    // Ghi nhớ giá trị đang chọn
+    const currentValue = filterSelect.value;
+    
     const allText = translations[lang].all_categories;
     filterSelect.innerHTML = `<option value="ALL">${allText}</option>`;
 
@@ -813,6 +870,24 @@ function populateCategoryFilterOptions() {
         const name = getCategoryName(cat.id, cat.id === 'salary' || cat.id === 'freelance' || cat.id === 'investments' || cat.id === 'gifts' || cat.id === 'other_inc' ? 'INCOME' : 'EXPENSE');
         filterSelect.innerHTML += `<option value="${cat.id}">${name}</option>`;
     });
+    
+    // Khôi phục giá trị đã chọn
+    filterSelect.value = currentValue || "ALL";
+}
+
+function populateTypeFilterOptions() {
+    const typeFilter = document.getElementById('typeFilter');
+    if(!typeFilter) return;
+    
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const currentValue = typeFilter.value;
+    
+    typeFilter.innerHTML = `
+        <option value="ALL">${translations[lang].all_types}</option>
+        <option value="EXPENSE">${translations[lang].expenses}</option>
+        <option value="INCOME">${translations[lang].income}</option>
+    `;
+    typeFilter.value = currentValue || "ALL";
 }
 
 function applyFilters() {
@@ -909,8 +984,8 @@ function setTxType(type) {
     const btnExpense = document.getElementById('btnTypeExpense');
     const btnIncome = document.getElementById('btnTypeIncome');
 
-    const expText = `<i class="fa-solid fa-minus-circle"></i> ${lang === 'vi' ? 'Khoản chi' : 'Expense'}`;
-    const incText = `<i class="fa-solid fa-plus-circle"></i> ${lang === 'vi' ? 'Thu nhập' : 'Income'}`;
+    const expText = `<i class="fa-solid fa-minus-circle"></i> <span data-i18n="expenses">${translations[lang].expenses}</span>`;
+    const incText = `<i class="fa-solid fa-plus-circle"></i> <span data-i18n="income">${translations[lang].income}</span>`;
     btnExpense.innerHTML = expText;
     btnIncome.innerHTML = incText;
 
@@ -946,11 +1021,11 @@ function openTransactionModal(editId = null) {
             document.getElementById('txPaymentMethod').value = tx.paymentMethod || 'Credit Card';
             document.getElementById('txNotes').value = tx.notes || '';
 
-            modalTitle.innerHTML = `<i class="fa-solid fa-pen-to-square text-indigo-500 dark:text-indigo-400"></i> ${translations[lang].modal_title_edit}`;
+            modalTitle.innerHTML = `<i class="fa-solid fa-pen-to-square text-indigo-500 dark:text-indigo-400"></i> <span data-i18n="modal_title_edit">${translations[lang].modal_title_edit}</span>`;
         }
     } else {
         setTxType('EXPENSE');
-        modalTitle.innerHTML = `<i class="fa-solid fa-circle-plus text-indigo-500 dark:text-indigo-400"></i> ${translations[lang].modal_title_add}`;
+        modalTitle.innerHTML = `<i class="fa-solid fa-circle-plus text-indigo-500 dark:text-indigo-400"></i> <span data-i18n="modal_title_add">${translations[lang].modal_title_add}</span>`;
     }
 
     document.getElementById('transactionModal').classList.remove('hidden');
