@@ -4,13 +4,11 @@ const translations = {
     app_subtitle: "Expense Tracker",
     local_sync: "Local Storage Sync",
     tx_recorded: "transactions recorded",
-
     nav_dashboard: "Dashboard",
     nav_transactions: "Transactions",
     nav_analytics: "Analytics & Reports",
     nav_budgets: "Budgets & Goals",
     nav_settings: "Settings & Data",
-    
     page_dashboard_title: "Dashboard Overview",
     page_dashboard_subtitle: "Summary of financial balance, activity, and key metrics",
     page_transactions_title: "Transaction History",
@@ -21,7 +19,6 @@ const translations = {
     page_budgets_subtitle: "Control category spending caps and track savings goals",
     page_settings_title: "Settings & Data Management",
     page_settings_subtitle: "Currency configurations and JSON data backups",
-    
     net_balance: "Net Balance",
     total_income: "Total Income",
     total_expenses: "Total Expenses",
@@ -32,35 +29,30 @@ const translations = {
     inflow: "Inflow",
     outflow: "Outflow",
     target: "Target Amount",
-    
     recent_activity: "Recent Financial Activity",
     expense_distribution: "Expense Distribution",
     by_category: "By Category",
     recent_preview: "Recent Transactions Preview",
     view_all: "View All \u2192",
     details: "Details \u2192",
-    
     th_transaction: "Transaction",
     th_category: "Category",
     th_date: "Date",
     th_payment: "Payment Method",
     th_amount: "Amount",
     th_actions: "Actions",
-    
     search_placeholder: "Search...",
     all_types: "All Types",
     expenses: "Expenses",
     income: "Income",
     all_categories: "All Categories",
     reset_filters: "Reset Filters",
-    
     avg_daily_spend: "Avg Daily Spend",
     top_category: "Top Category",
     top_payment: "Top Payment",
     net_surplus: "Net Surplus",
     income_vs_expense: "Income vs Expense Trends",
     category_breakdown: "Expense Category Breakdown",
-    
     monthly_budgets: "Monthly Budgets",
     budget_desc: "Control spending limits",
     manage_limits: "Manage Limits",
@@ -68,7 +60,6 @@ const translations = {
     savings_targets: "Savings Targets",
     goals_desc: "Track long term savings progress",
     new_goal: "New Goal",
-    
     general_preferences: "General Preferences",
     default_currency: "Default Currency Symbol",
     currency_desc: "Used for formatting financial metrics",
@@ -80,7 +71,6 @@ const translations = {
     reset_desc: "Reset app state to initial demo dataset or clear all records permanently.",
     load_demo: "Load Sample Demo Data",
     clear_all: "Clear All Data",
-    
     add_transaction: "Add Transaction",
     add: "Add",
     modal_title_add: "Add Transaction",
@@ -93,17 +83,14 @@ const translations = {
     label_payment: "Payment Method",
     label_notes: "Notes (Optional)",
     placeholder_notes: "Additional details...",
-    
     btn_cancel: "Cancel",
     btn_save: "Save Transaction",
     btn_done: "Done",
     btn_create_target: "Create Target",
     add_funds: "Add Funds",
     btn_add_funds: "Add Funds",
-    
     confirm_action: "Confirm Action",
     confirm_desc: "Are you sure you want to proceed?",
-    
     no_transactions: "No matching transactions found",
     no_recent: "No recent transactions"
   },
@@ -111,13 +98,11 @@ const translations = {
     app_subtitle: "Theo dõi chi tiêu",
     local_sync: "Đồng bộ bộ nhớ tạm",
     tx_recorded: "giao dịch đã ghi",
-
     nav_dashboard: "Tổng quan",
     nav_transactions: "Giao dịch",
     nav_analytics: "Phân tích & Báo cáo",
     nav_budgets: "Ngân sách & Mục tiêu",
     nav_settings: "Cài đặt & Dữ liệu",
-    
     page_dashboard_title: "Tổng quan tài chính",
     page_dashboard_subtitle: "Tóm tắt số dư, hoạt động và các chỉ số tài chính chính",
     page_transactions_title: "Lịch sử giao dịch",
@@ -128,7 +113,6 @@ const translations = {
     page_budgets_subtitle: "Kiểm soát giới hạn chi tiêu và theo dõi mục tiêu tiết kiệm",
     page_settings_title: "Cài đặt & Quản lý dữ liệu",
     page_settings_subtitle: "Cấu hình tiền tệ và sao lưu dữ liệu JSON",
-    
     net_balance: "Số dư ròng",
     total_income: "Tổng thu nhập",
     total_expenses: "Tổng chi tiêu",
@@ -139,35 +123,30 @@ const translations = {
     inflow: "Tiền vào",
     outflow: "Tiền ra",
     target: "Mục tiêu",
-    
     recent_activity: "Hoạt động tài chính gần đây",
     expense_distribution: "Phân bổ chi tiêu",
     by_category: "Theo danh mục",
     recent_preview: "Xem trước giao dịch gần đây",
     view_all: "Xem tất cả \u2192",
     details: "Chi tiết \u2192",
-    
     th_transaction: "Giao dịch",
     th_category: "Danh mục",
     th_date: "Ngày",
     th_payment: "Phương thức",
     th_amount: "Số tiền",
     th_actions: "Hành động",
-    
     search_placeholder: "Tìm kiếm...",
     all_types: "Tất cả loại",
     expenses: "Khoản chi",
     income: "Thu nhập",
     all_categories: "Tất cả danh mục",
     reset_filters: "Đặt lại bộ lọc",
-    
     avg_daily_spend: "Chi tiêu TB/ngày",
     top_category: "Danh mục phổ biến",
     top_payment: "Thanh toán phổ biến",
     net_surplus: "Thặng dư ròng",
     income_vs_expense: "Xu hướng Thu nhập & Chi tiêu",
     category_breakdown: "Chi tiết danh mục chi tiêu",
-    
     monthly_budgets: "Ngân sách hàng tháng",
     budget_desc: "Kiểm soát giới hạn chi tiêu",
     manage_limits: "Quản lý hạn mức",
@@ -175,7 +154,6 @@ const translations = {
     savings_targets: "Mục tiêu tiết kiệm",
     goals_desc: "Theo dõi tiến độ tiết kiệm dài hạn",
     new_goal: "Mục tiêu mới",
-    
     general_preferences: "Tùy chọn chung",
     default_currency: "Ký hiệu tiền tệ mặc định",
     currency_desc: "Dùng để định dạng các chỉ số tài chính",
@@ -187,7 +165,6 @@ const translations = {
     reset_desc: "Đặt lại trạng thái ứng dụng về dữ liệu mẫu ban đầu hoặc xóa vĩnh viễn tất cả bản ghi.",
     load_demo: "Tải dữ liệu mẫu demo",
     clear_all: "Xóa tất cả dữ liệu",
-    
     add_transaction: "Thêm giao dịch",
     add: "Thêm",
     modal_title_add: "Thêm giao dịch",
@@ -200,17 +177,14 @@ const translations = {
     label_payment: "Phương thức thanh toán",
     label_notes: "Ghi chú (Tùy chọn)",
     placeholder_notes: "Chi tiết bổ sung...",
-    
     btn_cancel: "Hủy",
     btn_save: "Lưu giao dịch",
     btn_done: "Xong",
     btn_create_target: "Tạo mục tiêu",
     add_funds: "Nạp tiền",
     btn_add_funds: "Thêm tiền",
-    
     confirm_action: "Xác nhận hành động",
     confirm_desc: "Bạn có chắc chắn muốn tiếp tục hành động này không?",
-    
     no_transactions: "Không tìm thấy giao dịch phù hợp",
     no_recent: "Chưa có giao dịch gần đây"
   }
@@ -245,6 +219,45 @@ const PAYMENT_METHODS_TRANSLATION = {
     "Digital Wallet": { en: "Digital Wallet", vi: "Ví điện tử" }
 };
 
+// --- CURRENCY & EXCHANGE RATE LOGIC ---
+const CURRENCY_CONFIG = {
+    'USD': { symbol: '$', locale: 'en-US', decimals: 2, prepend: true },
+    'EUR': { symbol: '€', locale: 'de-DE', decimals: 2, prepend: true },
+    'GBP': { symbol: '£', locale: 'en-GB', decimals: 2, prepend: true },
+    'JPY': { symbol: '¥', locale: 'ja-JP', decimals: 0, prepend: true },
+    'INR': { symbol: '₹', locale: 'en-IN', decimals: 2, prepend: true },
+    'VND': { symbol: '₫', locale: 'vi-VN', decimals: 0, prepend: false } 
+};
+
+// Fallback rates if API fails (Base: USD)
+let exchangeRates = {
+    'USD': 1,
+    'EUR': 0.92,
+    'GBP': 0.79,
+    'JPY': 150.0,
+    'INR': 83.0,
+    'VND': 25000.0 
+};
+
+async function fetchExchangeRates() {
+    try {
+        // Sử dụng API công khai miễn phí để lấy tỷ giá USD làm gốc
+        const response = await fetch('https://open.er-api.com/v6/latest/USD');
+        const data = await response.json();
+        if (data && data.rates) {
+            exchangeRates['EUR'] = data.rates.EUR || exchangeRates['EUR'];
+            exchangeRates['GBP'] = data.rates.GBP || exchangeRates['GBP'];
+            exchangeRates['JPY'] = data.rates.JPY || exchangeRates['JPY'];
+            exchangeRates['INR'] = data.rates.INR || exchangeRates['INR'];
+            exchangeRates['VND'] = data.rates.VND || exchangeRates['VND'];
+            // Re-render UI to apply live rates
+            renderAllViews();
+        }
+    } catch (error) {
+        console.warn('Không thể tải tỷ giá trực tuyến, sử dụng tỷ giá mặc định.', error);
+    }
+}
+
 // --- APP STATE ---
 let appState = {
     currency: 'USD',
@@ -273,7 +286,6 @@ let analyticsDoughnutChartInstance = null;
 function changeLanguage(lang) {
     localStorage.setItem('spendSmart_lang', lang);
 
-    // Dịch các thẻ có chứa data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -281,7 +293,6 @@ function changeLanguage(lang) {
         }
     });
 
-    // Cập nhật Placeholder
     const searchInput = document.getElementById('searchInput');
     if (searchInput && translations[lang]['search_placeholder']) {
         searchInput.placeholder = translations[lang]['search_placeholder'];
@@ -292,12 +303,9 @@ function changeLanguage(lang) {
     const txNotes = document.getElementById('txNotes');
     if (txNotes) txNotes.placeholder = translations[lang]['placeholder_notes'];
 
-    // Cập nhật các select box
     populateCategoryFilterOptions();
     populateTypeFilterOptions();
     updateSidebarTxCount();
-    
-    // Cập nhật lại giao diện trang hiện tại
     switchPage(appState.currentPage); 
     renderAllViews();
 }
@@ -384,7 +392,7 @@ window.addEventListener('DOMContentLoaded', () => {
     changeLanguage(savedLang);
     
     switchPage('dashboard');
-    fetchExchangeRates(); // Fetch rates silently in background
+    fetchExchangeRates(); // Fetch real-time exchange rates
 });
 
 function saveStateToLocalStorage() {
@@ -404,15 +412,17 @@ function loadStateFromLocalStorage() {
         appState.transactions = getSampleData();
     }
     
-    // Đồng bộ menu loại tiền tệ ở Header
-    const currencySelectHeader = document.getElementById('currencySelect');
-    if(currencySelectHeader) currencySelectHeader.value = appState.currency || '$';
+    // Ensure default is USD if undefined
+    const validCurrency = appState.currency || 'USD';
     
-    // Đồng bộ menu loại tiền tệ ở Settings
+    const currencySelectHeader = document.getElementById('currencySelect');
+    if(currencySelectHeader) currencySelectHeader.value = validCurrency;
+    
     const settingCurrencySelect = document.getElementById('settingCurrencySelect');
-    if(settingCurrencySelect) settingCurrencySelect.value = appState.currency || '$';
+    if(settingCurrencySelect) settingCurrencySelect.value = validCurrency;
 
-    document.getElementById('txCurrencySymbol').textContent = appState.currency || '$';
+    const cfg = CURRENCY_CONFIG[validCurrency] || CURRENCY_CONFIG['USD'];
+    document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
     updateSidebarTxCount();
 }
 
@@ -491,15 +501,20 @@ function renderAllViews() {
     }
 }
 
+// FORMAT MONEY WITH EXCHANGE RATE
 function formatMoney(amountUSD) {
     const code = appState.currency || 'USD';
     const cfg = CURRENCY_CONFIG[code] || CURRENCY_CONFIG['USD'];
     const rate = exchangeRates[code] || 1;
+    
+    // Calculate accurate converted amount
     const converted = parseFloat(amountUSD) * rate;
+    
     const formatted = new Intl.NumberFormat(cfg.locale, {
         minimumFractionDigits: cfg.decimals,
         maximumFractionDigits: cfg.decimals
     }).format(converted);
+    
     return cfg.prepend ? `${cfg.symbol}${formatted}` : `${formatted} ${cfg.symbol}`;
 }
 
@@ -509,7 +524,9 @@ function changeCurrency(newCurr) {
     
     document.getElementById('currencySelect').value = newCurr;
     document.getElementById('settingCurrencySelect').value = newCurr;
-    document.getElementById('txCurrencySymbol').textContent = newCurr;
+    
+    const cfg = CURRENCY_CONFIG[newCurr] || CURRENCY_CONFIG['USD'];
+    document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
     
     saveStateToLocalStorage();
     renderAllViews();
@@ -560,13 +577,14 @@ function renderDashCharts() {
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
     const donutBorderColor = isDark ? '#1e293b' : '#ffffff'; 
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const rate = exchangeRates[appState.currency] || 1;
 
     const catCtx = document.getElementById('dashCategoryChart').getContext('2d');
     const noDataEl = document.getElementById('dashNoChartData');
 
     const catTotals = {};
     appState.transactions.filter(tx => tx.type === 'EXPENSE').forEach(tx => {
-        catTotals[tx.category] = (catTotals[tx.category] || 0) + parseFloat(tx.amount);
+        catTotals[tx.category] = (catTotals[tx.category] || 0) + (parseFloat(tx.amount) * rate);
     });
 
     const labels = [];
@@ -599,7 +617,7 @@ function renderDashCharts() {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: { position: 'bottom', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } },
-                    tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${formatMoney(ctx.parsed)}` } }
+                    tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${formatMoney(ctx.raw / rate)}` } }
                 },
                 cutout: '68%'
             }
@@ -613,8 +631,8 @@ function renderDashCharts() {
     sortedTxs.forEach(tx => {
         const dateKey = tx.date;
         if (!datesMap[dateKey]) datesMap[dateKey] = { income: 0, expense: 0 };
-        if (tx.type === 'INCOME') datesMap[dateKey].income += parseFloat(tx.amount);
-        else datesMap[dateKey].expense += parseFloat(tx.amount);
+        if (tx.type === 'INCOME') datesMap[dateKey].income += (parseFloat(tx.amount) * rate);
+        else datesMap[dateKey].expense += (parseFloat(tx.amount) * rate);
     });
 
     const dateLabels = Object.keys(datesMap).slice(-8);
@@ -637,7 +655,7 @@ function renderDashCharts() {
             maintainAspectRatio: false,
             scales: {
                 x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 9 } } },
-                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => formatMoney(v) } }
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => formatMoney(v / rate) } }
             },
             plugins: {
                 legend: { position: 'top', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } }
@@ -705,13 +723,14 @@ function renderAnalyticsView() {
     const tickColor = isDark ? '#64748b' : '#94a3b8';
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
     const donutBorderColor = isDark ? '#1e293b' : '#ffffff';
+    const rate = exchangeRates[appState.currency] || 1;
 
     const barCtx = document.getElementById('analyticsBarChart').getContext('2d');
     const datesMap = {};
     [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(tx => {
         if (!datesMap[tx.date]) datesMap[tx.date] = { income: 0, expense: 0 };
-        if (tx.type === 'INCOME') datesMap[tx.date].income += parseFloat(tx.amount);
-        else datesMap[tx.date].expense += parseFloat(tx.amount);
+        if (tx.type === 'INCOME') datesMap[tx.date].income += (parseFloat(tx.amount) * rate);
+        else datesMap[tx.date].expense += (parseFloat(tx.amount) * rate);
     });
 
     const labels = Object.keys(datesMap).slice(-10);
@@ -745,7 +764,7 @@ function renderAnalyticsView() {
     Object.keys(catMap).forEach(catId => {
         const catObj = CATEGORIES.EXPENSE.find(c => c.id === catId) || { color: '#64748b' };
         catLabels.push(getCategoryName(catId, 'EXPENSE'));
-        catData.push(catMap[catId]);
+        catData.push(catMap[catId] * rate);
         catColors.push(catObj.color);
     });
 
@@ -868,9 +887,7 @@ function populateCategoryFilterOptions() {
     if (!filterSelect) return;
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
     
-    // Ghi nhớ giá trị đang chọn
     const currentValue = filterSelect.value;
-    
     const allText = translations[lang].all_categories;
     filterSelect.innerHTML = `<option value="ALL">${allText}</option>`;
 
@@ -880,7 +897,6 @@ function populateCategoryFilterOptions() {
         filterSelect.innerHTML += `<option value="${cat.id}">${name}</option>`;
     });
     
-    // Khôi phục giá trị đã chọn
     filterSelect.value = currentValue || "ALL";
 }
 
@@ -1024,11 +1040,12 @@ function openTransactionModal(editId = null) {
             document.getElementById('editTxId').value = tx.id;
             setTxType(tx.type);
             document.getElementById('txTitle').value = tx.title;
-            // Show amount in current display currency (tx.amount is stored in USD)
+            
             const editRate = exchangeRates[appState.currency] || 1;
             const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
             const displayAmount = parseFloat(tx.amount) * editRate;
             document.getElementById('txAmount').value = parseFloat(displayAmount.toFixed(cfg.decimals));
+            
             document.getElementById('txCategory').value = tx.category;
             document.getElementById('txDate').value = tx.date;
             document.getElementById('txPaymentMethod').value = tx.paymentMethod || 'Credit Card';
@@ -1063,14 +1080,14 @@ function handleTransactionSubmit(e) {
 
     if (!title || isNaN(amount) || amount <= 0) return;
 
-    // Always store amounts in USD (base currency). Convert from current display currency.
+    // Convert to base USD for storage
     const saveRate = exchangeRates[appState.currency] || 1;
     const amountUSD = amount / saveRate;
 
     if (editId) {
         const index = appState.transactions.findIndex(t => t.id === editId);
         if (index !== -1) {
-            appState.transactions[index] = { id: editId, type, title, amount, category, date, paymentMethod, notes };
+            appState.transactions[index] = { id: editId, type, title, amount: amountUSD, category, date, paymentMethod, notes };
             showToast(lang === 'vi' ? 'Đã cập nhật giao dịch' : 'Transaction updated');
         }
     } else {
@@ -1107,18 +1124,22 @@ function confirmDeleteTransaction(id) {
 function openBudgetModal() {
     const listEl = document.getElementById('budgetFormList');
     listEl.innerHTML = '';
+    const rate = exchangeRates[appState.currency] || 1;
+    const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
 
     CATEGORIES.EXPENSE.forEach(cat => {
         const currentLimit = appState.budgets[cat.id] || 0;
+        const displayLimit = currentLimit > 0 ? (currentLimit * rate).toFixed(cfg.decimals) : 0;
         const catName = getCategoryName(cat.id, 'EXPENSE');
+        
         const itemHtml = `
             <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2 truncate pr-2">
                     <i class="fa-solid ${cat.icon} text-slate-400"></i> ${catName}
                 </span>
                 <div class="relative w-28 sm:w-32 flex-shrink-0">
-                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${(CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD']).symbol}</span>
-                    <input type="number" min="0" step="10" value="${currentLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-indigo-500">
+                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${cfg.symbol}</span>
+                    <input type="number" min="0" value="${displayLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-indigo-500">
                 </div>
             </div>
         `;
@@ -1133,7 +1154,8 @@ function closeBudgetModal() {
 }
 
 function updateBudgetLimit(catId, val) {
-    const num = parseFloat(val);
+    const rate = exchangeRates[appState.currency] || 1;
+    const num = parseFloat(val) / rate; // Convert back to USD
     if (isNaN(num) || num <= 0) delete appState.budgets[catId];
     else appState.budgets[catId] = num;
     saveStateToLocalStorage();
@@ -1152,11 +1174,17 @@ function closeGoalModal() {
 function handleGoalSubmit(e) {
     e.preventDefault();
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const rate = exchangeRates[appState.currency] || 1;
+    
     const title = document.getElementById('goalTitle').value.trim();
-    const target = parseFloat(document.getElementById('goalTarget').value);
-    const current = parseFloat(document.getElementById('goalCurrent').value) || 0;
+    const targetInput = parseFloat(document.getElementById('goalTarget').value);
+    const currentInput = parseFloat(document.getElementById('goalCurrent').value) || 0;
 
-    if (!title || isNaN(target) || target <= 0) return;
+    if (!title || isNaN(targetInput) || targetInput <= 0) return;
+
+    // Save in USD base
+    const target = targetInput / rate;
+    const current = currentInput / rate;
 
     appState.goals.push({ id: 'goal_' + Date.now(), title, target, current });
     saveStateToLocalStorage();
@@ -1182,10 +1210,13 @@ function closeDepositModal() {
 
 function submitDeposit() {
     const goalId = document.getElementById('depositGoalId').value;
-    const amount = parseFloat(document.getElementById('depositAmount').value);
+    const rate = exchangeRates[appState.currency] || 1;
+    const amountInput = parseFloat(document.getElementById('depositAmount').value);
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
 
-    if (isNaN(amount) || amount <= 0) return;
+    if (isNaN(amountInput) || amountInput <= 0) return;
+    
+    const amount = amountInput / rate;
 
     const goal = appState.goals.find(g => g.id === goalId);
     if (goal) {
