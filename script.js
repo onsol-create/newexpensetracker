@@ -247,7 +247,7 @@ const PAYMENT_METHODS_TRANSLATION = {
 
 // --- APP STATE ---
 let appState = {
-    currency: '$',
+    currency: 'USD',
     currentPage: 'dashboard',
     transactions: [],
     budgets: {
@@ -384,6 +384,7 @@ window.addEventListener('DOMContentLoaded', () => {
     changeLanguage(savedLang);
     
     switchPage('dashboard');
+    fetchExchangeRates(); // Fetch rates silently in background
 });
 
 function saveStateToLocalStorage() {
@@ -490,8 +491,16 @@ function renderAllViews() {
     }
 }
 
-function formatMoney(amount) {
-    return `${appState.currency}${parseFloat(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+function formatMoney(amountUSD) {
+    const code = appState.currency || 'USD';
+    const cfg = CURRENCY_CONFIG[code] || CURRENCY_CONFIG['USD'];
+    const rate = exchangeRates[code] || 1;
+    const converted = parseFloat(amountUSD) * rate;
+    const formatted = new Intl.NumberFormat(cfg.locale, {
+        minimumFractionDigits: cfg.decimals,
+        maximumFractionDigits: cfg.decimals
+    }).format(converted);
+    return cfg.prepend ? `${cfg.symbol}${formatted}` : `${formatted} ${cfg.symbol}`;
 }
 
 function changeCurrency(newCurr) {
@@ -628,7 +637,7 @@ function renderDashCharts() {
             maintainAspectRatio: false,
             scales: {
                 x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 9 } } },
-                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => `${appState.currency}${v}` } }
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => formatMoney(v) } }
             },
             plugins: {
                 legend: { position: 'top', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } }
@@ -1015,7 +1024,11 @@ function openTransactionModal(editId = null) {
             document.getElementById('editTxId').value = tx.id;
             setTxType(tx.type);
             document.getElementById('txTitle').value = tx.title;
-            document.getElementById('txAmount').value = tx.amount;
+            // Show amount in current display currency (tx.amount is stored in USD)
+            const editRate = exchangeRates[appState.currency] || 1;
+            const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
+            const displayAmount = parseFloat(tx.amount) * editRate;
+            document.getElementById('txAmount').value = parseFloat(displayAmount.toFixed(cfg.decimals));
             document.getElementById('txCategory').value = tx.category;
             document.getElementById('txDate').value = tx.date;
             document.getElementById('txPaymentMethod').value = tx.paymentMethod || 'Credit Card';
@@ -1050,6 +1063,10 @@ function handleTransactionSubmit(e) {
 
     if (!title || isNaN(amount) || amount <= 0) return;
 
+    // Always store amounts in USD (base currency). Convert from current display currency.
+    const saveRate = exchangeRates[appState.currency] || 1;
+    const amountUSD = amount / saveRate;
+
     if (editId) {
         const index = appState.transactions.findIndex(t => t.id === editId);
         if (index !== -1) {
@@ -1059,7 +1076,7 @@ function handleTransactionSubmit(e) {
     } else {
         appState.transactions.push({
             id: 'tx_' + Date.now(),
-            type, title, amount, category, date, paymentMethod, notes
+            type, title, amount: amountUSD, category, date, paymentMethod, notes
         });
         showToast(lang === 'vi' ? 'Đã thêm giao dịch mới' : 'New transaction added');
     }
@@ -1100,7 +1117,7 @@ function openBudgetModal() {
                     <i class="fa-solid ${cat.icon} text-slate-400"></i> ${catName}
                 </span>
                 <div class="relative w-28 sm:w-32 flex-shrink-0">
-                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${appState.currency}</span>
+                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${(CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD']).symbol}</span>
                     <input type="number" min="0" step="10" value="${currentLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-indigo-500">
                 </div>
             </div>
