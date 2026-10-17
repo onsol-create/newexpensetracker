@@ -8,6 +8,7 @@ const translations = {
     nav_transactions: "Transactions",
     nav_analytics: "Analytics & Reports",
     nav_budgets: "Budgets & Goals",
+    nav_subscriptions: "Subscriptions",
     nav_settings: "Settings & Data",
     page_dashboard_title: "Dashboard Overview",
     page_dashboard_subtitle: "Summary of financial balance, activity, and key metrics",
@@ -17,6 +18,8 @@ const translations = {
     page_analytics_subtitle: "Detailed visual breakdown of spending habits and trends",
     page_budgets_title: "Budgets & Savings Targets",
     page_budgets_subtitle: "Control category spending caps and track savings goals",
+    page_subscriptions_title: "Recurring Subscriptions",
+    page_subscriptions_subtitle: "Track monthly and yearly recurring memberships and bills",
     page_settings_title: "Settings & Data Management",
     page_settings_subtitle: "Currency configurations and JSON data backups",
     net_balance: "Net Balance",
@@ -32,6 +35,26 @@ const translations = {
     recent_activity: "Recent Financial Activity",
     expense_distribution: "Expense Distribution",
     by_category: "By Category",
+    heatmap_title: "Income/Expense Calendar Heatmap",
+    heatmap_subtitle: "Click on any day to view detailed transaction list",
+    select_month: "Select Month:",
+    legend_title: "Legend:",
+    legend_income: "Income",
+    legend_expense: "Expense",
+    legend_mixed: "Both",
+    legend_none: "None",
+    heatmap_toggle_expense: "Expenses",
+    heatmap_toggle_income: "Income",
+    heatmap_toggle_both: "Both",
+    day_sun: "Sun",
+    day_mon: "Mon",
+    day_tue: "Tue",
+    day_wed: "Wed",
+    day_thu: "Thu",
+    day_fri: "Fri",
+    day_sat: "Sat",
+    tx_for_date: "Transactions for",
+    no_tx_on_date: "No transactions recorded on this day.",
     recent_preview: "Recent Transactions Preview",
     view_all: "View All \u2192",
     details: "Details \u2192",
@@ -43,6 +66,7 @@ const translations = {
     th_actions: "Actions",
     search_placeholder: "Search...",
     all_types: "All Types",
+    all_months: "All Months",
     expenses: "Expenses",
     income: "Income",
     all_categories: "All Categories",
@@ -92,7 +116,19 @@ const translations = {
     confirm_action: "Confirm Action",
     confirm_desc: "Are you sure you want to proceed?",
     no_transactions: "No matching transactions found",
-    no_recent: "No recent transactions"
+    no_recent: "No recent transactions",
+    // Subscriptions Translation Keys
+    monthly_cost: "Monthly Cost",
+    yearly_cost: "Yearly Cost",
+    active_subs: "Active Subscriptions",
+    new_subscription: "New Subscription",
+    cycle_monthly: "Monthly",
+    cycle_yearly: "Yearly",
+    next_billing: "Next Billing",
+    modal_title_add_sub: "Add Subscription",
+    modal_title_edit_sub: "Edit Subscription",
+    label_cycle: "Billing Cycle",
+    no_subscriptions: "No active subscriptions found"
   },
   vi: {
     app_subtitle: "Theo dõi chi tiêu",
@@ -102,6 +138,7 @@ const translations = {
     nav_transactions: "Giao dịch",
     nav_analytics: "Phân tích & Báo cáo",
     nav_budgets: "Ngân sách & Mục tiêu",
+    nav_subscriptions: "Dịch vụ định kỳ",
     nav_settings: "Cài đặt & Dữ liệu",
     page_dashboard_title: "Tổng quan tài chính",
     page_dashboard_subtitle: "Tóm tắt số dư, hoạt động và các chỉ số tài chính chính",
@@ -111,6 +148,8 @@ const translations = {
     page_analytics_subtitle: "Chi tiết trực quan về thói quen chi tiêu và xu hướng",
     page_budgets_title: "Ngân sách & Mục tiêu",
     page_budgets_subtitle: "Kiểm soát giới hạn chi tiêu và theo dõi mục tiêu tiết kiệm",
+    page_subscriptions_title: "Quản lý gói dịch vụ định kỳ",
+    page_subscriptions_subtitle: "Theo dõi các dịch vụ đăng ký, hóa đơn hàng tháng và hàng năm",
     page_settings_title: "Cài đặt & Quản lý dữ liệu",
     page_settings_subtitle: "Cấu hình tiền tệ và sao lưu dữ liệu JSON",
     net_balance: "Số dư ròng",
@@ -126,6 +165,26 @@ const translations = {
     recent_activity: "Hoạt động tài chính gần đây",
     expense_distribution: "Phân bổ chi tiêu",
     by_category: "Theo danh mục",
+    heatmap_title: "Thống kê thu chi theo ngày (Heatmap)",
+    heatmap_subtitle: "Nhấn vào từng ngày để xem danh sách giao dịch",
+    select_month: "Chọn tháng:",
+    legend_title: "Chú thích:",
+    legend_income: "Thu nhập",
+    legend_expense: "Chi tiêu",
+    legend_mixed: "Cả hai",
+    legend_none: "Không có",
+    heatmap_toggle_expense: "Chi tiêu",
+    heatmap_toggle_income: "Thu nhập",
+    heatmap_toggle_both: "Cả hai",
+    day_sun: "CN",
+    day_mon: "T2",
+    day_tue: "T3",
+    day_wed: "T4",
+    day_thu: "T5",
+    day_fri: "T6",
+    day_sat: "T7",
+    tx_for_date: "Giao dịch ngày",
+    no_tx_on_date: "Không có giao dịch nào trong ngày này.",
     recent_preview: "Xem trước giao dịch gần đây",
     view_all: "Xem tất cả \u2192",
     details: "Chi tiết \u2192",
@@ -137,6 +196,7 @@ const translations = {
     th_actions: "Hành động",
     search_placeholder: "Tìm kiếm...",
     all_types: "Tất cả loại",
+    all_months: "Tất cả các tháng",
     expenses: "Khoản chi",
     income: "Thu nhập",
     all_categories: "Tất cả danh mục",
@@ -186,7 +246,19 @@ const translations = {
     confirm_action: "Xác nhận hành động",
     confirm_desc: "Bạn có chắc chắn muốn tiếp tục hành động này không?",
     no_transactions: "Không tìm thấy giao dịch phù hợp",
-    no_recent: "Chưa có giao dịch gần đây"
+    no_recent: "Chưa có giao dịch gần đây",
+    // Subscriptions Translation Keys
+    monthly_cost: "Chi phí hàng tháng",
+    yearly_cost: "Chi phí hàng năm",
+    active_subs: "Dịch vụ đang dùng",
+    new_subscription: "Gói dịch vụ mới",
+    cycle_monthly: "Hàng tháng",
+    cycle_yearly: "Hàng năm",
+    next_billing: "Ngày gia hạn tiếp",
+    modal_title_add_sub: "Thêm gói dịch vụ",
+    modal_title_edit_sub: "Sửa gói dịch vụ",
+    label_cycle: "Chu kỳ thanh toán",
+    no_subscriptions: "Chưa có gói dịch vụ định kỳ nào"
   }
 };
 
@@ -241,7 +313,6 @@ let exchangeRates = {
 
 async function fetchExchangeRates() {
     try {
-        // Sử dụng API công khai miễn phí để lấy tỷ giá USD làm gốc
         const response = await fetch('https://open.er-api.com/v6/latest/USD');
         const data = await response.json();
         if (data && data.rates) {
@@ -250,11 +321,10 @@ async function fetchExchangeRates() {
             exchangeRates['JPY'] = data.rates.JPY || exchangeRates['JPY'];
             exchangeRates['INR'] = data.rates.INR || exchangeRates['INR'];
             exchangeRates['VND'] = data.rates.VND || exchangeRates['VND'];
-            // Re-render UI to apply live rates
             renderAllViews();
         }
     } catch (error) {
-        console.warn('Không thể tải tỷ giá trực tuyến, sử dụng tỷ giá mặc định.', error);
+        console.warn('Cannot fetch live exchange rates, using defaults.', error);
     }
 }
 
@@ -262,6 +332,9 @@ async function fetchExchangeRates() {
 let appState = {
     currency: 'USD',
     currentPage: 'dashboard',
+    selectedHeatmapMonth: '', // YYYY-MM
+    selectedHeatmapDay: '',   // YYYY-MM-DD
+    heatmapMode: 'both',      // 'expense' | 'income' | 'both'
     transactions: [],
     budgets: {
         'food': 400,
@@ -273,6 +346,11 @@ let appState = {
     goals: [
         { id: 'goal_1', title: 'Vacation Fund', target: 1500, current: 850 },
         { id: 'goal_2', title: 'Emergency Savings', target: 5000, current: 3200 }
+    ],
+    subscriptions: [
+        { id: 'sub_1', name: 'Netflix Premium', category: 'entertainment', amount: 15.99, cycle: 'monthly', nextBilling: '2026-11-01', paymentMethod: 'Credit Card' },
+        { id: 'sub_2', name: 'Spotify Duo', category: 'entertainment', amount: 12.99, cycle: 'monthly', nextBilling: '2026-10-25', paymentMethod: 'Digital Wallet' },
+        { id: 'sub_3', name: 'FPT Fiber Internet', category: 'utilities', amount: 22.00, cycle: 'monthly', nextBilling: '2026-11-05', paymentMethod: 'Bank Transfer' }
     ]
 };
 
@@ -289,8 +367,13 @@ function changeLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-        }
+            // Kiểm tra xem có phải thẻ input không để tránh lỗi gán textContent
+            if (el.tagName === 'INPUT') {
+                el.placeholder = translations[lang][key];
+            } else {
+                el.textContent = translations[lang][key];
+            }
+        }   
     });
 
     const searchInput = document.getElementById('searchInput');
@@ -307,6 +390,7 @@ function changeLanguage(lang) {
     populateTypeFilterOptions();
     updateSidebarTxCount();
     switchPage(appState.currentPage); 
+    updateMonthDisplayText(); 
     renderAllViews();
 }
 
@@ -381,6 +465,7 @@ function getSampleData() {
 
 window.addEventListener('DOMContentLoaded', () => {
     loadStateFromLocalStorage();
+    processAutoBilling();
     populateCategoryFilterOptions();
     populateTypeFilterOptions();
     setTxType('EXPENSE');
@@ -392,7 +477,7 @@ window.addEventListener('DOMContentLoaded', () => {
     changeLanguage(savedLang);
     
     switchPage('dashboard');
-    fetchExchangeRates(); // Fetch real-time exchange rates
+    fetchExchangeRates();
 });
 
 function saveStateToLocalStorage() {
@@ -405,6 +490,12 @@ function loadStateFromLocalStorage() {
     if (saved) {
         try {
             appState = JSON.parse(saved);
+            if (!appState.subscriptions) {
+                appState.subscriptions = [
+                    { id: 'sub_1', name: 'Netflix Premium', category: 'entertainment', amount: 15.99, cycle: 'monthly', nextBilling: '2026-11-01', paymentMethod: 'Credit Card' },
+                    { id: 'sub_2', name: 'Spotify Duo', category: 'entertainment', amount: 12.99, cycle: 'monthly', nextBilling: '2026-10-25', paymentMethod: 'Digital Wallet' }
+                ];
+            }
         } catch (e) {
             appState.transactions = getSampleData();
         }
@@ -412,7 +503,6 @@ function loadStateFromLocalStorage() {
         appState.transactions = getSampleData();
     }
     
-    // Ensure default is USD if undefined
     const validCurrency = appState.currency || 'USD';
     
     const currencySelectHeader = document.getElementById('currencySelect');
@@ -440,6 +530,7 @@ function switchPage(pageId) {
         transactions: { title: translations[lang].page_transactions_title, subtitle: translations[lang].page_transactions_subtitle },
         analytics: { title: translations[lang].page_analytics_title, subtitle: translations[lang].page_analytics_subtitle },
         budgets: { title: translations[lang].page_budgets_title, subtitle: translations[lang].page_budgets_subtitle },
+        subscriptions: { title: translations[lang].page_subscriptions_title, subtitle: translations[lang].page_subscriptions_subtitle },
         settings: { title: translations[lang].page_settings_title, subtitle: translations[lang].page_settings_subtitle }
     };
 
@@ -490,6 +581,8 @@ function renderAllViews() {
     renderMetrics();
     if (appState.currentPage === 'dashboard') {
         renderDashCharts();
+        populateHeatmapMonthOptions();
+        renderHeatmap();
         renderDashRecentTable();
     } else if (appState.currentPage === 'transactions') {
         renderTransactions();
@@ -498,6 +591,8 @@ function renderAllViews() {
     } else if (appState.currentPage === 'budgets') {
         renderBudgets();
         renderGoals();
+    } else if (appState.currentPage === 'subscriptions') {
+        renderSubscriptions();
     }
 }
 
@@ -507,7 +602,6 @@ function formatMoney(amountUSD) {
     const cfg = CURRENCY_CONFIG[code] || CURRENCY_CONFIG['USD'];
     const rate = exchangeRates[code] || 1;
     
-    // Calculate accurate converted amount
     const converted = parseFloat(amountUSD) * rate;
     
     const formatted = new Intl.NumberFormat(cfg.locale, {
@@ -658,261 +752,352 @@ function renderDashCharts() {
                 y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 }, callback: (v) => formatMoney(v / rate) } }
             },
             plugins: {
-                legend: { position: 'top', labels: { color: tickColor, font: { size: 9 }, boxWidth: 8 } }
+                legend: { position: 'top', align: 'end', labels: { color: tickColor, font: { size: 10 }, boxWidth: 10 } }
             }
         }
     });
 }
 
-function renderDashRecentTable() {
-    const tableBody = document.getElementById('dashRecentTableBody');
-    const recent = [...appState.transactions].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+// --- HEATMAP FEATURE LOGIC ---
+function setHeatmapMode(mode) {
+    appState.heatmapMode = mode;
+    ['expense', 'income', 'both'].forEach(m => {
+        const btn = document.getElementById(`heatmapBtn-${m}`);
+        if (btn) {
+            btn.classList.toggle('active', m === mode);
+        }
+    });
+    closeHeatmapDayDetails();
+    renderHeatmap();
+}
+
+function updateHeatmapToggleUI() {
+    const mode = appState.heatmapMode || 'both';
+    ['expense', 'income', 'both'].forEach(m => {
+        const btn = document.getElementById(`heatmapBtn-${m}`);
+        if (btn) btn.classList.toggle('active', m === mode);
+    });
+}
+
+function populateHeatmapMonthOptions() {
+    const select = document.getElementById('heatmapMonthSelect');
+    if (!select) return;
+
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const monthsSet = new Set();
+    const now = new Date();
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    monthsSet.add(currentMonthKey);
+
+    appState.transactions.forEach(tx => {
+        if (tx.date) {
+            monthsSet.add(tx.date.substring(0, 7));
+        }
+    });
+
+    const sortedMonths = Array.from(monthsSet).sort().reverse();
+    select.innerHTML = '';
+
+    sortedMonths.forEach(mKey => {
+        const [year, month] = mKey.split('-');
+        const dateObj = new Date(parseInt(year), parseInt(month) - 1, 1);
+        const label = dateObj.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { year: 'numeric', month: 'long' });
+        const opt = document.createElement('option');
+        opt.value = mKey;
+        opt.textContent = label;
+        select.appendChild(opt);
+    });
+
+    if (!appState.selectedHeatmapMonth || !sortedMonths.includes(appState.selectedHeatmapMonth)) {
+        appState.selectedHeatmapMonth = sortedMonths[0];
+    }
+    select.value = appState.selectedHeatmapMonth;
+}
+
+function renderHeatmap() {
+    const monthSelect = document.getElementById('heatmapMonthSelect');
+    if (!monthSelect) return;
+    
+    appState.selectedHeatmapMonth = monthSelect.value;
+    const grid = document.getElementById('heatmapGrid');
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    const [yearStr, monthStr] = appState.selectedHeatmapMonth.split('-');
+    const year = parseInt(yearStr);
+    const month = parseInt(monthStr) - 1; 
+
+    updateHeatmapToggleUI();
+
+    const mode = appState.heatmapMode || 'both';
+
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const totalDays = lastDay.getDate();
+    const startWeekday = firstDay.getDay(); 
+
+    const dailyData = {};
+    let monthTotalIncome = 0;
+    let monthTotalExpense = 0;
+
+    appState.transactions.forEach(tx => {
+        if (tx.date && tx.date.startsWith(appState.selectedHeatmapMonth)) {
+            const dayNum = parseInt(tx.date.split('-')[2]);
+            if (!dailyData[dayNum]) {
+                dailyData[dayNum] = { income: 0, expense: 0, count: 0, txs: [], incomeTxs: [], expenseTxs: [] };
+            }
+            const amt = parseFloat(tx.amount);
+            if (tx.type === 'INCOME') {
+                dailyData[dayNum].income += amt;
+                dailyData[dayNum].incomeTxs.push(tx);
+                monthTotalIncome += amt;
+            } else {
+                dailyData[dayNum].expense += amt;
+                dailyData[dayNum].expenseTxs.push(tx);
+                monthTotalExpense += amt;
+            }
+            dailyData[dayNum].count++;
+            dailyData[dayNum].txs.push(tx);
+        }
+    });
+
+    const monthSummaryEl = document.getElementById('heatmapMonthSummary');
+    if (monthSummaryEl) {
+        if (mode === 'expense') {
+            monthSummaryEl.innerHTML = `<span class="text-rose-500">-${formatMoney(monthTotalExpense)}</span>`;
+        } else if (mode === 'income') {
+            monthSummaryEl.innerHTML = `<span class="text-emerald-500">+${formatMoney(monthTotalIncome)}</span>`;
+        } else {
+            monthSummaryEl.innerHTML = `
+                <span class="text-emerald-500 mr-2">+${formatMoney(monthTotalIncome)}</span>
+                <span class="text-rose-500">-${formatMoney(monthTotalExpense)}</span>
+            `;
+        }
+    }
+
+    for (let i = 0; i < startWeekday; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'h-14 sm:h-16 rounded-xl bg-slate-100/40 dark:bg-slate-800/20 border border-transparent';
+        grid.appendChild(emptyCell);
+    }
+
+    for (let day = 1; day <= totalDays; day++) {
+        const dateStr = `${appState.selectedHeatmapMonth}-${String(day).padStart(2, '0')}`;
+        const dayInfo = dailyData[day] || { income: 0, expense: 0, count: 0, txs: [], incomeTxs: [], expenseTxs: [] };
+
+        let clickTxs;
+        let effectiveIncome = dayInfo.income;
+        let effectiveExpense = dayInfo.expense;
+        if (mode === 'expense') {
+            clickTxs = dayInfo.expenseTxs;
+            effectiveIncome = 0;
+        } else if (mode === 'income') {
+            clickTxs = dayInfo.incomeTxs;
+            effectiveExpense = 0;
+        } else {
+            clickTxs = dayInfo.txs;
+        }
+
+        let bgColorClass = 'bg-slate-100 dark:bg-slate-800/60 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300';
+        let badgeHtml = '';
+
+        if (mode === 'expense') {
+            if (effectiveExpense > 0) {
+                bgColorClass = 'bg-rose-500/15 border-rose-500/30 text-rose-600 dark:text-rose-400 font-semibold';
+                badgeHtml = `<span class="text-[9px] font-bold text-rose-500 dark:text-rose-400">-${formatMoney(effectiveExpense)}</span>`;
+            }
+        } else if (mode === 'income') {
+            if (effectiveIncome > 0) {
+                bgColorClass = 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-semibold';
+                badgeHtml = `<span class="text-[9px] font-bold text-emerald-500 dark:text-emerald-400">+${formatMoney(effectiveIncome)}</span>`;
+            }
+        } else {
+            if (effectiveIncome > 0 && effectiveExpense > 0) {
+                bgColorClass = 'bg-indigo-500/15 border-indigo-500/30 text-indigo-600 dark:text-indigo-300 font-semibold';
+                badgeHtml = `<span class="text-[9px] font-bold text-indigo-500 dark:text-indigo-400">MIXED</span>`;
+            } else if (effectiveIncome > 0) {
+                bgColorClass = 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-semibold';
+                badgeHtml = `<span class="text-[9px] font-bold text-emerald-500 dark:text-emerald-400">+${formatMoney(effectiveIncome)}</span>`;
+            } else if (effectiveExpense > 0) {
+                bgColorClass = 'bg-rose-500/15 border-rose-500/30 text-rose-600 dark:text-rose-400 font-semibold';
+                badgeHtml = `<span class="text-[9px] font-bold text-rose-500 dark:text-rose-400">-${formatMoney(effectiveExpense)}</span>`;
+            }
+        }
+
+        const visibleCount = clickTxs.length;
+
+        const dayCard = document.createElement('button');
+        dayCard.type = 'button';
+        dayCard.onclick = () => selectHeatmapDay(dateStr, clickTxs);
+        dayCard.className = `h-14 sm:h-16 rounded-xl border p-1.5 flex flex-col justify-between items-start transition transform hover:scale-[1.03] hover:shadow-md cursor-pointer ${bgColorClass} ${appState.selectedHeatmapDay === dateStr ? 'ring-2 ring-indigo-500' : ''}`;
+
+        dayCard.innerHTML = `
+            <div class="w-full flex items-center justify-between">
+                <span class="text-xs font-bold">${day}</span>
+                ${visibleCount > 0 ? `<span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-[9px] text-slate-700 dark:text-slate-200 flex items-center justify-center">${visibleCount}</span>` : ''}
+            </div>
+            <div class="w-full truncate text-left">
+                ${badgeHtml}
+            </div>
+        `;
+
+        grid.appendChild(dayCard);
+    }
+
+    if (appState.selectedHeatmapDay && appState.selectedHeatmapDay.startsWith(appState.selectedHeatmapMonth)) {
+        const dayNum = parseInt(appState.selectedHeatmapDay.split('-')[2]);
+        const dayInfo = dailyData[dayNum];
+        let txs = [];
+        if (dayInfo) {
+            txs = mode === 'expense' ? dayInfo.expenseTxs : mode === 'income' ? dayInfo.incomeTxs : dayInfo.txs;
+        }
+        selectHeatmapDay(appState.selectedHeatmapDay, txs);
+    } else {
+        closeHeatmapDayDetails();
+    }
+}
+
+function selectHeatmapDay(dateStr, txs) {
+    appState.selectedHeatmapDay = dateStr;
+    const detailsContainer = document.getElementById('heatmapDayDetails');
+    const titleEl = document.getElementById('heatmapSelectedDateTitle');
+    const listEl = document.getElementById('heatmapSelectedDateList');
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
 
-    tableBody.innerHTML = '';
+    if (!detailsContainer || !titleEl || !listEl) return;
+
+    detailsContainer.classList.remove('hidden');
+    
+    const [y, m, d] = dateStr.split('-');
+    const formattedDate = new Date(parseInt(y), parseInt(m)-1, parseInt(d)).toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', {
+        weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+    });
+
+    titleEl.textContent = `${translations[lang].tx_for_date} ${formattedDate}`;
+    listEl.innerHTML = '';
+
+    if (!txs || txs.length === 0) {
+        listEl.innerHTML = `<p class="text-xs text-slate-400 py-2">${translations[lang].no_tx_on_date}</p>`;
+    } else {
+        txs.forEach(tx => {
+            const isInc = tx.type === 'INCOME';
+            const catObj = CATEGORIES[tx.type].find(c => c.id === tx.category) || { icon: 'fa-tag', badgeClass: 'bg-slate-500/10' };
+            
+            const row = document.createElement('div');
+            row.className = 'flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60';
+            row.innerHTML = `
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <div class="w-7 h-7 rounded-lg ${catObj.badgeClass} flex items-center justify-center flex-shrink-0 text-xs">
+                        <i class="fa-solid ${catObj.icon}"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-xs font-semibold text-slate-900 dark:text-white truncate">${tx.title}</p>
+                        <p class="text-[10px] text-slate-400 truncate">${getCategoryName(tx.category, tx.type)} • ${getPaymentMethodName(tx.paymentMethod)}</p>
+                    </div>
+                </div>
+                <div class="text-right flex-shrink-0 ml-2">
+                    <span class="text-xs font-bold ${isInc ? 'text-emerald-500' : 'text-rose-500'}">
+                        ${isInc ? '+' : '-'}${formatMoney(tx.amount)}
+                    </span>
+                    <button onclick="editTransaction('${tx.id}')" class="ml-2 text-slate-400 hover:text-indigo-500 text-xs">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                </div>
+            `;
+            listEl.appendChild(row);
+        });
+    }
+
+    renderHeatmapGridSelection();
+}
+
+function renderHeatmapGridSelection() {
+    const monthSelect = document.getElementById('heatmapMonthSelect');
+    if (!monthSelect) return;
+    const grid = document.getElementById('heatmapGrid');
+    if (!grid) return;
+
+    Array.from(grid.children).forEach(child => {
+        if (child.tagName === 'BUTTON') {
+            const dayNum = child.querySelector('span').textContent;
+            const cardDate = `${monthSelect.value}-${String(dayNum).padStart(2, '0')}`;
+            if (cardDate === appState.selectedHeatmapDay) {
+                child.classList.add('ring-2', 'ring-indigo-500');
+            } else {
+                child.classList.remove('ring-2', 'ring-indigo-500');
+            }
+        }
+    });
+}
+
+function closeHeatmapDayDetails() {
+    appState.selectedHeatmapDay = '';
+    const detailsContainer = document.getElementById('heatmapDayDetails');
+    if (detailsContainer) detailsContainer.classList.add('hidden');
+    renderHeatmapGridSelection();
+}
+
+// DASHBOARD RECENT TABLE
+function renderDashRecentTable() {
+    const tbody = document.getElementById('dashRecentTableBody');
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    tbody.innerHTML = '';
+
+    const recent = [...appState.transactions].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+
     if (recent.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-400 dark:text-slate-500">${translations[lang].no_recent}</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-400">${translations[lang].no_recent}</td></tr>`;
         return;
     }
 
     recent.forEach(tx => {
-        const isIncome = tx.type === 'INCOME';
-        const catName = getCategoryName(tx.category, tx.type);
-        const catList = isIncome ? CATEGORIES.INCOME : CATEGORIES.EXPENSE;
-        const catObj = catList.find(c => c.id === tx.category) || { badgeClass: 'bg-slate-100 dark:bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-500/20' };
-
-        const tr = `
-            <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
-                <td class="py-2.5 px-4 font-semibold text-slate-900 dark:text-white truncate max-w-[140px]">${escapeHtml(tx.title)}</td>
-                <td class="py-2.5 px-4">
-                    <span class="px-2 py-0.5 rounded text-[10px] font-medium border ${catObj.badgeClass}">${catName}</span>
-                </td>
-                <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${tx.date}</td>
-                <td class="py-2.5 px-4 text-right font-bold whitespace-nowrap ${isIncome ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-100'}">
-                    ${isIncome ? '+' : '-'}${formatMoney(tx.amount)}
-                </td>
-            </tr>
+        const isInc = tx.type === 'INCOME';
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/40 transition';
+        tr.innerHTML = `
+            <td class="py-2.5 px-4 font-semibold text-slate-900 dark:text-white">${tx.title}</td>
+            <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">${getCategoryName(tx.category, tx.type)}</span></td>
+            <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${tx.date}</td>
+            <td class="py-2.5 px-4 text-right font-bold ${isInc ? 'text-emerald-500 dark:text-emerald-400' : 'text-rose-500 dark:text-rose-400'}">${isInc ? '+' : '-'}${formatMoney(tx.amount)}</td>
         `;
-        tableBody.innerHTML += tr;
+        tbody.appendChild(tr);
     });
 }
 
-function renderAnalyticsView() {
-    const expenses = appState.transactions.filter(tx => tx.type === 'EXPENSE');
-    const totalExp = expenses.reduce((sum, tx) => sum + parseFloat(tx.amount), 0);
-    const totalInc = appState.transactions.filter(tx => tx.type === 'INCOME').reduce((sum, tx) => sum + parseFloat(tx.amount), 0);
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-
-    const uniqueDates = new Set(appState.transactions.map(tx => tx.date)).size || 1;
-    document.getElementById('statAvgDaily').textContent = formatMoney(totalExp / uniqueDates);
-
-    const catMap = {};
-    expenses.forEach(tx => catMap[tx.category] = (catMap[tx.category] || 0) + parseFloat(tx.amount));
-    let topCatId = Object.keys(catMap).reduce((a, b) => catMap[a] > catMap[b] ? a : b, null);
-    document.getElementById('statTopCategory').textContent = topCatId ? getCategoryName(topCatId, 'EXPENSE') : 'N/A';
-
-    const payMap = {};
-    appState.transactions.forEach(tx => payMap[tx.paymentMethod] = (payMap[tx.paymentMethod] || 0) + 1);
-    let topPay = Object.keys(payMap).reduce((a, b) => payMap[a] > payMap[b] ? a : b, 'None');
-    document.getElementById('statTopPayment').textContent = topPay !== 'None' ? getPaymentMethodName(topPay) : topPay;
-
-    const netSurplus = totalInc - totalExp;
-    document.getElementById('statNetSurplus').textContent = formatMoney(netSurplus);
-
-    const isDark = document.documentElement.classList.contains('dark');
-    const tickColor = isDark ? '#64748b' : '#94a3b8';
-    const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
-    const donutBorderColor = isDark ? '#1e293b' : '#ffffff';
-    const rate = exchangeRates[appState.currency] || 1;
-
-    const barCtx = document.getElementById('analyticsBarChart').getContext('2d');
-    const datesMap = {};
-    [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(tx => {
-        if (!datesMap[tx.date]) datesMap[tx.date] = { income: 0, expense: 0 };
-        if (tx.type === 'INCOME') datesMap[tx.date].income += (parseFloat(tx.amount) * rate);
-        else datesMap[tx.date].expense += (parseFloat(tx.amount) * rate);
-    });
-
-    const labels = Object.keys(datesMap).slice(-10);
-    if (analyticsBarChartInstance) analyticsBarChartInstance.destroy();
-
-    analyticsBarChartInstance = new Chart(barCtx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                { label: translations[lang].income, data: labels.map(d => datesMap[d].income), backgroundColor: '#10b981', borderRadius: 4 },
-                { label: translations[lang].expenses, data: labels.map(d => datesMap[d].expense), backgroundColor: '#f43f5e', borderRadius: 4 }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: { ticks: { color: tickColor, font: { size: 9 } } },
-                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 9 } } }
-            },
-            plugins: { legend: { labels: { color: tickColor, font: { size: 9 } } } }
-        }
-    });
-
-    const donutCtx = document.getElementById('analyticsDoughnutChart').getContext('2d');
-    const catLabels = [];
-    const catData = [];
-    const catColors = [];
-
-    Object.keys(catMap).forEach(catId => {
-        const catObj = CATEGORIES.EXPENSE.find(c => c.id === catId) || { color: '#64748b' };
-        catLabels.push(getCategoryName(catId, 'EXPENSE'));
-        catData.push(catMap[catId] * rate);
-        catColors.push(catObj.color);
-    });
-
-    if (analyticsDoughnutChartInstance) analyticsDoughnutChartInstance.destroy();
-
-    analyticsDoughnutChartInstance = new Chart(donutCtx, {
-        type: 'doughnut',
-        data: {
-            labels: catLabels,
-            datasets: [{ data: catData, backgroundColor: catColors, borderWidth: 2, borderColor: donutBorderColor }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { color: tickColor, font: { size: 9 } } } }
-        }
-    });
-}
-
-function renderBudgets() {
-    const container = document.getElementById('budgetsList');
-    container.innerHTML = '';
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-
-    const spentMap = {};
-    appState.transactions.filter(tx => tx.type === 'EXPENSE').forEach(tx => {
-        spentMap[tx.category] = (spentMap[tx.category] || 0) + parseFloat(tx.amount);
-    });
-
-    const activeBudgets = Object.keys(appState.budgets);
-
-    if (activeBudgets.length === 0) {
-        container.innerHTML = `<div class="col-span-1 sm:col-span-2 text-center text-slate-500 text-xs py-4">${lang === 'vi' ? 'Chưa thiết lập hạn mức ngân sách.' : 'No budget limits set.'}</div>`;
-        return;
-    }
-
-    activeBudgets.forEach(catId => {
-        const limit = appState.budgets[catId];
-        if (limit <= 0) return;
-
-        const spent = spentMap[catId] || 0;
-        const percent = Math.min(100, Math.round((spent / limit) * 100));
-        const catName = getCategoryName(catId, 'EXPENSE');
-        const catObj = CATEGORIES.EXPENSE.find(c => c.id === catId) || { icon: 'fa-circle-dot' };
-
-        let barColor = 'bg-indigo-500';
-        let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700">${percent}%</span>`;
-
-        if (percent >= 100) {
-            barColor = 'bg-rose-500';
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">${lang === 'vi' ? 'Vượt hạn mức' : 'Over Limit'}</span>`;
-        } else if (percent >= 80) {
-            barColor = 'bg-amber-500';
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">${lang === 'vi' ? 'Cảnh báo' : 'Warning'}</span>`;
-        }
-
-        const cardHtml = `
-            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-1.5 truncate">
-                        <i class="fa-solid ${catObj.icon} text-slate-400 text-xs"></i>
-                        ${catName}
-                    </span>
-                    ${statusBadge}
-                </div>
-                <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">
-                    <span>${lang === 'vi' ? 'Đã chi' : 'Spent'}: <strong class="text-slate-700 dark:text-slate-200">${formatMoney(spent)}</strong></span>
-                    <span>${lang === 'vi' ? 'Hạn mức' : 'Limit'}: ${formatMoney(limit)}</span>
-                </div>
-                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                    <div class="h-full ${barColor} transition-all duration-300" style="width: ${percent}%"></div>
-                </div>
-            </div>
-        `;
-        container.innerHTML += cardHtml;
-    });
-}
-
-function renderGoals() {
-    const container = document.getElementById('goalsList');
-    container.innerHTML = '';
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-
-    if (appState.goals.length === 0) {
-        container.innerHTML = `<div class="text-center text-slate-500 text-xs py-6">${lang === 'vi' ? 'Chưa có mục tiêu tiết kiệm nào.' : 'No savings targets created yet.'}</div>`;
-        return;
-    }
-
-    appState.goals.forEach(goal => {
-        const percent = Math.min(100, Math.round((goal.current / goal.target) * 100));
-
-        const goalCard = `
-            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
-                <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate pr-2">${escapeHtml(goal.title)}</span>
-                    <div class="flex items-center gap-1 flex-shrink-0">
-                        <button onclick="openDepositModal('${goal.id}')" title="Deposit" class="px-2 py-0.5 text-[10px] font-medium bg-emerald-100 dark:bg-emerald-500/10 hover:bg-emerald-200 dark:hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 rounded-md transition">
-                            ${lang === 'vi' ? '+ Nạp tiền' : '+ Deposit'}
-                        </button>
-                        <button onclick="confirmDeleteGoal('${goal.id}')" title="Delete Goal" class="p-1 text-slate-400 dark:text-slate-500 hover:text-rose-500 dark:hover:text-rose-400 transition text-xs">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">
-                    <span>${formatMoney(goal.current)} / ${formatMoney(goal.target)}</span>
-                    <span class="font-bold text-emerald-500 dark:text-emerald-400">${percent}%</span>
-                </div>
-                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                    <div class="h-full bg-emerald-500 transition-all duration-300" style="width: ${percent}%"></div>
-                </div>
-            </div>
-        `;
-        container.innerHTML += goalCard;
-    });
-}
-
+// --- FILTER & TRANSACTIONS TABLE LOGIC ---
 function populateCategoryFilterOptions() {
-    const filterSelect = document.getElementById('categoryFilter');
-    if (!filterSelect) return;
+    const catFilter = document.getElementById('categoryFilter');
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    
-    const currentValue = filterSelect.value;
-    const allText = translations[lang].all_categories;
-    filterSelect.innerHTML = `<option value="ALL">${allText}</option>`;
+    if (!catFilter) return;
 
-    const allCats = [...CATEGORIES.EXPENSE, ...CATEGORIES.INCOME];
-    allCats.forEach(cat => {
-        const name = getCategoryName(cat.id, cat.id === 'salary' || cat.id === 'freelance' || cat.id === 'investments' || cat.id === 'gifts' || cat.id === 'other_inc' ? 'INCOME' : 'EXPENSE');
-        filterSelect.innerHTML += `<option value="${cat.id}">${name}</option>`;
+    const curVal = catFilter.value;
+    catFilter.innerHTML = `<option value="ALL">${translations[lang].all_categories}</option>`;
+
+    [...CATEGORIES.EXPENSE, ...CATEGORIES.INCOME].forEach(cat => {
+        const name = lang === 'vi' ? (cat.viName || cat.name) : cat.name;
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = name;
+        catFilter.appendChild(opt);
     });
-    
-    filterSelect.value = currentValue || "ALL";
+
+    catFilter.value = curVal || 'ALL';
 }
 
 function populateTypeFilterOptions() {
     const typeFilter = document.getElementById('typeFilter');
-    if(!typeFilter) return;
-    
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    const currentValue = typeFilter.value;
-    
+    if (!typeFilter) return;
+
+    const curVal = typeFilter.value;
     typeFilter.innerHTML = `
         <option value="ALL">${translations[lang].all_types}</option>
         <option value="EXPENSE">${translations[lang].expenses}</option>
         <option value="INCOME">${translations[lang].income}</option>
     `;
-    typeFilter.value = currentValue || "ALL";
+    typeFilter.value = curVal || 'ALL';
 }
 
 function applyFilters() {
@@ -923,227 +1108,237 @@ function resetFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('typeFilter').value = 'ALL';
     document.getElementById('categoryFilter').value = 'ALL';
+    document.getElementById('monthFilter').value = '';
+    document.getElementById('monthFilter').value = '';
+    const displayInput = document.getElementById('monthFilterDisplay');
+    if (displayInput) displayInput.value = '';
     renderTransactions();
 }
 
 function renderTransactions() {
-    const tableBody = document.getElementById('transactionTableBody');
-    const noTxMessage = document.getElementById('noTransactionsMessage');
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const tbody = document.getElementById('transactionTableBody');
+    const noMsg = document.getElementById('noTransactionsMessage');
+    if (!tbody) return;
 
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-    const typeFilter = document.getElementById('typeFilter').value;
-    const categoryFilter = document.getElementById('categoryFilter').value;
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const type = document.getElementById('typeFilter').value;
+    const cat = document.getElementById('categoryFilter').value;
+    const month = document.getElementById('monthFilter').value;
 
-    let filtered = [...appState.transactions];
+    const filtered = appState.transactions.filter(tx => {
+        const matchesSearch = tx.title.toLowerCase().includes(search) || (tx.notes && tx.notes.toLowerCase().includes(search));
+        const matchesType = type === 'ALL' || tx.type === type;
+        const matchesCat = cat === 'ALL' || tx.category === cat;
+        const matchesMonth = !month || tx.date.startsWith(month);   
+        return matchesSearch && matchesType && matchesCat && matchesMonth;
+    }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    if (typeFilter !== 'ALL') filtered = filtered.filter(tx => tx.type === typeFilter);
-    if (categoryFilter !== 'ALL') filtered = filtered.filter(tx => tx.category === categoryFilter);
-
-    if (searchTerm !== '') {
-        filtered = filtered.filter(tx =>
-            tx.title.toLowerCase().includes(searchTerm) ||
-            (tx.notes && tx.notes.toLowerCase().includes(searchTerm)) ||
-            tx.paymentMethod.toLowerCase().includes(searchTerm)
-        );
-    }
-
-    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    tableBody.innerHTML = '';
+    tbody.innerHTML = '';
 
     if (filtered.length === 0) {
-        noTxMessage.classList.remove('hidden');
-        noTxMessage.querySelector('p.font-medium').textContent = translations[lang].no_transactions;
+        noMsg.classList.remove('hidden');
         return;
-    } else {
-        noTxMessage.classList.add('hidden');
     }
+    noMsg.classList.add('hidden');
 
     filtered.forEach(tx => {
-        const catName = getCategoryName(tx.category, tx.type);
-        const allCatList = tx.type === 'INCOME' ? CATEGORIES.INCOME : CATEGORIES.EXPENSE;
-        const catObj = allCatList.find(c => c.id === tx.category) || { icon: 'fa-tag', badgeClass: 'bg-slate-100 dark:bg-slate-500/10 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-500/20' };
-
-        const isIncome = tx.type === 'INCOME';
-        const amountFormatted = `${isIncome ? '+' : '-'}${formatMoney(tx.amount)}`;
-        const amountColor = isIncome ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-100';
-        const paymentDisplay = getPaymentMethodName(tx.paymentMethod);
-
-        const trHtml = `
-            <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
-                <td class="py-3 px-4">
-                    <div class="font-semibold text-slate-900 dark:text-white truncate max-w-[150px] sm:max-w-xs">${escapeHtml(tx.title)}</div>
-                    ${tx.notes ? `<div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate max-w-[150px] sm:max-w-xs">${escapeHtml(tx.notes)}</div>` : ''}
-                </td>
-                <td class="py-3 px-4">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium border ${catObj.badgeClass}">
-                        <i class="fa-solid ${catObj.icon}"></i>
-                        ${catName}
-                    </span>
-                </td>
-                <td class="py-3 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${tx.date}</td>
-                <td class="py-3 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${escapeHtml(paymentDisplay || 'N/A')}</td>
-                <td class="py-3 px-4 text-right font-bold whitespace-nowrap ${amountColor}">
-                    ${amountFormatted}
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                    <button onclick="editTransaction('${tx.id}')" title="Edit" class="p-1.5 text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button onclick="confirmDeleteTransaction('${tx.id}')" title="Delete" class="p-1.5 text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 transition ml-1">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </td>
-            </tr>
+        const isInc = tx.type === 'INCOME';
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/40 transition border-b border-slate-200/60 dark:border-slate-800/60';
+        tr.innerHTML = `
+            <td class="py-3 px-4">
+                <p class="font-semibold text-slate-900 dark:text-white">${tx.title}</p>
+                ${tx.notes ? `<p class="text-[10px] text-slate-400">${tx.notes}</p>` : ''}
+            </td>
+            <td class="py-3 px-4"><span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">${getCategoryName(tx.category, tx.type)}</span></td>
+            <td class="py-3 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">${tx.date}</td>
+            <td class="py-3 px-4 text-slate-500 dark:text-slate-400">${getPaymentMethodName(tx.paymentMethod)}</td>
+            <td class="py-3 px-4 text-right font-bold ${isInc ? 'text-emerald-500 dark:text-emerald-400' : 'text-rose-500 dark:text-rose-400'} whitespace-nowrap">${isInc ? '+' : '-'}${formatMoney(tx.amount)}</td>
+            <td class="py-3 px-4 text-center whitespace-nowrap">
+                <button onclick="editTransaction('${tx.id}')" class="p-1.5 text-slate-400 hover:text-indigo-500 transition mr-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button onclick="confirmDeleteTransaction('${tx.id}')" class="p-1.5 text-slate-400 hover:text-rose-500 transition"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
         `;
-        tableBody.innerHTML += trHtml;
+        tbody.appendChild(tr);
     });
 }
 
-function setTxType(type) {
-    document.getElementById('txType').value = type;
-    const catSelect = document.getElementById('txCategory');
+// --- ANALYTICS VIEW LOGIC ---
+function renderAnalyticsView() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const tickColor = isDark ? '#64748b' : '#94a3b8';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const rate = exchangeRates[appState.currency] || 1;
 
-    const btnExpense = document.getElementById('btnTypeExpense');
-    const btnIncome = document.getElementById('btnTypeIncome');
+    let totalExp = 0;
+    let totalInc = 0;
+    const catExpMap = {};
+    const pmExpMap = {};
 
-    const expText = `<i class="fa-solid fa-minus-circle"></i> <span data-i18n="expenses">${translations[lang].expenses}</span>`;
-    const incText = `<i class="fa-solid fa-plus-circle"></i> <span data-i18n="income">${translations[lang].income}</span>`;
-    btnExpense.innerHTML = expText;
-    btnIncome.innerHTML = incText;
-
-    if (type === 'EXPENSE') {
-        btnExpense.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 bg-rose-600 text-white shadow-md';
-        btnIncome.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
-        catSelect.innerHTML = CATEGORIES.EXPENSE.map(c => `<option value="${c.id}">${getCategoryName(c.id, 'EXPENSE')}</option>`).join('');
-    } else {
-        btnIncome.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 bg-emerald-600 text-white shadow-md';
-        btnExpense.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
-        catSelect.innerHTML = CATEGORIES.INCOME.map(c => `<option value="${c.id}">${getCategoryName(c.id, 'INCOME')}</option>`).join('');
-    }
-}
-
-function openTransactionModal(editId = null) {
-    const modalTitle = document.getElementById('modalTitle');
-    const form = document.getElementById('transactionForm');
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-
-    form.reset();
-    document.getElementById('editTxId').value = '';
-    document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
-
-    if (editId) {
-        const tx = appState.transactions.find(t => t.id === editId);
-        if (tx) {
-            document.getElementById('editTxId').value = tx.id;
-            setTxType(tx.type);
-            document.getElementById('txTitle').value = tx.title;
-            
-            const editRate = exchangeRates[appState.currency] || 1;
-            const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
-            const displayAmount = parseFloat(tx.amount) * editRate;
-            document.getElementById('txAmount').value = parseFloat(displayAmount.toFixed(cfg.decimals));
-            
-            document.getElementById('txCategory').value = tx.category;
-            document.getElementById('txDate').value = tx.date;
-            document.getElementById('txPaymentMethod').value = tx.paymentMethod || 'Credit Card';
-            document.getElementById('txNotes').value = tx.notes || '';
-
-            modalTitle.innerHTML = `<i class="fa-solid fa-pen-to-square text-indigo-500 dark:text-indigo-400"></i> <span data-i18n="modal_title_edit">${translations[lang].modal_title_edit}</span>`;
+    appState.transactions.forEach(tx => {
+        const amt = parseFloat(tx.amount);
+        if (tx.type === 'EXPENSE') {
+            totalExp += amt;
+            catExpMap[tx.category] = (catExpMap[tx.category] || 0) + amt;
+            pmExpMap[tx.paymentMethod] = (pmExpMap[tx.paymentMethod] || 0) + amt;
+        } else {
+            totalInc += amt;
         }
-    } else {
-        setTxType('EXPENSE');
-        modalTitle.innerHTML = `<i class="fa-solid fa-circle-plus text-indigo-500 dark:text-indigo-400"></i> <span data-i18n="modal_title_add">${translations[lang].modal_title_add}</span>`;
+    });
+
+    const dates = appState.transactions.map(t => new Date(t.date));
+    let daysDiff = 1;
+    if (dates.length > 1) {
+        const minDate = new Date(Math.min(...dates));
+        const maxDate = new Date(Math.max(...dates));
+        daysDiff = Math.max(1, Math.ceil((maxDate - minDate) / (1000 * 60 * 60 * 24)) + 1);
     }
 
-    document.getElementById('transactionModal').classList.remove('hidden');
-}
+    document.getElementById('statAvgDaily').textContent = formatMoney(totalExp / daysDiff);
+    document.getElementById('statNetSurplus').textContent = formatMoney(totalInc - totalExp);
 
-function closeTransactionModal() {
-    document.getElementById('transactionModal').classList.add('hidden');
-}
-
-function handleTransactionSubmit(e) {
-    e.preventDefault();
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-
-    const editId = document.getElementById('editTxId').value;
-    const type = document.getElementById('txType').value;
-    const title = document.getElementById('txTitle').value.trim();
-    const amount = parseFloat(document.getElementById('txAmount').value);
-    const category = document.getElementById('txCategory').value;
-    const date = document.getElementById('txDate').value;
-    const paymentMethod = document.getElementById('txPaymentMethod').value;
-    const notes = document.getElementById('txNotes').value.trim();
-
-    if (!title || isNaN(amount) || amount <= 0) return;
-
-    // Convert to base USD for storage
-    const saveRate = exchangeRates[appState.currency] || 1;
-    const amountUSD = amount / saveRate;
-
-    if (editId) {
-        const index = appState.transactions.findIndex(t => t.id === editId);
-        if (index !== -1) {
-            appState.transactions[index] = { id: editId, type, title, amount: amountUSD, category, date, paymentMethod, notes };
-            showToast(lang === 'vi' ? 'Đã cập nhật giao dịch' : 'Transaction updated');
+    let topCat = 'None';
+    let maxCatAmt = 0;
+    Object.keys(catExpMap).forEach(c => {
+        if (catExpMap[c] > maxCatAmt) {
+            maxCatAmt = catExpMap[c];
+            topCat = getCategoryName(c, 'EXPENSE');
         }
-    } else {
-        appState.transactions.push({
-            id: 'tx_' + Date.now(),
-            type, title, amount: amountUSD, category, date, paymentMethod, notes
-        });
-        showToast(lang === 'vi' ? 'Đã thêm giao dịch mới' : 'New transaction added');
-    }
+    });
+    document.getElementById('statTopCategory').textContent = topCat;
 
-    saveStateToLocalStorage();
-    closeTransactionModal();
-    renderAllViews();
-}
-
-function editTransaction(id) {
-    openTransactionModal(id);
-}
-
-function confirmDeleteTransaction(id) {
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    showConfirmDialog(
-        lang === 'vi' ? 'Xóa giao dịch' : 'Delete Transaction', 
-        lang === 'vi' ? 'Bạn có chắc chắn muốn xóa giao dịch này không?' : 'Are you sure you want to delete this transaction?', 
-        () => {
-            appState.transactions = appState.transactions.filter(t => t.id !== id);
-            saveStateToLocalStorage();
-            renderAllViews();
-            showToast(lang === 'vi' ? 'Đã xóa giao dịch' : 'Transaction deleted');
+    let topPm = 'None';
+    let maxPmAmt = 0;
+    Object.keys(pmExpMap).forEach(p => {
+        if (pmExpMap[p] > maxPmAmt) {
+            maxPmAmt = pmExpMap[p];
+            topPm = getPaymentMethodName(p);
         }
-    );
+    });
+    document.getElementById('statTopPayment').textContent = topPm;
+
+    const barCtx = document.getElementById('analyticsBarChart').getContext('2d');
+    const monthlyMap = {};
+    appState.transactions.forEach(tx => {
+        const mKey = tx.date.substring(0, 7);
+        if (!monthlyMap[mKey]) monthlyMap[mKey] = { inc: 0, exp: 0 };
+        if (tx.type === 'INCOME') monthlyMap[mKey].inc += parseFloat(tx.amount) * rate;
+        else monthlyMap[mKey].exp += parseFloat(tx.amount) * rate;
+    });
+
+    const mKeys = Object.keys(monthlyMap).sort();
+    const incSeries = mKeys.map(k => monthlyMap[k].inc);
+    const expSeries = mKeys.map(k => monthlyMap[k].exp);
+
+    if (analyticsBarChartInstance) analyticsBarChartInstance.destroy();
+    analyticsBarChartInstance = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: mKeys,
+            datasets: [
+                { label: translations[lang].income, data: incSeries, backgroundColor: '#10b981', borderRadius: 4 },
+                { label: translations[lang].expenses, data: expSeries, backgroundColor: '#f43f5e', borderRadius: 4 }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 10 } } },
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 }, callback: (v) => formatMoney(v / rate) } }
+            },
+            plugins: { legend: { labels: { color: tickColor } } }
+        }
+    });
+
+    const donutCtx = document.getElementById('analyticsDoughnutChart').getContext('2d');
+    const donutLabels = [];
+    const donutData = [];
+    const donutColors = [];
+
+    Object.keys(catExpMap).forEach(cId => {
+        const cObj = CATEGORIES.EXPENSE.find(c => c.id === cId) || { color: '#94a3b8' };
+        donutLabels.push(getCategoryName(cId, 'EXPENSE'));
+        donutData.push(catExpMap[cId] * rate);
+        donutColors.push(cObj.color);
+    });
+
+    if (analyticsDoughnutChartInstance) analyticsDoughnutChartInstance.destroy();
+    analyticsDoughnutChartInstance = new Chart(donutCtx, {
+        type: 'doughnut',
+        data: {
+            labels: donutLabels,
+            datasets: [{ data: donutData, backgroundColor: donutColors, borderWidth: 2, borderColor: isDark ? '#1e293b' : '#fff' }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: tickColor, font: { size: 10 } } },
+                tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${formatMoney(ctx.raw / rate)}` } }
+            }
+        }
+    });
+}
+
+// --- BUDGETS & GOALS VIEW LOGIC ---
+function renderBudgets() {
+    const container = document.getElementById('budgetsList');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const catSpentMap = {};
+    appState.transactions.filter(tx => tx.type === 'EXPENSE').forEach(tx => {
+        catSpentMap[tx.category] = (catSpentMap[tx.category] || 0) + parseFloat(tx.amount);
+    });
+
+    Object.keys(appState.budgets).forEach(catId => {
+        const limit = appState.budgets[catId];
+        const spent = catSpentMap[catId] || 0;
+        const pct = Math.min(100, Math.round((spent / limit) * 100));
+        const catObj = CATEGORIES.EXPENSE.find(c => c.id === catId) || { icon: 'fa-tag', name: catId };
+
+        let progressBg = 'bg-indigo-500';
+        if (pct >= 90) progressBg = 'bg-rose-500';
+        else if (pct >= 75) progressBg = 'bg-amber-500';
+
+        const card = document.createElement('div');
+        card.className = 'p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800';
+        card.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                    <i class="fa-solid ${catObj.icon} text-slate-400"></i> ${getCategoryName(catId, 'EXPENSE')}
+                </span>
+                <span class="text-xs font-semibold ${pct >= 100 ? 'text-rose-500' : 'text-slate-500'}">${pct}%</span>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2 mb-2 overflow-hidden">
+                <div class="${progressBg} h-2 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+            <div class="flex justify-between text-[11px] text-slate-500 dark:text-slate-400">
+                <span>${formatMoney(spent)} spent</span>
+                <span>Limit: ${formatMoney(limit)}</span>
+            </div>
+        `;
+        container.appendChild(card);
+    });
 }
 
 function openBudgetModal() {
     const listEl = document.getElementById('budgetFormList');
     listEl.innerHTML = '';
-    const rate = exchangeRates[appState.currency] || 1;
-    const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
 
     CATEGORIES.EXPENSE.forEach(cat => {
-        const currentLimit = appState.budgets[cat.id] || 0;
-        const displayLimit = currentLimit > 0 ? (currentLimit * rate).toFixed(cfg.decimals) : 0;
-        const catName = getCategoryName(cat.id, 'EXPENSE');
-        
-        const itemHtml = `
-            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2 truncate pr-2">
-                    <i class="fa-solid ${cat.icon} text-slate-400"></i> ${catName}
-                </span>
-                <div class="relative w-28 sm:w-32 flex-shrink-0">
-                    <span class="absolute left-2.5 top-1.5 text-xs text-slate-400 pointer-events-none">${cfg.symbol}</span>
-                    <input type="number" min="0" value="${displayLimit}" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-xs text-right text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-indigo-500">
-                </div>
-            </div>
+        const limit = appState.budgets[cat.id] || 0;
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800';
+        item.innerHTML = `
+            <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                <i class="fa-solid ${cat.icon} text-slate-400 w-4"></i> ${getCategoryName(cat.id, 'EXPENSE')}
+            </span>
+            <input type="number" data-cat="${cat.id}" value="${limit}" step="10" min="0" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-24 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-900 dark:text-white text-right outline-none focus:ring-1 focus:ring-amber-500">
         `;
-        listEl.innerHTML += itemHtml;
+        listEl.appendChild(item);
     });
 
     document.getElementById('budgetModal').classList.remove('hidden');
@@ -1151,15 +1346,42 @@ function openBudgetModal() {
 
 function closeBudgetModal() {
     document.getElementById('budgetModal').classList.add('hidden');
+    renderBudgets();
 }
 
 function updateBudgetLimit(catId, val) {
-    const rate = exchangeRates[appState.currency] || 1;
-    const num = parseFloat(val) / rate; // Convert back to USD
-    if (isNaN(num) || num <= 0) delete appState.budgets[catId];
-    else appState.budgets[catId] = num;
+    appState.budgets[catId] = parseFloat(val) || 0;
     saveStateToLocalStorage();
-    renderBudgets();
+}
+
+function renderGoals() {
+    const container = document.getElementById('goalsList');
+    if (!container) return;
+    container.innerHTML = '';
+
+    appState.goals.forEach(goal => {
+        const pct = Math.min(100, Math.round((goal.current / goal.target) * 100));
+        const card = document.createElement('div');
+        card.className = 'p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800';
+        card.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white">${goal.title}</h4>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-semibold text-emerald-500">${pct}%</span>
+                    <button onclick="openDepositModal('${goal.id}')" class="text-xs text-indigo-500 hover:text-indigo-400"><i class="fa-solid fa-plus-circle"></i></button>
+                    <button onclick="deleteGoal('${goal.id}')" class="text-xs text-slate-400 hover:text-rose-500"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2 mb-2 overflow-hidden">
+                <div class="bg-emerald-500 h-2 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+            <div class="flex justify-between text-[11px] text-slate-500 dark:text-slate-400">
+                <span>Saved: ${formatMoney(goal.current)}</span>
+                <span>Target: ${formatMoney(goal.target)}</span>
+            </div>
+        `;
+        container.appendChild(card);
+    });
 }
 
 function openGoalModal() {
@@ -1173,33 +1395,28 @@ function closeGoalModal() {
 
 function handleGoalSubmit(e) {
     e.preventDefault();
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    const rate = exchangeRates[appState.currency] || 1;
-    
-    const title = document.getElementById('goalTitle').value.trim();
-    const targetInput = parseFloat(document.getElementById('goalTarget').value);
-    const currentInput = parseFloat(document.getElementById('goalCurrent').value) || 0;
-
-    if (!title || isNaN(targetInput) || targetInput <= 0) return;
-
-    // Save in USD base
-    const target = targetInput / rate;
-    const current = currentInput / rate;
+    const title = document.getElementById('goalTitle').value;
+    const target = parseFloat(document.getElementById('goalTarget').value);
+    const current = parseFloat(document.getElementById('goalCurrent').value) || 0;
 
     appState.goals.push({ id: 'goal_' + Date.now(), title, target, current });
     saveStateToLocalStorage();
     closeGoalModal();
     renderGoals();
-    showToast(lang === 'vi' ? 'Đã tạo mục tiêu tiết kiệm' : 'Savings target created');
+    showToast('Savings goal created!');
 }
 
-function openDepositModal(goalId) {
-    const goal = appState.goals.find(g => g.id === goalId);
-    if (!goal) return;
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+function deleteGoal(id) {
+    appState.goals = appState.goals.filter(g => g.id !== id);
+    saveStateToLocalStorage();
+    renderGoals();
+}
 
-    document.getElementById('depositGoalId').value = goalId;
-    document.getElementById('depositGoalTitle').textContent = `${lang === 'vi' ? 'Mục tiêu' : 'Target'}: ${goal.title} (${formatMoney(goal.current)} / ${formatMoney(goal.target)})`;
+function openDepositModal(id) {
+    const goal = appState.goals.find(g => g.id === id);
+    if (!goal) return;
+    document.getElementById('depositGoalId').value = id;
+    document.getElementById('depositGoalTitle').textContent = `Target: ${goal.title}`;
     document.getElementById('depositAmount').value = '';
     document.getElementById('depositModal').classList.remove('hidden');
 }
@@ -1209,157 +1426,468 @@ function closeDepositModal() {
 }
 
 function submitDeposit() {
-    const goalId = document.getElementById('depositGoalId').value;
-    const rate = exchangeRates[appState.currency] || 1;
-    const amountInput = parseFloat(document.getElementById('depositAmount').value);
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-
-    if (isNaN(amountInput) || amountInput <= 0) return;
-    
-    const amount = amountInput / rate;
-
-    const goal = appState.goals.find(g => g.id === goalId);
-    if (goal) {
-        goal.current += amount;
+    const id = document.getElementById('depositGoalId').value;
+    const amt = parseFloat(document.getElementById('depositAmount').value);
+    const goal = appState.goals.find(g => g.id === id);
+    if (goal && amt > 0) {
+        goal.current += amt;
         saveStateToLocalStorage();
-        renderGoals();
         closeDepositModal();
-        showToast(lang === 'vi' ? `Đã thêm ${formatMoney(amount)} vào ${goal.title}` : `Added ${formatMoney(amount)} to ${goal.title}`);
+        renderGoals();
+        showToast(`Added ${formatMoney(amt)} to ${goal.title}`);
     }
 }
 
-function confirmDeleteGoal(goalId) {
+// --- SUBSCRIPTIONS LOGIC ---
+function renderSubscriptions() {
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    showConfirmDialog(
-        lang === 'vi' ? 'Xóa mục tiêu tiết kiệm' : 'Delete Savings Goal', 
-        lang === 'vi' ? 'Bạn có chắc chắn muốn xóa mục tiêu này không?' : 'Are you sure you want to delete this target?', 
-        () => {
-            appState.goals = appState.goals.filter(g => g.id !== goalId);
-            saveStateToLocalStorage();
-            renderGoals();
-            showToast(lang === 'vi' ? 'Đã xóa mục tiêu' : 'Target deleted');
-        }
-    );
+    const grid = document.getElementById('subscriptionsGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    let totalMonthly = 0;
+    let totalYearly = 0;
+
+    if (!appState.subscriptions || appState.subscriptions.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-10 text-center text-slate-400 dark:text-slate-500">
+            <i class="fa-solid fa-repeat text-3xl mb-2 opacity-40"></i>
+            <p class="font-medium text-sm" data-i18n="no_subscriptions">${translations[lang].no_subscriptions}</p>
+        </div>`;
+    } else {
+        appState.subscriptions.forEach(sub => {
+            const amt = parseFloat(sub.amount);
+            if (sub.cycle === 'monthly') {
+                totalMonthly += amt;
+                totalYearly += amt * 12;
+            } else {
+                totalMonthly += amt / 12;
+                totalYearly += amt;
+            }
+
+            const catObj = CATEGORIES.EXPENSE.find(c => c.id === sub.category) || { icon: 'fa-tag', badgeClass: 'bg-slate-500/10' };
+            const cycleText = sub.cycle === 'monthly' ? translations[lang].cycle_monthly : translations[lang].cycle_yearly;
+
+            const card = document.createElement('div');
+            card.className = 'glass-card p-4 rounded-2xl flex flex-col justify-between relative group hover:border-indigo-500/50 transition';
+            card.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-xl ${catObj.badgeClass} flex items-center justify-center text-sm">
+                                <i class="fa-solid ${catObj.icon}"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white">${sub.name}</h4>
+                                <span class="text-[10px] text-slate-400">${getCategoryName(sub.category, 'EXPENSE')}</span>
+                            </div>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">${cycleText}</span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-lg font-extrabold text-slate-900 dark:text-white">${formatMoney(sub.amount)} <span class="text-xs font-normal text-slate-400">/${sub.cycle === 'monthly' ? 'mo' : 'yr'}</span></div>
+                    </div>
+                </div>
+                <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                    <div>
+                        <span class="text-[10px] block text-slate-400">${translations[lang].next_billing}</span>
+                        <span class="font-medium text-slate-700 dark:text-slate-300">${sub.nextBilling || 'N/A'}</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button onclick="openSubscriptionModal('${sub.id}')" class="p-1.5 text-slate-400 hover:text-indigo-500 transition"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteSubscription('${sub.id}')" class="p-1.5 text-slate-400 hover:text-rose-500 transition"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    document.getElementById('subTotalMonthly').textContent = formatMoney(totalMonthly);
+    document.getElementById('subTotalYearly').textContent = formatMoney(totalYearly);
+    document.getElementById('subActiveCount').textContent = appState.subscriptions ? appState.subscriptions.length : 0;
 }
 
-function exportData() {
+function openSubscriptionModal(editId = null) {
+    const modal = document.getElementById('subscriptionModal');
+    const form = document.getElementById('subscriptionForm');
+    const titleEl = document.getElementById('subModalTitle');
+    const catSelect = document.getElementById('subCategory');
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `spendsmart_backup_${new Date().toISOString().split('T')[0]}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    showToast(lang === 'vi' ? 'Đã xuất dữ liệu sao lưu thành công' : 'Data backup exported successfully');
+
+    form.reset();
+    document.getElementById('editSubId').value = '';
+
+    catSelect.innerHTML = '';
+    CATEGORIES.EXPENSE.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = lang === 'vi' ? (cat.viName || cat.name) : cat.name;
+        catSelect.appendChild(opt);
+    });
+
+    const cycleSelect = document.getElementById('subCycle');
+    Array.from(cycleSelect.options).forEach(opt => {
+        if (opt.value === 'monthly') {
+            opt.textContent = translations[lang].cycle_monthly;
+        } else if (opt.value === 'yearly') {
+            opt.textContent = translations[lang].cycle_yearly;
+        }
+    });
+
+    const pmSelect = document.getElementById('subPaymentMethod');
+    Array.from(pmSelect.options).forEach(opt => {
+        opt.textContent = getPaymentMethodName(opt.value);
+    });
+
+    if (editId) {
+        const sub = appState.subscriptions.find(s => s.id === editId);
+        if (sub) {
+            document.getElementById('editSubId').value = sub.id;
+            document.getElementById('subName').value = sub.name;
+            document.getElementById('subAmount').value = sub.amount;
+            document.getElementById('subCategory').value = sub.category;
+            document.getElementById('subCycle').value = sub.cycle;
+            document.getElementById('subNextBilling').value = sub.nextBilling || '';
+            document.getElementById('subPaymentMethod').value = sub.paymentMethod || 'Credit Card';
+            titleEl.textContent = translations[lang].modal_title_edit_sub;
+        }
+    } else {
+        document.getElementById('subNextBilling').value = new Date().toISOString().split('T')[0];
+        titleEl.textContent = translations[lang].modal_title_add_sub;
+    }
+
+    modal.classList.remove('hidden');
+}
+
+function closeSubscriptionModal() {
+    document.getElementById('subscriptionModal').classList.add('hidden');
+}
+
+function handleSubscriptionSubmit(e) {
+    e.preventDefault();
+    const editId = document.getElementById('editSubId').value;
+    const name = document.getElementById('subName').value;
+    const amount = parseFloat(document.getElementById('subAmount').value);
+    const category = document.getElementById('subCategory').value;
+    const cycle = document.getElementById('subCycle').value;
+    const nextBilling = document.getElementById('subNextBilling').value;
+    const paymentMethod = document.getElementById('subPaymentMethod').value;
+
+    if (editId) {
+        const idx = appState.subscriptions.findIndex(s => s.id === editId);
+        if (idx !== -1) {
+            appState.subscriptions[idx] = { id: editId, name, amount, category, cycle, nextBilling, paymentMethod };
+        }
+    } else {
+        appState.subscriptions.push({ id: 'sub_' + Date.now(), name, amount, category, cycle, nextBilling, paymentMethod });
+    }
+
+    saveStateToLocalStorage();
+    closeSubscriptionModal();
+    renderSubscriptions();
+    showToast(editId ? 'Subscription updated' : 'Subscription added');
+}
+
+function deleteSubscription(id) {
+    appState.subscriptions = appState.subscriptions.filter(s => s.id !== id);
+    saveStateToLocalStorage();
+    renderSubscriptions();
+    showToast('Subscription deleted');
+}
+
+// --- MODAL & TRANSACTION FORM LOGIC ---
+function openTransactionModal(editId = null) {
+    const modal = document.getElementById('transactionModal');
+    const form = document.getElementById('transactionForm');
+    const titleEl = document.getElementById('modalTitle');
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+
+    form.reset();
+    document.getElementById('editTxId').value = '';
+
+    if (editId) {
+        const tx = appState.transactions.find(t => t.id === editId);
+        if (tx) {
+            document.getElementById('editTxId').value = tx.id;
+            setTxType(tx.type);
+            document.getElementById('txTitle').value = tx.title;
+            document.getElementById('txAmount').value = tx.amount;
+            document.getElementById('txCategory').value = tx.category;
+            document.getElementById('txDate').value = tx.date;
+            document.getElementById('txPaymentMethod').value = tx.paymentMethod;
+            document.getElementById('txNotes').value = tx.notes || '';
+            titleEl.querySelector('span').textContent = translations[lang].modal_title_edit;
+        }
+    } else {
+        setTxType('EXPENSE');
+        document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
+        titleEl.querySelector('span').textContent = translations[lang].modal_title_add;
+    }
+
+    modal.classList.remove('hidden');
+}
+
+function closeTransactionModal() {
+    document.getElementById('transactionModal').classList.add('hidden');
+}
+
+function setTxType(type) {
+    document.getElementById('txType').value = type;
+    const btnExp = document.getElementById('btnTypeExpense');
+    const btnInc = document.getElementById('btnTypeIncome');
+
+    if (type === 'EXPENSE') {
+        btnExp.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 bg-rose-500 text-white shadow-md';
+        btnInc.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+    } else {
+        btnInc.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 bg-emerald-500 text-white shadow-md';
+        btnExp.className = 'py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+    }
+
+    populateModalCategorySelect(type);
+}
+
+function populateModalCategorySelect(type) {
+    const select = document.getElementById('txCategory');
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    select.innerHTML = '';
+
+    CATEGORIES[type].forEach(cat => {
+        const name = lang === 'vi' ? (cat.viName || cat.name) : cat.name;
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = name;
+        select.appendChild(opt);
+    });
+}
+
+function handleTransactionSubmit(e) {
+    e.preventDefault();
+    const editId = document.getElementById('editTxId').value;
+    const type = document.getElementById('txType').value;
+    const title = document.getElementById('txTitle').value;
+    const amount = parseFloat(document.getElementById('txAmount').value);
+    const category = document.getElementById('txCategory').value;
+    const date = document.getElementById('txDate').value;
+    const paymentMethod = document.getElementById('txPaymentMethod').value;
+    const notes = document.getElementById('txNotes').value;
+
+    if (editId) {
+        const idx = appState.transactions.findIndex(t => t.id === editId);
+        if (idx !== -1) {
+            appState.transactions[idx] = { id: editId, type, title, amount, category, date, paymentMethod, notes };
+        }
+    } else {
+        const newTx = { id: 'tx_' + Date.now(), type, title, amount, category, date, paymentMethod, notes };
+        appState.transactions.push(newTx);
+    }
+
+    saveStateToLocalStorage();
+    closeTransactionModal();
+    renderAllViews();
+    showToast(editId ? 'Transaction updated' : 'Transaction added');
+}
+
+function editTransaction(id) {
+    openTransactionModal(id);
+}
+
+let pendingDeleteId = null;
+function confirmDeleteTransaction(id) {
+    pendingDeleteId = id;
+    const modal = document.getElementById('confirmModal');
+    document.getElementById('confirmOkBtn').onclick = () => {
+        if (pendingDeleteId) {
+            appState.transactions = appState.transactions.filter(t => t.id !== pendingDeleteId);
+            saveStateToLocalStorage();
+            renderAllViews();
+            showToast('Transaction deleted');
+        }
+        modal.classList.add('hidden');
+    };
+    document.getElementById('confirmCancelBtn').onclick = () => modal.classList.add('hidden');
+    modal.classList.remove('hidden');
+}
+
+// --- BACKUP & SETTINGS LOGIC ---
+function exportData() {
+    const jsonStr = JSON.stringify(appState, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `spendsmart_backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
 }
 
 function triggerImport() {
     document.getElementById('importFileInput').click();
 }
 
-function importData(event) {
-    const file = event.target.files[0];
+function importData(e) {
+    const file = e.target.files[0];
     if (!file) return;
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
 
     const reader = new FileReader();
-    reader.onload = function (e) {
+    reader.onload = (event) => {
         try {
-            const imported = JSON.parse(e.target.result);
-            if (imported && imported.transactions) {
+            const imported = JSON.parse(event.target.result);
+            if (imported && Array.isArray(imported.transactions)) {
                 appState = imported;
                 saveStateToLocalStorage();
                 renderAllViews();
-                showToast(lang === 'vi' ? 'Nhập dữ liệu thành công!' : 'Data imported successfully!');
+                showToast('Data imported successfully!');
             } else {
-                showToast(lang === 'vi' ? 'Định dạng file JSON không hợp lệ' : 'Invalid JSON file format');
+                showToast('Invalid backup file structure.');
             }
         } catch (err) {
-            showToast(lang === 'vi' ? 'Không thể đọc file JSON' : 'Failed to parse JSON file');
+            showToast('Failed to parse JSON file.');
         }
     };
     reader.readAsText(file);
 }
 
 function resetDemoData() {
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
     appState.transactions = getSampleData();
     saveStateToLocalStorage();
     renderAllViews();
-    showToast(lang === 'vi' ? 'Đã tải lại bộ dữ liệu demo mẫu' : 'Sample demo dataset reloaded');
+    showToast('Demo dataset loaded');
 }
 
 function confirmClearAll() {
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    showConfirmDialog(
-        lang === 'vi' ? 'Xóa toàn bộ dữ liệu' : 'Clear All Data', 
-        lang === 'vi' ? 'Bạn có chắc muốn xóa tất cả giao dịch và mục tiêu không? Hành động này không thể hoàn tác.' : 'Are you sure you want to erase all transactions and goals? This action cannot be undone.', 
-        () => {
-            appState.transactions = [];
-            appState.goals = [];
-            saveStateToLocalStorage();
-            renderAllViews();
-            showToast(lang === 'vi' ? 'Đã xóa toàn bộ dữ liệu ứng dụng' : 'All app data cleared');
-        }
-    );
+    const modal = document.getElementById('confirmModal');
+    document.getElementById('confirmOkBtn').onclick = () => {
+        appState.transactions = [];
+        saveStateToLocalStorage();
+        renderAllViews();
+        modal.classList.add('hidden');
+        showToast('All records cleared');
+    };
+    document.getElementById('confirmCancelBtn').onclick = () => modal.classList.add('hidden');
+    modal.classList.remove('hidden');
 }
 
-function showToast(message) {
+// TOAST NOTIFICATIONS
+function showToast(msg) {
     const container = document.getElementById('toastContainer');
+    if (!container) return;
+
     const toast = document.createElement('div');
-    toast.className = 'glass-modal text-slate-900 dark:text-white px-3.5 py-2 rounded-xl text-xs shadow-xl flex items-center gap-2 border border-slate-200 dark:border-slate-700/80 transform transition-all duration-300 translate-y-2 opacity-0';
-    toast.innerHTML = `<i class="fa-solid fa-circle-check text-indigo-500 dark:text-indigo-400"></i> ${escapeHtml(message)}`;
+    toast.className = 'px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-semibold shadow-xl flex items-center gap-2 transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto';
+    toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600"></i> ${msg}`;
 
     container.appendChild(toast);
 
-    requestAnimationFrame(() => {
+    setTimeout(() => {
         toast.classList.remove('translate-y-2', 'opacity-0');
-    });
+    }, 10);
 
     setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-2');
         setTimeout(() => toast.remove(), 300);
-    }, 3000);
+    }, 2500);
 }
 
-function showConfirmDialog(title, message, onConfirm) {
-    document.getElementById('confirmTitle').textContent = title;
-    document.getElementById('confirmMessage').textContent = message;
+function handleMonthFilterChange(input) {
+    const displayInput = document.getElementById('monthFilterDisplay');
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    
+    if (input.value) {
+        const [year, month] = input.value.split('-');
+        const date = new Date(year, month - 1, 1);
+        displayInput.value = date.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { 
+            month: 'long', 
+            year: 'numeric' 
+        });
+        displayInput.value = displayInput.value.charAt(0).toUpperCase() + displayInput.value.slice(1);
+    } else {
+        displayInput.value = ''; 
+    }
+    
+    applyFilters();
+}
+
+// Hàm format chữ hiển thị cho tháng
+function updateMonthDisplayText() {
+    const monthInput = document.getElementById('monthFilter');
+    const displayInput = document.getElementById('monthFilterDisplay');
+    if (!monthInput || !displayInput) return;
 
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    const okBtn = document.getElementById('confirmOkBtn');
-    const cancelBtn = document.getElementById('confirmCancelBtn');
-
-    okBtn.textContent = lang === 'vi' ? 'Xóa' : 'Delete';
-    cancelBtn.textContent = lang === 'vi' ? 'Hủy' : 'Cancel';
-
-    const modal = document.getElementById('confirmModal');
-
-    const cleanup = () => {
-        modal.classList.add('hidden');
-        okBtn.onclick = null;
-        cancelBtn.onclick = null;
-    };
-
-    okBtn.onclick = () => {
-        onConfirm();
-        cleanup();
-    };
-
-    cancelBtn.onclick = cleanup;
-    modal.classList.remove('hidden');
+    
+    if (monthInput.value) {
+        const [year, month] = monthInput.value.split('-');
+        const date = new Date(year, month - 1, 1);
+        let text = date.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { 
+            month: 'long', 
+            year: 'numeric' 
+        });
+        // Viết hoa chữ cái đầu
+        displayInput.value = text.charAt(0).toUpperCase() + text.slice(1);
+    } else {
+        // Nếu không có giá trị, xóa text để placeholder (data-i18n) hiện lên
+        displayInput.value = ''; 
+    }
 }
 
-function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>"']/g, function (m) {
-        return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        }[m];
+// Hàm xử lý khi người dùng chọn tháng
+function handleMonthFilterChange(input) {
+    updateMonthDisplayText(); // Cập nhật chữ
+    applyFilters();           // Lọc dữ liệu
+}
+
+function processAutoBilling() {
+    const todayStr = new Date().toISOString().split('T')[0]; // Lấy ngày hôm nay (YYYY-MM-DD)
+    let hasChanges = false;
+    let autoPayCount = 0;
+
+    if (!appState.subscriptions) return;
+
+    appState.subscriptions.forEach(sub => {
+        // Nếu có ngày gia hạn và ngày đó <= hôm nay
+        if (sub.nextBilling && sub.nextBilling <= todayStr) {
+            // 1. Tự động tạo một giao dịch (Transaction) mới
+            const newTx = {
+                id: 'tx_auto_' + Date.now() + Math.random().toString(36).substring(2, 5),
+                type: 'EXPENSE',
+                title: `Auto-pay: ${sub.name}`,
+                amount: sub.amount,
+                category: sub.category,
+                date: sub.nextBilling, // Ghi nhận vào đúng ngày gia hạn
+                paymentMethod: sub.paymentMethod || 'Credit Card',
+                notes: 'Hệ thống tự động trừ tiền gói định kỳ'
+            };
+            appState.transactions.push(newTx);
+
+            // 2. Tính toán ngày gia hạn tiếp theo
+            let nextDate = new Date(sub.nextBilling);
+            // Xử lý múi giờ để không bị lùi ngày
+            nextDate.setMinutes(nextDate.getMinutes() + nextDate.getTimezoneOffset()); 
+            
+            if (sub.cycle === 'monthly') {
+                nextDate.setMonth(nextDate.getMonth() + 1);
+            } else {
+                nextDate.setFullYear(nextDate.getFullYear() + 1);
+            }
+            
+            // Cập nhật lại nextBilling
+            sub.nextBilling = nextDate.toISOString().split('T')[0];
+            
+            hasChanges = true;
+            autoPayCount++;
+        }
     });
+
+    if (hasChanges) {
+        saveStateToLocalStorage();
+        // Đợi 1 chút để app render xong rồi mới hiện thông báo
+        setTimeout(() => {
+            const lang = localStorage.getItem('spendSmart_lang') || 'en';
+            const msg = lang === 'vi' 
+                ? `Đã tự động thanh toán ${autoPayCount} gói dịch vụ!` 
+                : `Auto-paid ${autoPayCount} subscription(s)!`;
+            showToast(msg);
+        }, 1000);
+    }
 }
