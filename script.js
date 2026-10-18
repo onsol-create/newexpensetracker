@@ -647,7 +647,13 @@ function changeCurrency(newCurr) {
     document.getElementById('settingCurrencySelect').value = newCurr;
 
     const cfg = CURRENCY_CONFIG[newCurr] || CURRENCY_CONFIG['USD'];
+    
+    // Cập nhật ký hiệu ở form Transaction
     document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
+    
+    // THÊM DÒNG NÀY: Cập nhật ký hiệu ở form Nạp tiền (Deposit)
+    const depositSym = document.getElementById('depositCurrencySymbol');
+    if (depositSym) depositSym.textContent = cfg.symbol;
 
     saveStateToLocalStorage();
     renderAllViews();
@@ -1532,17 +1538,30 @@ function renderBudgets() {
 
 function openBudgetModal() {
     const listEl = document.getElementById('budgetFormList');
+    const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
+    const rate = exchangeRates[appState.currency] || 1; // Lấy tỷ giá
+
     listEl.innerHTML = '';
 
     CATEGORIES.EXPENSE.forEach(cat => {
-        const limit = appState.budgets[cat.id] || 0;
+        // Quy đổi từ USD (lưu trong DB) sang tiền tệ hiện tại để hiển thị
+        const limitUSD = appState.budgets[cat.id] || 0;
+        const displayLimit = Math.round(limitUSD * rate); 
+
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800';
+        
         item.innerHTML = `
             <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
                 <i class="fa-solid ${cat.icon} text-slate-400 w-4"></i> ${getCategoryName(cat.id, 'EXPENSE')}
             </span>
-            <input type="number" data-cat="${cat.id}" value="${limit}" step="10" min="0" onchange="updateBudgetLimit('${cat.id}', this.value)" class="w-24 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-900 dark:text-white text-right outline-none focus:ring-1 focus:ring-amber-500">
+            <div class="relative">
+                <span class="absolute left-2.5 top-1.5 text-xs text-slate-500 dark:text-slate-400">${cfg.symbol}</span>
+                <input type="number" data-cat="${cat.id}" value="${displayLimit}" step="10000" min="0" 
+                    onchange="updateBudgetLimit('${cat.id}', this.value)" 
+                    class="w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-7 pr-2 py-1 text-xs text-slate-900 dark:text-white text-right outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
         `;
         listEl.appendChild(item);
     });
@@ -1556,7 +1575,20 @@ function closeBudgetModal() {
 }
 
 function updateBudgetLimit(catId, val) {
-    appState.budgets[catId] = parseFloat(val) || 0;
+    const rate = exchangeRates[appState.currency] || 1;
+    
+    // 1. Chuyển đổi giá trị nhập vào thành số
+    let parsedVal = parseFloat(val);
+    
+    // 2. Nếu không phải là số (VD: 'abc', hoặc rỗng) thì gán bằng 0
+    if (isNaN(parsedVal)) {
+        parsedVal = 0;
+    }
+    
+    // 3. Quy đổi ngược từ tiền tệ hiện tại về USD để lưu vào database
+    const valueInUSD = parsedVal / rate;
+    
+    appState.budgets[catId] = valueInUSD;
     saveStateToLocalStorage();
 }
 
@@ -1633,14 +1665,18 @@ function closeDepositModal() {
 
 function submitDeposit() {
     const id = document.getElementById('depositGoalId').value;
-    const amt = parseFloat(document.getElementById('depositAmount').value);
+    const inputAmt = parseFloat(document.getElementById('depositAmount').value);
     const goal = appState.goals.find(g => g.id === id);
-    if (goal && amt > 0) {
-        goal.current += amt;
+    
+    if (goal && inputAmt > 0) {
+        const rate = exchangeRates[appState.currency] || 1;
+        const amtInUSD = inputAmt / rate; // Quy đổi ngược về USD
+
+        goal.current += amtInUSD;
         saveStateToLocalStorage();
         closeDepositModal();
         renderGoals();
-        showToast(`Added ${formatMoney(amt)} to ${goal.title}`);
+        showToast(`Added ${formatMoney(amtInUSD)} to ${goal.title}`);
     }
 }
 
