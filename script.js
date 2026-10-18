@@ -647,10 +647,10 @@ function changeCurrency(newCurr) {
     document.getElementById('settingCurrencySelect').value = newCurr;
 
     const cfg = CURRENCY_CONFIG[newCurr] || CURRENCY_CONFIG['USD'];
-    
+
     // Cập nhật ký hiệu ở form Transaction
     document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
-    
+
     // THÊM DÒNG NÀY: Cập nhật ký hiệu ở form Nạp tiền (Deposit)
     const depositSym = document.getElementById('depositCurrencySymbol');
     if (depositSym) depositSym.textContent = cfg.symbol;
@@ -1275,7 +1275,7 @@ function renderAnalyticsView() {
     let allKeys = Object.keys(monthlyMap).sort();
     const timeRangeSelect = document.getElementById('analyticsTimeRange');
     const rangeValue = timeRangeSelect ? timeRangeSelect.value : '3';
-    
+
     let mKeys = allKeys;
     if (rangeValue !== 'all') {
         const limit = parseInt(rangeValue);
@@ -1428,21 +1428,21 @@ function renderAnalyticsView() {
     // 5. BIỂU ĐỒ ĐƯỜNG (Dùng bộ lọc cumulativeTimeRange)
     // ==========================================
     const cumulativeCtx = document.getElementById('analyticsCumulativeChart').getContext('2d');
-    
+
     // Đọc giá trị từ Dropdown riêng của biểu đồ đường
     const cumulativeSelect = document.getElementById('cumulativeTimeRange');
-    const cumulativeRangeValue = cumulativeSelect ? cumulativeSelect.value : '3'; 
-    
+    const cumulativeRangeValue = cumulativeSelect ? cumulativeSelect.value : '3';
+
     let sortedTxsForLine = [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
-    
+
     // Lọc thời gian cho biểu đồ đường
     if (cumulativeRangeValue !== 'all') {
         const limitMonths = parseInt(cumulativeRangeValue);
         const latestDate = sortedTxsForLine.length > 0 ? new Date(sortedTxsForLine[sortedTxsForLine.length - 1].date) : new Date();
-        
+
         const startDate = new Date(latestDate);
         startDate.setMonth(startDate.getMonth() - limitMonths);
-        
+
         sortedTxsForLine = sortedTxsForLine.filter(tx => new Date(tx.date) >= startDate);
     }
 
@@ -1547,11 +1547,11 @@ function openBudgetModal() {
     CATEGORIES.EXPENSE.forEach(cat => {
         // Quy đổi từ USD (lưu trong DB) sang tiền tệ hiện tại để hiển thị
         const limitUSD = appState.budgets[cat.id] || 0;
-        const displayLimit = Math.round(limitUSD * rate); 
+        const displayLimit = Math.round(limitUSD * rate);
 
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800';
-        
+
         item.innerHTML = `
             <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
                 <i class="fa-solid ${cat.icon} text-slate-400 w-4"></i> ${getCategoryName(cat.id, 'EXPENSE')}
@@ -1576,18 +1576,18 @@ function closeBudgetModal() {
 
 function updateBudgetLimit(catId, val) {
     const rate = exchangeRates[appState.currency] || 1;
-    
+
     // 1. Chuyển đổi giá trị nhập vào thành số
     let parsedVal = parseFloat(val);
-    
+
     // 2. Nếu không phải là số (VD: 'abc', hoặc rỗng) thì gán bằng 0
     if (isNaN(parsedVal)) {
         parsedVal = 0;
     }
-    
+
     // 3. Quy đổi ngược từ tiền tệ hiện tại về USD để lưu vào database
     const valueInUSD = parsedVal / rate;
-    
+
     appState.budgets[catId] = valueInUSD;
     saveStateToLocalStorage();
 }
@@ -1636,20 +1636,20 @@ function handleGoalSubmit(e) {
     const title = document.getElementById('goalTitle').value;
     const inputTarget = parseFloat(document.getElementById('goalTarget').value);
     const inputCurrent = parseFloat(document.getElementById('goalCurrent').value) || 0;
-    
+
     const rate = exchangeRates[appState.currency] || 1;
-    
+
     // Quy đổi ngược về USD trước khi lưu
     const targetInUSD = inputTarget / rate;
     const currentInUSD = inputCurrent / rate;
 
-    appState.goals.push({ 
-        id: 'goal_' + Date.now(), 
-        title, 
-        target: targetInUSD, 
-        current: currentInUSD 
+    appState.goals.push({
+        id: 'goal_' + Date.now(),
+        title,
+        target: targetInUSD,
+        current: currentInUSD
     });
-    
+
     saveStateToLocalStorage();
     closeGoalModal();
     renderGoals();
@@ -1665,18 +1665,18 @@ function deleteGoal(id) {
 function openDepositModal(id) {
     const goal = appState.goals.find(g => g.id === id);
     if (!goal) return;
-    
+
     const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
-    
+
     document.getElementById('depositGoalId').value = id;
-    
+
     // Hiển thị tên mục tiêu và số tiền đã tiết kiệm được (đã quy đổi)
     document.getElementById('depositGoalTitle').textContent = `Mục tiêu: ${goal.title} (Đã có: ${formatMoney(goal.current)})`;
-    
+
     // Đổi ký hiệu tiền tệ trong ô input
     const symEl = document.getElementById('depositCurrencySymbol');
     if (symEl) symEl.textContent = cfg.symbol;
-    
+
     document.getElementById('depositAmount').value = '';
     document.getElementById('depositModal').classList.remove('hidden');
 }
@@ -1689,7 +1689,7 @@ function submitDeposit() {
     const id = document.getElementById('depositGoalId').value;
     const inputAmt = parseFloat(document.getElementById('depositAmount').value);
     const goal = appState.goals.find(g => g.id === id);
-    
+
     if (goal && inputAmt > 0) {
         const rate = exchangeRates[appState.currency] || 1;
         const amtInUSD = inputAmt / rate; // Quy đổi về USD để lưu
@@ -1714,7 +1714,7 @@ function submitDeposit() {
         saveStateToLocalStorage();
         closeDepositModal();
         renderAllViews(); // Render lại toàn bộ để Số dư (Dashboard) bị trừ đi
-        
+
         showToast(`Đã nạp ${formatMoney(amtInUSD)} vào ${goal.title} và trừ vào số dư`);
     }
 }
@@ -2142,18 +2142,25 @@ function processAutoBilling() {
             appState.transactions.push(newTx);
 
             // 2. Tính toán ngày gia hạn tiếp theo
-            let nextDate = new Date(sub.nextBilling);
-            // Xử lý múi giờ để không bị lùi ngày
-            nextDate.setMinutes(nextDate.getMinutes() + nextDate.getTimezoneOffset());
+            // 1. Phân tách chuỗi ngày tháng thành các tham số số nguyên
+            const [year, month, day] = sub.nextBilling.split('-').map(Number);
 
+            // 2. Khởi tạo Date theo múi giờ cục bộ (Tháng trong JS bắt đầu từ 0)
+            let nextDate = new Date(year, month - 1, day);
+
+            // 3. Tính toán chu kỳ gia hạn
             if (sub.cycle === 'monthly') {
                 nextDate.setMonth(nextDate.getMonth() + 1);
             } else {
                 nextDate.setFullYear(nextDate.getFullYear() + 1);
             }
 
-            // Cập nhật lại nextBilling
-            sub.nextBilling = nextDate.toISOString().split('T')[0];
+            // 4. Tự định dạng chuỗi YYYY-MM-DD chuẩn không qua toISOString()
+            const yyyy = nextDate.getFullYear();
+            const mm = String(nextDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(nextDate.getDate()).padStart(2, '0');
+
+            sub.nextBilling = `${yyyy}-${mm}-${dd}`;
 
             hasChanges = true;
             autoPayCount++;
