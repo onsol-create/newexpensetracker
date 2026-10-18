@@ -1303,35 +1303,101 @@ function renderAnalyticsView() {
     // --- BỔ SUNG TRONG HÀM renderAnalyticsView() ---
 
     // 5. Tính toán dự báo cuối tháng
+    // 5. Tính toán dự báo cuối tháng
+        // ==========================================
+    // BẮT ĐẦU: SMART FORECAST LOGIC (CẢI TIẾN)
+    // ==========================================
     const now = new Date();
     const currentDay = now.getDate();
     const totalDaysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
-    // Tổng thu và chi trong tháng hiện tại
     let currentMonthInc = 0;
     let currentMonthExp = 0;
-    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    let dailyExpenses = []; // Lưu chi tiêu từng ngày để lọc đột biến
+    let upcomingSubsCost = 0; // Chi phí dịch vụ định kỳ sắp tới
 
     appState.transactions.forEach(tx => {
         if (tx.date && tx.date.startsWith(currentMonthKey)) {
-            if (tx.type === 'INCOME') currentMonthInc += parseFloat(tx.amount);
-            else currentMonthExp += parseFloat(tx.amount);
+            const amt = parseFloat(tx.amount);
+            if (tx.type === 'INCOME') {
+                currentMonthInc += amt;
+            } else {
+                currentMonthExp += amt;
+                dailyExpenses.push({ date: tx.date, amount: amt });
+            }
         }
     });
 
-    const avgDailyExp = currentDay > 0 ? currentMonthExp / currentDay : 0;
-    const projectedExp = avgDailyExp * totalDaysInMonth;
-    const projectedBalance = currentMonthInc - projectedExp;
+    // 1. Xử lý Thu nhập (Nếu chưa có lương tháng này, dự phóng bằng lương tháng trước)
+    let expectedInc = currentMonthInc;
+    if (expectedInc === 0) {
+        // Tìm giao dịch lương gần nhất trong quá khứ
+        const pastSalaries = appState.transactions
+            .filter(t => t.type === 'INCOME' && t.category === 'salary' && t.date < currentMonthKey)
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
+        if (pastSalaries.length > 0) {
+            expectedInc = parseFloat(pastSalaries[0].amount); 
+        }
+    }
+
+    // 2. Tính chi tiêu trung bình hàng ngày (Loại bỏ chi tiêu đột biến > 50% tổng chi tiêu tháng)
+    let validExpForAvg = currentMonthExp;
+    let validDaysForAvg = currentDay;
+    
+    if (dailyExpenses.length > 1) {
+        // Nếu có giao dịch quá lớn (đột biến), loại nó ra khỏi phép tính trung bình
+        const largestExpense = Math.max(...dailyExpenses.map(d => d.amount));
+        if (largestExpense > currentMonthExp * 0.4 && currentMonthExp > 0) {
+            validExpForAvg -= largestExpense;
+            // Nếu ngày đó chỉ có 1 giao dịch đột biến, ta trừ đi 1 ngày để trung bình không bị nhỏ đi
+            validDaysForAvg = Math.max(1, currentDay - 1); 
+        }
+    }
+
+    // 3. Tính chi phí các gói Subscriptions sắp tới trong tháng này
+    if (appState.subscriptions) {
+        const todayStr = now.toISOString().split('T')[0];
+        const endOfMonthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${totalDaysInMonth}`;
+        
+        appState.subscriptions.forEach(sub => {
+            if (sub.nextBilling >= todayStr && sub.nextBilling <= endOfMonthStr) {
+                if (sub.cycle === 'monthly') upcomingSubsCost += parseFloat(sub.amount);
+                else if (sub.cycle === 'yearly') upcomingSubsCost += parseFloat(sub.amount); // Tính luôn nếu năm nay tới hạn
+            }
+        });
+    }
+
+    // 4. Tổng hợp dự báo
+    const avgDailyExp = validExpForAvg / validDaysForAvg;
+    const projectedExp = (avgDailyExp * totalDaysInMonth) + upcomingSubsCost;
+    
+    // Nếu tháng trống hoàn toàn (chưa có thu, chưa có chi) thì dự báo = 0
+    let projectedBalance = 0;
+    if (currentMonthInc > 0 || currentMonthExp > 0) {
+        projectedBalance = expectedInc - projectedExp;
+    }
 
     const forecastEl = document.getElementById('endOfMonthForecast');
     if (forecastEl) {
+        // Thêm màu sắc và icon cho trực quan
+        const isPositive = projectedBalance >= 0;
+        const colorClass = isPositive ? 'text-emerald-500' : 'text-rose-500';
+        const iconClass = isPositive ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down';
+        
         forecastEl.innerHTML = `
-        <span class="text-xs text-slate-500 dark:text-slate-400">${translations[lang].forecast_balance} </span>
-        <span class="text-sm sm:text-base font-extrabold ${projectedBalance >= 0 ? 'text-emerald-500' : 'text-rose-500'}">
-            ${formatMoney(projectedBalance)}
-        </span>
-    `;
+            <div class="flex items-center justify-end gap-2">
+                <span class="text-xs text-slate-500 dark:text-slate-400">${translations[lang].forecast_balance} </span>
+                <span class="text-sm sm:text-base font-extrabold ${colorClass} flex items-center gap-1">
+                    <i class="fa-solid ${iconClass} text-xs"></i>
+                    ${formatMoney(projectedBalance)}
+                </span>
+            </div>
+        `;
     }
+    // ==========================================
+    // KẾT THÚC: SMART FORECAST LOGIC
+    // ==========================================
 
     // 3. Vẽ Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth Trend)
     const cumulativeCtx = document.getElementById('analyticsCumulativeChart').getContext('2d');
