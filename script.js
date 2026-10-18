@@ -1634,10 +1634,22 @@ function closeGoalModal() {
 function handleGoalSubmit(e) {
     e.preventDefault();
     const title = document.getElementById('goalTitle').value;
-    const target = parseFloat(document.getElementById('goalTarget').value);
-    const current = parseFloat(document.getElementById('goalCurrent').value) || 0;
+    const inputTarget = parseFloat(document.getElementById('goalTarget').value);
+    const inputCurrent = parseFloat(document.getElementById('goalCurrent').value) || 0;
+    
+    const rate = exchangeRates[appState.currency] || 1;
+    
+    // Quy đổi ngược về USD trước khi lưu
+    const targetInUSD = inputTarget / rate;
+    const currentInUSD = inputCurrent / rate;
 
-    appState.goals.push({ id: 'goal_' + Date.now(), title, target, current });
+    appState.goals.push({ 
+        id: 'goal_' + Date.now(), 
+        title, 
+        target: targetInUSD, 
+        current: currentInUSD 
+    });
+    
     saveStateToLocalStorage();
     closeGoalModal();
     renderGoals();
@@ -1653,8 +1665,18 @@ function deleteGoal(id) {
 function openDepositModal(id) {
     const goal = appState.goals.find(g => g.id === id);
     if (!goal) return;
+    
+    const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
+    
     document.getElementById('depositGoalId').value = id;
-    document.getElementById('depositGoalTitle').textContent = `Target: ${goal.title}`;
+    
+    // Hiển thị tên mục tiêu và số tiền đã tiết kiệm được (đã quy đổi)
+    document.getElementById('depositGoalTitle').textContent = `Mục tiêu: ${goal.title} (Đã có: ${formatMoney(goal.current)})`;
+    
+    // Đổi ký hiệu tiền tệ trong ô input
+    const symEl = document.getElementById('depositCurrencySymbol');
+    if (symEl) symEl.textContent = cfg.symbol;
+    
     document.getElementById('depositAmount').value = '';
     document.getElementById('depositModal').classList.remove('hidden');
 }
@@ -1670,13 +1692,30 @@ function submitDeposit() {
     
     if (goal && inputAmt > 0) {
         const rate = exchangeRates[appState.currency] || 1;
-        const amtInUSD = inputAmt / rate; // Quy đổi ngược về USD
+        const amtInUSD = inputAmt / rate; // Quy đổi về USD để lưu
 
+        // 1. Cộng tiền vào mục tiêu
         goal.current += amtInUSD;
+
+        // 2. TỰ ĐỘNG TẠO GIAO DỊCH CHI TIÊU ĐỂ TRỪ VÀO SỐ DƯ
+        const newTx = {
+            id: 'tx_savings_' + Date.now(),
+            type: 'EXPENSE',
+            title: `Nạp tiền: ${goal.title}`,
+            amount: amtInUSD,
+            category: 'other_exp', // Dùng danh mục Chi phí khác, hoặc tạo danh mục 'Tiết kiệm'
+            date: new Date().toISOString().split('T')[0],
+            paymentMethod: 'Bank Transfer',
+            notes: 'Tự động trích tiền từ số dư để nạp vào mục tiêu'
+        };
+        appState.transactions.push(newTx);
+
+        // 3. Lưu và cập nhật giao diện
         saveStateToLocalStorage();
         closeDepositModal();
-        renderGoals();
-        showToast(`Added ${formatMoney(amtInUSD)} to ${goal.title}`);
+        renderAllViews(); // Render lại toàn bộ để Số dư (Dashboard) bị trừ đi
+        
+        showToast(`Đã nạp ${formatMoney(amtInUSD)} vào ${goal.title} và trừ vào số dư`);
     }
 }
 
