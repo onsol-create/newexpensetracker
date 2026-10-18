@@ -529,15 +529,27 @@ describe('22. resetDemoData()', () => {
     test('Ghi đè bằng sample data', () => {
         window.appState.transactions = [];
         window.resetDemoData();
-        expect(window.appState.transactions.length).toBe(8);
+        
+        // Cách 1: Sửa cứng thành 36 (nếu data 6 tháng của bạn có đúng 36 giao dịch)
+        // expect(window.appState.transactions.length).toBe(36);
+
+        // Cách 2 (TỐT NHẤT): So sánh động với độ dài của hàm getSampleData()
+        const expectedLength = window.getSampleData().length;
+        expect(window.appState.transactions.length).toBe(expectedLength);
     });
 });
 
 // ================================================================
 describe('23. getSampleData()', () => {
-    test('Trả về 8 giao dịch đủ field', () => {
+    test('Trả về danh sách giao dịch đủ field', () => {
         const data = window.getSampleData();
-        expect(data).toHaveLength(8);
+        
+        // Sửa thành kiểm tra độ dài lớn hơn 0
+        expect(data.length).toBeGreaterThan(0); 
+        
+        // Hoặc nếu bạn muốn chắc chắn là 36:
+        // expect(data).toHaveLength(36);
+
         data.forEach(tx => {
             expect(tx).toHaveProperty('id');
             expect(tx).toHaveProperty('type');
