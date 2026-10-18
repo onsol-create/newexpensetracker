@@ -1,265 +1,275 @@
 // --- TRANSLATIONS DICTIONARY ---
 const translations = {
-  en: {
-    app_subtitle: "Expense Tracker",
-    local_sync: "Local Storage Sync",
-    tx_recorded: "transactions recorded",
-    nav_dashboard: "Dashboard",
-    nav_transactions: "Transactions",
-    nav_analytics: "Reports",
-    nav_budgets: "Budgets",
-    nav_subscriptions: "Subscriptions",
-    nav_settings: "Settings & Data",
-    page_dashboard_title: "Dashboard Overview",
-    page_dashboard_subtitle: "Summary of financial balance, activity, and key metrics",
-    page_transactions_title: "Transaction History",
-    page_transactions_subtitle: "Filter, search, edit, and audit your records",
-    page_analytics_title: "Analytics & Financial Insights",
-    page_analytics_subtitle: "Detailed visual breakdown of spending habits and trends",
-    page_budgets_title: "Budgets & Savings Targets",
-    page_budgets_subtitle: "Control category spending caps and track savings goals",
-    page_subscriptions_title: "Recurring Subscriptions",
-    page_subscriptions_subtitle: "Track monthly and yearly recurring memberships and bills",
-    page_settings_title: "Settings & Data Management",
-    page_settings_subtitle: "Currency configurations and JSON data backups",
-    net_balance: "Net Balance",
-    total_income: "Total Income",
-    total_expenses: "Total Expenses",
-    savings_rate: "Savings Rate",
-    status: "Status",
-    positive: "Surplus",
-    negative: "Deficit",
-    inflow: "Inflow",
-    outflow: "Outflow",
-    target: "Target Amount",
-    recent_activity: "Recent Financial Activity",
-    expense_distribution: "Expense Distribution",
-    by_category: "By Category",
-    heatmap_title: "Income/Expense Calendar Heatmap",
-    heatmap_subtitle: "Click on any day to view detailed transaction list",
-    select_month: "Select Month:",
-    legend_title: "Legend:",
-    legend_income: "Income",
-    legend_expense: "Expense",
-    legend_mixed: "Both",
-    legend_none: "None",
-    heatmap_toggle_expense: "Expenses",
-    heatmap_toggle_income: "Income",
-    heatmap_toggle_both: "Both",
-    day_sun: "Sun",
-    day_mon: "Mon",
-    day_tue: "Tue",
-    day_wed: "Wed",
-    day_thu: "Thu",
-    day_fri: "Fri",
-    day_sat: "Sat",
-    tx_for_date: "Transactions for",
-    no_tx_on_date: "No transactions recorded on this day.",
-    recent_preview: "Recent Transactions Preview",
-    view_all: "View All \u2192",
-    details: "Details \u2192",
-    th_transaction: "Transaction",
-    th_category: "Category",
-    th_date: "Date",
-    th_payment: "Payment Method",
-    th_amount: "Amount",
-    th_actions: "Actions",
-    search_placeholder: "Search...",
-    all_types: "All Types",
-    all_months: "All Months",
-    expenses: "Expenses",
-    income: "Income",
-    all_categories: "All Categories",
-    reset_filters: "Reset Filters",
-    avg_daily_spend: "Avg Daily Spend",
-    top_category: "Top Category",
-    top_payment: "Top Payment",
-    net_surplus: "Net Surplus",
-    income_vs_expense: "Income vs Expense Trends",
-    category_breakdown: "Expense Category Breakdown",
-    monthly_budgets: "Monthly Budgets",
-    budget_desc: "Control spending limits",
-    manage_limits: "Manage Limits",
-    limits: "Limits",
-    savings_targets: "Savings Targets",
-    goals_desc: "Track long term savings progress",
-    new_goal: "New Goal",
-    general_preferences: "General Preferences",
-    default_currency: "Default Currency Symbol",
-    currency_desc: "Used for formatting financial metrics",
-    data_backup: "Data Backup & Restore",
-    backup_desc: "Export your expense data to JSON file or restore from a previous backup.",
-    export_data: "Export Data (JSON)",
-    import_data: "Import Data (JSON)",
-    reset_options: "Reset Data Options",
-    reset_desc: "Reset app state to initial demo dataset or clear all records permanently.",
-    load_demo: "Load Sample Demo Data",
-    clear_all: "Clear All Data",
-    add_transaction: "Add Transaction",
-    add: "Add",
-    modal_title_add: "Add Transaction",
-    modal_title_edit: "Edit Transaction",
-    label_title: "Title / Description",
-    placeholder_title: "e.g. Grocery Shopping, Salary",
-    label_amount: "Amount",
-    label_category: "Category",
-    label_date: "Date",
-    label_payment: "Payment Method",
-    label_notes: "Notes (Optional)",
-    placeholder_notes: "Additional details...",
-    btn_cancel: "Cancel",
-    btn_save: "Save Transaction",
-    btn_done: "Done",
-    btn_create_target: "Create Target",
-    add_funds: "Add Funds",
-    btn_add_funds: "Add Funds",
-    confirm_action: "Confirm Action",
-    confirm_desc: "Are you sure you want to proceed?",
-    no_transactions: "No matching transactions found",
-    no_recent: "No recent transactions",
-    // Subscriptions Translation Keys
-    monthly_cost: "Monthly Cost",
-    yearly_cost: "Yearly Cost",
-    active_subs: "Active Subscriptions",
-    new_subscription: "New Subscription",
-    cycle_monthly: "Monthly",
-    cycle_yearly: "Yearly",
-    next_billing: "Next Billing",
-    modal_title_add_sub: "Add Subscription",
-    modal_title_edit_sub: "Edit Subscription",
-    label_cycle: "Billing Cycle",
-    no_subscriptions: "No active subscriptions found"
-  },
-  vi: {
-    app_subtitle: "Theo dõi chi tiêu",
-    local_sync: "Đồng bộ bộ nhớ tạm",
-    tx_recorded: "giao dịch đã ghi",
-    nav_dashboard: "Tổng quan",
-    nav_transactions: "Giao dịch",
-    nav_analytics: "Báo cáo",
-    nav_budgets: "Ngân sách",
-    nav_subscriptions: "Dịch vụ định kỳ",
-    nav_settings: "Cài đặt & Dữ liệu",
-    page_dashboard_title: "Tổng quan tài chính",
-    page_dashboard_subtitle: "Tóm tắt số dư, hoạt động và các chỉ số tài chính chính",
-    page_transactions_title: "Lịch sử giao dịch",
-    page_transactions_subtitle: "Quản lý, tìm kiếm và kiểm tra các khoản thu chi của bạn",
-    page_analytics_title: "Phân tích & Báo cáo",
-    page_analytics_subtitle: "Chi tiết trực quan về thói quen chi tiêu và xu hướng",
-    page_budgets_title: "Ngân sách & Mục tiêu",
-    page_budgets_subtitle: "Kiểm soát giới hạn chi tiêu và theo dõi mục tiêu tiết kiệm",
-    page_subscriptions_title: "Quản lý gói dịch vụ định kỳ",
-    page_subscriptions_subtitle: "Theo dõi các dịch vụ đăng ký, hóa đơn hàng tháng và hàng năm",
-    page_settings_title: "Cài đặt & Quản lý dữ liệu",
-    page_settings_subtitle: "Cấu hình tiền tệ và sao lưu dữ liệu JSON",
-    net_balance: "Số dư ròng",
-    total_income: "Tổng thu nhập",
-    total_expenses: "Tổng chi tiêu",
-    savings_rate: "Tỷ lệ tiết kiệm",
-    status: "Trạng thái",
-    positive: "Thặng dư",
-    negative: "Thâm hụt",
-    inflow: "Tiền vào",
-    outflow: "Tiền ra",
-    target: "Mục tiêu",
-    recent_activity: "Hoạt động tài chính gần đây",
-    expense_distribution: "Phân bổ chi tiêu",
-    by_category: "Theo danh mục",
-    heatmap_title: "Thống kê thu chi theo ngày (Heatmap)",
-    heatmap_subtitle: "Nhấn vào từng ngày để xem danh sách giao dịch",
-    select_month: "Chọn tháng:",
-    legend_title: "Chú thích:",
-    legend_income: "Thu nhập",
-    legend_expense: "Chi tiêu",
-    legend_mixed: "Cả hai",
-    legend_none: "Không có",
-    heatmap_toggle_expense: "Chi tiêu",
-    heatmap_toggle_income: "Thu nhập",
-    heatmap_toggle_both: "Cả hai",
-    day_sun: "CN",
-    day_mon: "T2",
-    day_tue: "T3",
-    day_wed: "T4",
-    day_thu: "T5",
-    day_fri: "T6",
-    day_sat: "T7",
-    tx_for_date: "Giao dịch ngày",
-    no_tx_on_date: "Không có giao dịch nào trong ngày này.",
-    recent_preview: "Xem trước giao dịch gần đây",
-    view_all: "Xem tất cả \u2192",
-    details: "Chi tiết \u2192",
-    th_transaction: "Giao dịch",
-    th_category: "Danh mục",
-    th_date: "Ngày",
-    th_payment: "Phương thức",
-    th_amount: "Số tiền",
-    th_actions: "Hành động",
-    search_placeholder: "Tìm kiếm...",
-    all_types: "Tất cả loại",
-    all_months: "Tất cả các tháng",
-    expenses: "Khoản chi",
-    income: "Thu nhập",
-    all_categories: "Tất cả danh mục",
-    reset_filters: "Đặt lại bộ lọc",
-    avg_daily_spend: "Chi tiêu TB/ngày",
-    top_category: "Danh mục phổ biến",
-    top_payment: "Thanh toán phổ biến",
-    net_surplus: "Thặng dư ròng",
-    income_vs_expense: "Xu hướng Thu nhập & Chi tiêu",
-    category_breakdown: "Chi tiết danh mục chi tiêu",
-    monthly_budgets: "Ngân sách hàng tháng",
-    budget_desc: "Kiểm soát giới hạn chi tiêu",
-    manage_limits: "Quản lý hạn mức",
-    limits: "Hạn mức",
-    savings_targets: "Mục tiêu tiết kiệm",
-    goals_desc: "Theo dõi tiến độ tiết kiệm dài hạn",
-    new_goal: "Mục tiêu mới",
-    general_preferences: "Tùy chọn chung",
-    default_currency: "Ký hiệu tiền tệ mặc định",
-    currency_desc: "Dùng để định dạng các chỉ số tài chính",
-    data_backup: "Sao lưu & Khôi phục dữ liệu",
-    backup_desc: "Xuất dữ liệu chi tiêu ra file JSON hoặc khôi phục từ bản sao lưu trước đó.",
-    export_data: "Xuất dữ liệu (JSON)",
-    import_data: "Nhập dữ liệu (JSON)",
-    reset_options: "Tùy chọn đặt lại dữ liệu",
-    reset_desc: "Đặt lại trạng thái ứng dụng về dữ liệu mẫu ban đầu hoặc xóa vĩnh viễn tất cả bản ghi.",
-    load_demo: "Tải dữ liệu mẫu demo",
-    clear_all: "Xóa tất cả dữ liệu",
-    add_transaction: "Thêm giao dịch",
-    add: "Thêm",
-    modal_title_add: "Thêm giao dịch",
-    modal_title_edit: "Sửa giao dịch",
-    label_title: "Tiêu đề / Mô tả",
-    placeholder_title: "VD: Đi chợ, Lương tháng",
-    label_amount: "Số tiền",
-    label_category: "Danh mục",
-    label_date: "Ngày",
-    label_payment: "Phương thức thanh toán",
-    label_notes: "Ghi chú (Tùy chọn)",
-    placeholder_notes: "Chi tiết bổ sung...",
-    btn_cancel: "Hủy",
-    btn_save: "Lưu giao dịch",
-    btn_done: "Xong",
-    btn_create_target: "Tạo mục tiêu",
-    add_funds: "Nạp tiền",
-    btn_add_funds: "Thêm tiền",
-    confirm_action: "Xác nhận hành động",
-    confirm_desc: "Bạn có chắc chắn muốn tiếp tục hành động này không?",
-    no_transactions: "Không tìm thấy giao dịch phù hợp",
-    no_recent: "Chưa có giao dịch gần đây",
-    // Subscriptions Translation Keys
-    monthly_cost: "Chi phí hàng tháng",
-    yearly_cost: "Chi phí hàng năm",
-    active_subs: "Dịch vụ đang dùng",
-    new_subscription: "Gói dịch vụ mới",
-    cycle_monthly: "Hàng tháng",
-    cycle_yearly: "Hàng năm",
-    next_billing: "Ngày gia hạn tiếp",
-    modal_title_add_sub: "Thêm gói dịch vụ",
-    modal_title_edit_sub: "Sửa gói dịch vụ",
-    label_cycle: "Chu kỳ thanh toán",
-    no_subscriptions: "Chưa có gói dịch vụ định kỳ nào"
-  }
+    en: {
+        app_subtitle: "Expense Tracker",
+        local_sync: "Local Storage Sync",
+        tx_recorded: "transactions recorded",
+        nav_dashboard: "Dashboard",
+        nav_transactions: "Transactions",
+        nav_analytics: "Reports",
+        nav_budgets: "Budgets",
+        nav_subscriptions: "Subscriptions",
+        nav_settings: "Settings & Data",
+        page_dashboard_title: "Dashboard Overview",
+        page_dashboard_subtitle: "Summary of financial balance, activity, and key metrics",
+        page_transactions_title: "Transaction History",
+        page_transactions_subtitle: "Filter, search, edit, and audit your records",
+        page_analytics_title: "Analytics & Financial Insights",
+        page_analytics_subtitle: "Detailed visual breakdown of spending habits and trends",
+        page_budgets_title: "Budgets & Savings Targets",
+        page_budgets_subtitle: "Control category spending caps and track savings goals",
+        page_subscriptions_title: "Recurring Subscriptions",
+        page_subscriptions_subtitle: "Track monthly and yearly recurring memberships and bills",
+        page_settings_title: "Settings & Data Management",
+        page_settings_subtitle: "Currency configurations and JSON data backups",
+        net_balance: "Net Balance",
+        total_income: "Total Income",
+        total_expenses: "Total Expenses",
+        savings_rate: "Savings Rate",
+        status: "Status",
+        positive: "Surplus",
+        negative: "Deficit",
+        inflow: "Inflow",
+        outflow: "Outflow",
+        target: "Target Amount",
+        recent_activity: "Recent Financial Activity",
+        expense_distribution: "Expense Distribution",
+        by_category: "By Category",
+        heatmap_title: "Income/Expense Calendar Heatmap",
+        heatmap_subtitle: "Click on any day to view detailed transaction list",
+        select_month: "Select Month:",
+        legend_title: "Legend:",
+        legend_income: "Income",
+        legend_expense: "Expense",
+        legend_mixed: "Both",
+        legend_none: "None",
+        heatmap_toggle_expense: "Expenses",
+        heatmap_toggle_income: "Income",
+        heatmap_toggle_both: "Both",
+        day_sun: "Sun",
+        day_mon: "Mon",
+        day_tue: "Tue",
+        day_wed: "Wed",
+        day_thu: "Thu",
+        day_fri: "Fri",
+        day_sat: "Sat",
+        tx_for_date: "Transactions for",
+        no_tx_on_date: "No transactions recorded on this day.",
+        recent_preview: "Recent Transactions Preview",
+        view_all: "View All \u2192",
+        details: "Details \u2192",
+        th_transaction: "Transaction",
+        th_category: "Category",
+        th_date: "Date",
+        th_payment: "Payment Method",
+        th_amount: "Amount",
+        th_actions: "Actions",
+        search_placeholder: "Search...",
+        all_types: "All Types",
+        all_months: "All Months",
+        expenses: "Expenses",
+        income: "Income",
+        all_categories: "All Categories",
+        reset_filters: "Reset Filters",
+        avg_daily_spend: "Avg Daily Spend",
+        top_category: "Top Category",
+        top_payment: "Top Payment",
+        net_surplus: "Net Surplus",
+        income_vs_expense: "Income vs Expense Trends",
+        category_breakdown: "Expense Category Breakdown",
+        monthly_budgets: "Monthly Budgets",
+        budget_desc: "Control spending limits",
+        manage_limits: "Manage Limits",
+        limits: "Limits",
+        savings_targets: "Savings Targets",
+        goals_desc: "Track long term savings progress",
+        new_goal: "New Goal",
+        general_preferences: "General Preferences",
+        default_currency: "Default Currency Symbol",
+        currency_desc: "Used for formatting financial metrics",
+        data_backup: "Data Backup & Restore",
+        backup_desc: "Export your expense data to JSON file or restore from a previous backup.",
+        export_data: "Export Data (JSON)",
+        import_data: "Import Data (JSON)",
+        reset_options: "Reset Data Options",
+        reset_desc: "Reset app state to initial demo dataset or clear all records permanently.",
+        load_demo: "Load Sample Demo Data",
+        clear_all: "Clear All Data",
+        add_transaction: "Add Transaction",
+        add: "Add",
+        modal_title_add: "Add Transaction",
+        modal_title_edit: "Edit Transaction",
+        label_title: "Title / Description",
+        placeholder_title: "e.g. Grocery Shopping, Salary",
+        label_amount: "Amount",
+        label_category: "Category",
+        label_date: "Date",
+        label_payment: "Payment Method",
+        label_notes: "Notes (Optional)",
+        placeholder_notes: "Additional details...",
+        btn_cancel: "Cancel",
+        btn_save: "Save Transaction",
+        btn_done: "Done",
+        btn_create_target: "Create Target",
+        add_funds: "Add Funds",
+        btn_add_funds: "Add Funds",
+        confirm_action: "Confirm Action",
+        confirm_desc: "Are you sure you want to proceed?",
+        no_transactions: "No matching transactions found",
+        no_recent: "No recent transactions",
+        // Subscriptions Translation Keys
+        monthly_cost: "Monthly Cost",
+        yearly_cost: "Yearly Cost",
+        active_subs: "Active Subscriptions",
+        new_subscription: "New Subscription",
+        cycle_monthly: "Monthly",
+        cycle_yearly: "Yearly",
+        next_billing: "Next Billing",
+        modal_title_add_sub: "Add Subscription",
+        modal_title_edit_sub: "Edit Subscription",
+        label_cycle: "Billing Cycle",
+        no_subscriptions: "No active subscriptions found",
+        forecast_title: "End-of-Month Financial Forecast",
+        forecast_desc: "Based on your current spending pace",
+        forecast_balance: "Projected Balance:",
+        cumulative_chart_title: "Cumulative Net Worth Trend",
+        cumulative_tooltip: "Balance:"
+    },
+    vi: {
+        app_subtitle: "Theo dõi chi tiêu",
+        local_sync: "Đồng bộ bộ nhớ tạm",
+        tx_recorded: "giao dịch đã ghi",
+        nav_dashboard: "Tổng quan",
+        nav_transactions: "Giao dịch",
+        nav_analytics: "Báo cáo",
+        nav_budgets: "Ngân sách",
+        nav_subscriptions: "Dịch vụ định kỳ",
+        nav_settings: "Cài đặt & Dữ liệu",
+        page_dashboard_title: "Tổng quan tài chính",
+        page_dashboard_subtitle: "Tóm tắt số dư, hoạt động và các chỉ số tài chính chính",
+        page_transactions_title: "Lịch sử giao dịch",
+        page_transactions_subtitle: "Quản lý, tìm kiếm và kiểm tra các khoản thu chi của bạn",
+        page_analytics_title: "Phân tích & Báo cáo",
+        page_analytics_subtitle: "Chi tiết trực quan về thói quen chi tiêu và xu hướng",
+        page_budgets_title: "Ngân sách & Mục tiêu",
+        page_budgets_subtitle: "Kiểm soát giới hạn chi tiêu và theo dõi mục tiêu tiết kiệm",
+        page_subscriptions_title: "Quản lý gói dịch vụ định kỳ",
+        page_subscriptions_subtitle: "Theo dõi các dịch vụ đăng ký, hóa đơn hàng tháng và hàng năm",
+        page_settings_title: "Cài đặt & Quản lý dữ liệu",
+        page_settings_subtitle: "Cấu hình tiền tệ và sao lưu dữ liệu JSON",
+        net_balance: "Số dư ròng",
+        total_income: "Tổng thu nhập",
+        total_expenses: "Tổng chi tiêu",
+        savings_rate: "Tỷ lệ tiết kiệm",
+        status: "Trạng thái",
+        positive: "Thặng dư",
+        negative: "Thâm hụt",
+        inflow: "Tiền vào",
+        outflow: "Tiền ra",
+        target: "Mục tiêu",
+        recent_activity: "Hoạt động tài chính gần đây",
+        expense_distribution: "Phân bổ chi tiêu",
+        by_category: "Theo danh mục",
+        heatmap_title: "Thống kê thu chi theo ngày (Heatmap)",
+        heatmap_subtitle: "Nhấn vào từng ngày để xem danh sách giao dịch",
+        select_month: "Chọn tháng:",
+        legend_title: "Chú thích:",
+        legend_income: "Thu nhập",
+        legend_expense: "Chi tiêu",
+        legend_mixed: "Cả hai",
+        legend_none: "Không có",
+        heatmap_toggle_expense: "Chi tiêu",
+        heatmap_toggle_income: "Thu nhập",
+        heatmap_toggle_both: "Cả hai",
+        day_sun: "CN",
+        day_mon: "T2",
+        day_tue: "T3",
+        day_wed: "T4",
+        day_thu: "T5",
+        day_fri: "T6",
+        day_sat: "T7",
+        tx_for_date: "Giao dịch ngày",
+        no_tx_on_date: "Không có giao dịch nào trong ngày này.",
+        recent_preview: "Xem trước giao dịch gần đây",
+        view_all: "Xem tất cả \u2192",
+        details: "Chi tiết \u2192",
+        th_transaction: "Giao dịch",
+        th_category: "Danh mục",
+        th_date: "Ngày",
+        th_payment: "Phương thức",
+        th_amount: "Số tiền",
+        th_actions: "Hành động",
+        search_placeholder: "Tìm kiếm...",
+        all_types: "Tất cả loại",
+        all_months: "Tất cả các tháng",
+        expenses: "Khoản chi",
+        income: "Thu nhập",
+        all_categories: "Tất cả danh mục",
+        reset_filters: "Đặt lại bộ lọc",
+        avg_daily_spend: "Chi tiêu TB/ngày",
+        top_category: "Danh mục phổ biến",
+        top_payment: "Thanh toán phổ biến",
+        net_surplus: "Thặng dư ròng",
+        income_vs_expense: "Xu hướng Thu nhập & Chi tiêu",
+        category_breakdown: "Chi tiết danh mục chi tiêu",
+        monthly_budgets: "Ngân sách hàng tháng",
+        budget_desc: "Kiểm soát giới hạn chi tiêu",
+        manage_limits: "Quản lý hạn mức",
+        limits: "Hạn mức",
+        savings_targets: "Mục tiêu tiết kiệm",
+        goals_desc: "Theo dõi tiến độ tiết kiệm dài hạn",
+        new_goal: "Mục tiêu mới",
+        general_preferences: "Tùy chọn chung",
+        default_currency: "Ký hiệu tiền tệ mặc định",
+        currency_desc: "Dùng để định dạng các chỉ số tài chính",
+        data_backup: "Sao lưu & Khôi phục dữ liệu",
+        backup_desc: "Xuất dữ liệu chi tiêu ra file JSON hoặc khôi phục từ bản sao lưu trước đó.",
+        export_data: "Xuất dữ liệu (JSON)",
+        import_data: "Nhập dữ liệu (JSON)",
+        reset_options: "Tùy chọn đặt lại dữ liệu",
+        reset_desc: "Đặt lại trạng thái ứng dụng về dữ liệu mẫu ban đầu hoặc xóa vĩnh viễn tất cả bản ghi.",
+        load_demo: "Tải dữ liệu mẫu demo",
+        clear_all: "Xóa tất cả dữ liệu",
+        add_transaction: "Thêm giao dịch",
+        add: "Thêm",
+        modal_title_add: "Thêm giao dịch",
+        modal_title_edit: "Sửa giao dịch",
+        label_title: "Tiêu đề / Mô tả",
+        placeholder_title: "VD: Đi chợ, Lương tháng",
+        label_amount: "Số tiền",
+        label_category: "Danh mục",
+        label_date: "Ngày",
+        label_payment: "Phương thức thanh toán",
+        label_notes: "Ghi chú (Tùy chọn)",
+        placeholder_notes: "Chi tiết bổ sung...",
+        btn_cancel: "Hủy",
+        btn_save: "Lưu giao dịch",
+        btn_done: "Xong",
+        btn_create_target: "Tạo mục tiêu",
+        add_funds: "Nạp tiền",
+        btn_add_funds: "Thêm tiền",
+        confirm_action: "Xác nhận hành động",
+        confirm_desc: "Bạn có chắc chắn muốn tiếp tục hành động này không?",
+        no_transactions: "Không tìm thấy giao dịch phù hợp",
+        no_recent: "Chưa có giao dịch gần đây",
+        // Subscriptions Translation Keys
+        monthly_cost: "Chi phí hàng tháng",
+        yearly_cost: "Chi phí hàng năm",
+        active_subs: "Dịch vụ đang dùng",
+        new_subscription: "Gói dịch vụ mới",
+        cycle_monthly: "Hàng tháng",
+        cycle_yearly: "Hàng năm",
+        next_billing: "Ngày gia hạn tiếp",
+        modal_title_add_sub: "Thêm gói dịch vụ",
+        modal_title_edit_sub: "Sửa gói dịch vụ",
+        label_cycle: "Chu kỳ thanh toán",
+        no_subscriptions: "Chưa có gói dịch vụ định kỳ nào",
+        forecast_title: "Dự báo tài chính cuối tháng",
+        forecast_desc: "Dựa trên tốc độ chi tiêu hiện tại của bạn",
+        forecast_balance: "Dự kiến số dư:",
+        cumulative_chart_title: "Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth)",
+        cumulative_tooltip: "Số dư:"
+    }
 };
 
 // --- CATEGORIES DEFINITION ---
@@ -298,7 +308,7 @@ const CURRENCY_CONFIG = {
     'GBP': { symbol: '£', locale: 'en-GB', decimals: 2, prepend: true },
     'JPY': { symbol: '¥', locale: 'ja-JP', decimals: 0, prepend: true },
     'INR': { symbol: '₹', locale: 'en-IN', decimals: 2, prepend: true },
-    'VND': { symbol: '₫', locale: 'vi-VN', decimals: 0, prepend: false } 
+    'VND': { symbol: '₫', locale: 'vi-VN', decimals: 0, prepend: false }
 };
 
 // Fallback rates if API fails (Base: USD)
@@ -308,7 +318,7 @@ let exchangeRates = {
     'GBP': 0.79,
     'JPY': 150.0,
     'INR': 83.0,
-    'VND': 25000.0 
+    'VND': 25000.0
 };
 
 async function fetchExchangeRates() {
@@ -374,7 +384,7 @@ function changeLanguage(lang) {
             } else {
                 el.textContent = translations[lang][key];
             }
-        }   
+        }
     });
 
     const searchInput = document.getElementById('searchInput');
@@ -390,15 +400,15 @@ function changeLanguage(lang) {
     populateCategoryFilterOptions();
     populateTypeFilterOptions();
     updateSidebarTxCount();
-    switchPage(appState.currentPage); 
-    updateMonthDisplayText(); 
+    switchPage(appState.currentPage);
+    updateMonthDisplayText();
     renderAllViews();
 }
 
 function updateSidebarTxCount() {
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
     const txCountEl = document.getElementById('sidebarTxCount');
-    if(txCountEl) {
+    if (txCountEl) {
         txCountEl.textContent = `${appState.transactions.length} ${translations[lang].tx_recorded}`;
     }
 }
@@ -471,12 +481,12 @@ window.addEventListener('DOMContentLoaded', () => {
     populateTypeFilterOptions();
     setTxType('EXPENSE');
     document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
-    
+
     const savedLang = localStorage.getItem('spendSmart_lang') || 'en';
     const langSelect = document.getElementById('langSelect');
     if (langSelect) langSelect.value = savedLang;
     changeLanguage(savedLang);
-    
+
     switchPage('dashboard');
     fetchExchangeRates();
 });
@@ -503,14 +513,14 @@ function loadStateFromLocalStorage() {
     } else {
         appState.transactions = getSampleData();
     }
-    
+
     const validCurrency = appState.currency || 'USD';
-    
+
     const currencySelectHeader = document.getElementById('currencySelect');
-    if(currencySelectHeader) currencySelectHeader.value = validCurrency;
-    
+    if (currencySelectHeader) currencySelectHeader.value = validCurrency;
+
     const settingCurrencySelect = document.getElementById('settingCurrencySelect');
-    if(settingCurrencySelect) settingCurrencySelect.value = validCurrency;
+    if (settingCurrencySelect) settingCurrencySelect.value = validCurrency;
 
     const cfg = CURRENCY_CONFIG[validCurrency] || CURRENCY_CONFIG['USD'];
     document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
@@ -602,27 +612,27 @@ function formatMoney(amountUSD) {
     const code = appState.currency || 'USD';
     const cfg = CURRENCY_CONFIG[code] || CURRENCY_CONFIG['USD'];
     const rate = exchangeRates[code] || 1;
-    
+
     const converted = parseFloat(amountUSD) * rate;
-    
+
     const formatted = new Intl.NumberFormat(cfg.locale, {
         minimumFractionDigits: cfg.decimals,
         maximumFractionDigits: cfg.decimals
     }).format(converted);
-    
+
     return cfg.prepend ? `${cfg.symbol}${formatted}` : `${formatted} ${cfg.symbol}`;
 }
 
 function changeCurrency(newCurr) {
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
     appState.currency = newCurr;
-    
+
     document.getElementById('currencySelect').value = newCurr;
     document.getElementById('settingCurrencySelect').value = newCurr;
-    
+
     const cfg = CURRENCY_CONFIG[newCurr] || CURRENCY_CONFIG['USD'];
     document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
-    
+
     saveStateToLocalStorage();
     renderAllViews();
     showToast(lang === 'vi' ? `Đã cập nhật tiền tệ thành ${newCurr}` : `Currency updated to ${newCurr}`);
@@ -670,7 +680,7 @@ function renderDashCharts() {
     const isDark = document.documentElement.classList.contains('dark');
     const tickColor = isDark ? '#64748b' : '#94a3b8';
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
-    const donutBorderColor = isDark ? '#1e293b' : '#ffffff'; 
+    const donutBorderColor = isDark ? '#1e293b' : '#ffffff';
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
     const rate = exchangeRates[appState.currency] || 1;
 
@@ -818,7 +828,7 @@ function populateHeatmapMonthOptions() {
 function renderHeatmap() {
     const monthSelect = document.getElementById('heatmapMonthSelect');
     if (!monthSelect) return;
-    
+
     appState.selectedHeatmapMonth = monthSelect.value;
     const grid = document.getElementById('heatmapGrid');
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
@@ -828,7 +838,7 @@ function renderHeatmap() {
 
     const [yearStr, monthStr] = appState.selectedHeatmapMonth.split('-');
     const year = parseInt(yearStr);
-    const month = parseInt(monthStr) - 1; 
+    const month = parseInt(monthStr) - 1;
 
     updateHeatmapToggleUI();
 
@@ -837,7 +847,7 @@ function renderHeatmap() {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const totalDays = lastDay.getDate();
-    const startWeekday = firstDay.getDay(); 
+    const startWeekday = firstDay.getDay();
 
     const dailyData = {};
     let monthTotalIncome = 0;
@@ -970,9 +980,9 @@ function selectHeatmapDay(dateStr, txs) {
     if (!detailsContainer || !titleEl || !listEl) return;
 
     detailsContainer.classList.remove('hidden');
-    
+
     const [y, m, d] = dateStr.split('-');
-    const formattedDate = new Date(parseInt(y), parseInt(m)-1, parseInt(d)).toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', {
+    const formattedDate = new Date(parseInt(y), parseInt(m) - 1, parseInt(d)).toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', {
         weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
     });
 
@@ -985,7 +995,7 @@ function selectHeatmapDay(dateStr, txs) {
         txs.forEach(tx => {
             const isInc = tx.type === 'INCOME';
             const catObj = CATEGORIES[tx.type].find(c => c.id === tx.category) || { icon: 'fa-tag', badgeClass: 'bg-slate-500/10' };
-            
+
             const row = document.createElement('div');
             row.className = 'flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60';
             row.innerHTML = `
@@ -1130,7 +1140,7 @@ function renderTransactions() {
         const matchesSearch = tx.title.toLowerCase().includes(search) || (tx.notes && tx.notes.toLowerCase().includes(search));
         const matchesType = type === 'ALL' || tx.type === type;
         const matchesCat = cat === 'ALL' || tx.category === cat;
-        const matchesMonth = !month || tx.date.startsWith(month);   
+        const matchesMonth = !month || tx.date.startsWith(month);
         return matchesSearch && matchesType && matchesCat && matchesMonth;
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -1288,12 +1298,12 @@ function renderAnalyticsView() {
     const now = new Date();
     const currentDay = now.getDate();
     const totalDaysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-    
+
     // Tổng thu và chi trong tháng hiện tại
     let currentMonthInc = 0;
     let currentMonthExp = 0;
     const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-    
+
     appState.transactions.forEach(tx => {
         if (tx.date && tx.date.startsWith(currentMonthKey)) {
             if (tx.type === 'INCOME') currentMonthInc += parseFloat(tx.amount);
@@ -1308,17 +1318,17 @@ function renderAnalyticsView() {
     const forecastEl = document.getElementById('endOfMonthForecast');
     if (forecastEl) {
         forecastEl.innerHTML = `
-            <span class="text-xs text-slate-500 dark:text-slate-400">Dự kiến số dư: </span>
-            <span class="text-sm sm:text-base font-extrabold ${projectedBalance >= 0 ? 'text-emerald-500' : 'text-rose-500'}">
-                ${formatMoney(projectedBalance)}
-            </span>
-        `;
+        <span class="text-xs text-slate-500 dark:text-slate-400">${translations[lang].forecast_balance} </span>
+        <span class="text-sm sm:text-base font-extrabold ${projectedBalance >= 0 ? 'text-emerald-500' : 'text-rose-500'}">
+            ${formatMoney(projectedBalance)}
+        </span>
+    `;
     }
 
     // 3. Vẽ Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth Trend)
     const cumulativeCtx = document.getElementById('analyticsCumulativeChart').getContext('2d');
     const sortedAllTxs = [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
-    
+
     let runningTotal = 0;
     const cumulativeDates = [];
     const cumulativeValues = [];
@@ -1338,7 +1348,7 @@ function renderAnalyticsView() {
         data: {
             labels: cumulativeDates,
             datasets: [{
-                label: 'Số dư tích lũy',
+                label: translations[lang].cumulative_chart_title,
                 data: cumulativeValues,
                 borderColor: '#6366f1',
                 backgroundColor: 'rgba(99, 102, 241, 0.1)',
@@ -1356,7 +1366,7 @@ function renderAnalyticsView() {
             },
             plugins: {
                 legend: { display: false },
-                tooltip: { callbacks: { label: (ctx) => ` Số dư: ${formatMoney(ctx.raw / rate)}` } }
+                tooltip: { callbacks: { label: (ctx) => ` ${translations[lang].cumulative_tooltip} ${formatMoney(ctx.raw / rate)}` } }
             }
         }
     });
@@ -1872,19 +1882,19 @@ function showToast(msg) {
 function handleMonthFilterChange(input) {
     const displayInput = document.getElementById('monthFilterDisplay');
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    
+
     if (input.value) {
         const [year, month] = input.value.split('-');
         const date = new Date(year, month - 1, 1);
-        displayInput.value = date.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { 
-            month: 'long', 
-            year: 'numeric' 
+        displayInput.value = date.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', {
+            month: 'long',
+            year: 'numeric'
         });
         displayInput.value = displayInput.value.charAt(0).toUpperCase() + displayInput.value.slice(1);
     } else {
-        displayInput.value = ''; 
+        displayInput.value = '';
     }
-    
+
     applyFilters();
 }
 
@@ -1895,19 +1905,19 @@ function updateMonthDisplayText() {
     if (!monthInput || !displayInput) return;
 
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
-    
+
     if (monthInput.value) {
         const [year, month] = monthInput.value.split('-');
         const date = new Date(year, month - 1, 1);
-        let text = date.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { 
-            month: 'long', 
-            year: 'numeric' 
+        let text = date.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', {
+            month: 'long',
+            year: 'numeric'
         });
         // Viết hoa chữ cái đầu
         displayInput.value = text.charAt(0).toUpperCase() + text.slice(1);
     } else {
         // Nếu không có giá trị, xóa text để placeholder (data-i18n) hiện lên
-        displayInput.value = ''; 
+        displayInput.value = '';
     }
 }
 
@@ -1943,17 +1953,17 @@ function processAutoBilling() {
             // 2. Tính toán ngày gia hạn tiếp theo
             let nextDate = new Date(sub.nextBilling);
             // Xử lý múi giờ để không bị lùi ngày
-            nextDate.setMinutes(nextDate.getMinutes() + nextDate.getTimezoneOffset()); 
-            
+            nextDate.setMinutes(nextDate.getMinutes() + nextDate.getTimezoneOffset());
+
             if (sub.cycle === 'monthly') {
                 nextDate.setMonth(nextDate.getMonth() + 1);
             } else {
                 nextDate.setFullYear(nextDate.getFullYear() + 1);
             }
-            
+
             // Cập nhật lại nextBilling
             sub.nextBilling = nextDate.toISOString().split('T')[0];
-            
+
             hasChanges = true;
             autoPayCount++;
         }
@@ -1964,8 +1974,8 @@ function processAutoBilling() {
         // Đợi 1 chút để app render xong rồi mới hiện thông báo
         setTimeout(() => {
             const lang = localStorage.getItem('spendSmart_lang') || 'en';
-            const msg = lang === 'vi' 
-                ? `Đã tự động thanh toán ${autoPayCount} gói dịch vụ!` 
+            const msg = lang === 'vi'
+                ? `Đã tự động thanh toán ${autoPayCount} gói dịch vụ!`
                 : `Auto-paid ${autoPayCount} subscription(s)!`;
             showToast(msg);
         }, 1000);
