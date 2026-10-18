@@ -6,8 +6,8 @@ const translations = {
     tx_recorded: "transactions recorded",
     nav_dashboard: "Dashboard",
     nav_transactions: "Transactions",
-    nav_analytics: "Analytics & Reports",
-    nav_budgets: "Budgets & Goals",
+    nav_analytics: "Reports",
+    nav_budgets: "Budgets",
     nav_subscriptions: "Subscriptions",
     nav_settings: "Settings & Data",
     page_dashboard_title: "Dashboard Overview",
@@ -136,8 +136,8 @@ const translations = {
     tx_recorded: "giao dịch đã ghi",
     nav_dashboard: "Tổng quan",
     nav_transactions: "Giao dịch",
-    nav_analytics: "Phân tích & Báo cáo",
-    nav_budgets: "Ngân sách & Mục tiêu",
+    nav_analytics: "Báo cáo",
+    nav_budgets: "Ngân sách",
     nav_subscriptions: "Dịch vụ định kỳ",
     nav_settings: "Cài đặt & Dữ liệu",
     page_dashboard_title: "Tổng quan tài chính",
@@ -359,6 +359,7 @@ let dashTrendChartInstance = null;
 let dashCategoryChartInstance = null;
 let analyticsBarChartInstance = null;
 let analyticsDoughnutChartInstance = null;
+let analyticsCumulativeChartInstance = null;
 
 // LANGUAGE SWITCHER LOGIC
 function changeLanguage(lang) {
@@ -1277,6 +1278,85 @@ function renderAnalyticsView() {
             plugins: {
                 legend: { position: 'bottom', labels: { color: tickColor, font: { size: 10 } } },
                 tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${formatMoney(ctx.raw / rate)}` } }
+            }
+        }
+    });
+
+    // --- BỔ SUNG TRONG HÀM renderAnalyticsView() ---
+
+    // 5. Tính toán dự báo cuối tháng
+    const now = new Date();
+    const currentDay = now.getDate();
+    const totalDaysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    
+    // Tổng thu và chi trong tháng hiện tại
+    let currentMonthInc = 0;
+    let currentMonthExp = 0;
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    
+    appState.transactions.forEach(tx => {
+        if (tx.date && tx.date.startsWith(currentMonthKey)) {
+            if (tx.type === 'INCOME') currentMonthInc += parseFloat(tx.amount);
+            else currentMonthExp += parseFloat(tx.amount);
+        }
+    });
+
+    const avgDailyExp = currentDay > 0 ? currentMonthExp / currentDay : 0;
+    const projectedExp = avgDailyExp * totalDaysInMonth;
+    const projectedBalance = currentMonthInc - projectedExp;
+
+    const forecastEl = document.getElementById('endOfMonthForecast');
+    if (forecastEl) {
+        forecastEl.innerHTML = `
+            <span class="text-xs text-slate-500 dark:text-slate-400">Dự kiến số dư: </span>
+            <span class="text-sm sm:text-base font-extrabold ${projectedBalance >= 0 ? 'text-emerald-500' : 'text-rose-500'}">
+                ${formatMoney(projectedBalance)}
+            </span>
+        `;
+    }
+
+    // 3. Vẽ Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth Trend)
+    const cumulativeCtx = document.getElementById('analyticsCumulativeChart').getContext('2d');
+    const sortedAllTxs = [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    let runningTotal = 0;
+    const cumulativeDates = [];
+    const cumulativeValues = [];
+
+    sortedAllTxs.forEach(tx => {
+        const amt = parseFloat(tx.amount) * rate;
+        if (tx.type === 'INCOME') runningTotal += amt;
+        else runningTotal -= amt;
+
+        cumulativeDates.push(tx.date);
+        cumulativeValues.push(runningTotal);
+    });
+
+    if (analyticsCumulativeChartInstance) analyticsCumulativeChartInstance.destroy();
+    analyticsCumulativeChartInstance = new Chart(cumulativeCtx, {
+        type: 'line',
+        data: {
+            labels: cumulativeDates,
+            datasets: [{
+                label: 'Số dư tích lũy',
+                data: cumulativeValues,
+                borderColor: '#6366f1',
+                backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 10 } } },
+                y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 }, callback: (v) => formatMoney(v / rate) } }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: (ctx) => ` Số dư: ${formatMoney(ctx.raw / rate)}` } }
             }
         }
     });

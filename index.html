@@ -612,6 +612,38 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Bổ sung thẻ hiển thị Dự báo số dư cuối tháng ngay dưới hàng thẻ thống kê nhỏ -->
+                <div
+                    class="glass-card p-4 sm:p-5 rounded-2xl mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Dự báo tài chính
+                                cuối tháng</h4>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">Dựa trên tốc độ chi tiêu hiện tại
+                                của bạn</p>
+                        </div>
+                    </div>
+                    <div id="endOfMonthForecast" class="text-right">
+                        <!-- Giá trị được render tự động qua JS -->
+                    </div>
+                </div>
+
+                <!-- Thêm biểu đồ dòng tiền ròng tích lũy vào grid phân tích -->
+                <div class="glass-card p-4 sm:p-5 rounded-2xl flex flex-col mb-4 sm:mb-6">
+                    <h3
+                        class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-indigo-500 dark:text-indigo-400"></i>
+                        <span>Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth)</span>
+                    </h3>
+                    <div class="relative flex-grow h-52 sm:h-64">
+                        <canvas id="analyticsCumulativeChart"></canvas>
+                    </div>
+                </div>
             </section>
 
             <!-- PAGE 4: BUDGETS & GOALS VIEW -->
@@ -808,33 +840,40 @@
 
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <nav
-        class="fixed bottom-0 inset-x-0 z-30 bg-white/90 dark:bg-slate-950/90 border-t border-slate-200 dark:border-slate-800/80 backdrop-blur-xl md:hidden flex items-center justify-around py-2 px-1">
+        class="fixed bottom-0 inset-x-0 z-30 bg-white/90 dark:bg-slate-950/90 border-t border-slate-200 dark:border-slate-800/80 backdrop-blur-xl md:hidden flex items-center justify-around py-1.5 px-0.5">
         <button onclick="switchPage('dashboard')" id="bnav-dashboard"
-            class="bnav-item flex flex-col items-center gap-1 py-1 px-2 rounded-lg text-[10px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+            class="bnav-item flex flex-col items-center gap-0.5 py-1 px-1 rounded-lg text-[9px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             <i class="fa-solid fa-chart-line text-base"></i>
             <span data-i18n="nav_dashboard">Dashboard</span>
         </button>
 
         <button onclick="switchPage('transactions')" id="bnav-transactions"
-            class="bnav-item flex flex-col items-center gap-1 py-1 px-2 rounded-lg text-[10px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+            class="bnav-item flex flex-col items-center gap-0.5 py-1 px-1 rounded-lg text-[9px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             <i class="fa-solid fa-list-check text-base"></i>
             <span data-i18n="nav_transactions">History</span>
         </button>
 
+        <!-- ✅ THÊM MỤC ANALYTICS -->
+        <button onclick="switchPage('analytics')" id="bnav-analytics"
+            class="bnav-item flex flex-col items-center gap-0.5 py-1 px-1 rounded-lg text-[9px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+            <i class="fa-solid fa-chart-pie text-base"></i>
+            <span data-i18n="nav_analytics_short">Reports</span>
+        </button>
+
         <button onclick="switchPage('subscriptions')" id="bnav-subscriptions"
-            class="bnav-item flex flex-col items-center gap-1 py-1 px-2 rounded-lg text-[10px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+            class="bnav-item flex flex-col items-center gap-0.5 py-1 px-1 rounded-lg text-[9px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             <i class="fa-solid fa-repeat text-base"></i>
             <span data-i18n="nav_subscriptions">Subs</span>
         </button>
 
         <button onclick="switchPage('budgets')" id="bnav-budgets"
-            class="bnav-item flex flex-col items-center gap-1 py-1 px-2 rounded-lg text-[10px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+            class="bnav-item flex flex-col items-center gap-0.5 py-1 px-1 rounded-lg text-[9px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             <i class="fa-solid fa-bullseye text-base"></i>
             <span data-i18n="nav_budgets">Budgets</span>
         </button>
 
         <button onclick="switchPage('settings')" id="bnav-settings"
-            class="bnav-item flex flex-col items-center gap-1 py-1 px-2 rounded-lg text-[10px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+            class="bnav-item flex flex-col items-center gap-0.5 py-1 px-1 rounded-lg text-[9px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             <i class="fa-solid fa-gear text-base"></i>
             <span data-i18n="nav_settings">Settings</span>
         </button>
