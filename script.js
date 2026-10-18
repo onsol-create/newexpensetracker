@@ -847,7 +847,13 @@ function renderHeatmap() {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const totalDays = lastDay.getDate();
-    const startWeekday = firstDay.getDay();
+    
+    // Sửa logic: Dịch chuyển để Thứ 2 là ngày đầu tuần (index 0)
+    // getDay() trả về: 0=CN, 1=T2, ..., 6=T7
+    let startWeekday = firstDay.getDay() - 1; 
+    if (startWeekday === -1) {
+        startWeekday = 6; // Nếu là Chủ Nhật (0 - 1 = -1) thì đẩy xuống vị trí số 6 (cột cuối)
+    }
 
     const dailyData = {};
     let monthTotalIncome = 0;
