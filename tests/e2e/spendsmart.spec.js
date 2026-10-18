@@ -321,7 +321,7 @@ test.describe('Subscriptions', () => {
         await page.selectOption('#subCategory', 'entertainment');
         await page.selectOption('#subCycle', 'monthly');
         await page.fill('#subNextBilling', '2026-12-01');
-        await page.click('button[type="submit"]:has-text("Save")');
+        await page.click('button[type="submit"]:has-text("Save Subscription")');
 
         await expect(page.locator('#subscriptionModal')).toBeHidden();
         await expect(page.locator('#subscriptionsGrid > div')).toHaveCount(4);
