@@ -63,3 +63,30 @@ html.dark ::-webkit-scrollbar-thumb {
 html.dark ::-webkit-scrollbar-thumb:hover {
     background: #475569;
 }
+
+/* Heatmap Mode Toggle */
+.heatmap-mode-btn {
+    color: #64748b;
+    background: transparent;
+}
+html.dark .heatmap-mode-btn {
+    color: #94a3b8;
+}
+.heatmap-mode-btn:hover {
+    color: #4f46e5;
+    background: rgba(99, 102, 241, 0.08);
+}
+.heatmap-mode-btn.active {
+    background: #4f46e5;
+    color: #ffffff !important;
+}
+html.dark .heatmap-mode-btn.active {
+    background: #4f46e5;
+    color: #ffffff !important;
+}
+
+select {
+    border-radius: 12px;      /* bo góc hộp select */
+    -webkit-appearance: none; /* ẩn mũi tên mặc định (tùy chọn) */
+    appearance: none;
+}
