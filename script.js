@@ -134,7 +134,11 @@ const translations = {
         forecast_desc: "Based on your current spending pace",
         forecast_balance: "Projected Balance:",
         cumulative_chart_title: "Cumulative Net Worth Trend",
-        cumulative_tooltip: "Balance:"
+        cumulative_tooltip: "Balance:",
+        range_3m: "Last 3 months",
+        range_6m: "Last 6 months",
+        range_12m: "Last 1 year",
+        range_all: "All time"
     },
     vi: {
         app_subtitle: "Theo dõi chi tiêu",
@@ -270,7 +274,11 @@ const translations = {
         forecast_desc: "Dựa trên tốc độ chi tiêu hiện tại của bạn",
         forecast_balance: "Dự kiến số dư:",
         cumulative_chart_title: "Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth)",
-        cumulative_tooltip: "Số dư:"
+        cumulative_tooltip: "Số dư:",
+        range_3m: "3 tháng gần nhất",
+        range_6m: "6 tháng gần nhất",
+        range_12m: "1 năm gần nhất",
+        range_all: "Tất cả"
     }
 };
 
@@ -380,10 +388,16 @@ function changeLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
-            // Kiểm tra xem có phải thẻ input không để tránh lỗi gán textContent
+            // Xử lý cho thẻ INPUT
             if (el.tagName === 'INPUT') {
                 el.placeholder = translations[lang][key];
-            } else {
+            }
+            // Xử lý cho thẻ OPTION (Dành cho dropdown)
+            else if (el.tagName === 'OPTION') {
+                el.textContent = translations[lang][key];
+            }
+            // Xử lý cho các thẻ khác (DIV, SPAN, H3...)
+            else {
                 el.textContent = translations[lang][key];
             }
         }
@@ -849,10 +863,10 @@ function renderHeatmap() {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const totalDays = lastDay.getDate();
-    
+
     // Sửa logic: Dịch chuyển để Thứ 2 là ngày đầu tuần (index 0)
     // getDay() trả về: 0=CN, 1=T2, ..., 6=T7
-    let startWeekday = firstDay.getDay() - 1; 
+    let startWeekday = firstDay.getDay() - 1;
     if (startWeekday === -1) {
         startWeekday = 6; // Nếu là Chủ Nhật (0 - 1 = -1) thì đẩy xuống vị trí số 6 (cột cuối)
     }
@@ -1190,6 +1204,9 @@ function renderAnalyticsView() {
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
     const rate = exchangeRates[appState.currency] || 1;
 
+    // ==========================================
+    // 1. TÍNH TOÁN CÁC CHỈ SỐ TỔNG QUAN (Thẻ nhỏ)
+    // ==========================================
     let totalExp = 0;
     let totalInc = 0;
     const catExpMap = {};
@@ -1237,6 +1254,9 @@ function renderAnalyticsView() {
     });
     document.getElementById('statTopPayment').textContent = topPm;
 
+    // ==========================================
+    // 2. BIỂU ĐỒ CỘT (Dùng bộ lọc analyticsTimeRange)
+    // ==========================================
     const barCtx = document.getElementById('analyticsBarChart').getContext('2d');
     const monthlyMap = {};
     appState.transactions.forEach(tx => {
@@ -1246,7 +1266,16 @@ function renderAnalyticsView() {
         else monthlyMap[mKey].exp += parseFloat(tx.amount) * rate;
     });
 
-    const mKeys = Object.keys(monthlyMap).sort();
+    let allKeys = Object.keys(monthlyMap).sort();
+    const timeRangeSelect = document.getElementById('analyticsTimeRange');
+    const rangeValue = timeRangeSelect ? timeRangeSelect.value : '3';
+    
+    let mKeys = allKeys;
+    if (rangeValue !== 'all') {
+        const limit = parseInt(rangeValue);
+        mKeys = allKeys.slice(-limit);
+    }
+
     const incSeries = mKeys.map(k => monthlyMap[k].inc);
     const expSeries = mKeys.map(k => monthlyMap[k].exp);
 
@@ -1254,7 +1283,10 @@ function renderAnalyticsView() {
     analyticsBarChartInstance = new Chart(barCtx, {
         type: 'bar',
         data: {
-            labels: mKeys,
+            labels: mKeys.map(k => {
+                const [year, month] = k.split('-');
+                return `${lang === 'vi' ? 'T' : 'M'}${parseInt(month)}/${year.substring(2)}`;
+            }),
             datasets: [
                 { label: translations[lang].income, data: incSeries, backgroundColor: '#10b981', borderRadius: 4 },
                 { label: translations[lang].expenses, data: expSeries, backgroundColor: '#f43f5e', borderRadius: 4 }
@@ -1271,6 +1303,9 @@ function renderAnalyticsView() {
         }
     });
 
+    // ==========================================
+    // 3. BIỂU ĐỒ TRÒN (Expense Category Breakdown)
+    // ==========================================
     const donutCtx = document.getElementById('analyticsDoughnutChart').getContext('2d');
     const donutLabels = [];
     const donutData = [];
@@ -1300,12 +1335,8 @@ function renderAnalyticsView() {
         }
     });
 
-    // --- BỔ SUNG TRONG HÀM renderAnalyticsView() ---
-
-    // 5. Tính toán dự báo cuối tháng
-    // 5. Tính toán dự báo cuối tháng
-        // ==========================================
-    // BẮT ĐẦU: SMART FORECAST LOGIC (CẢI TIẾN)
+    // ==========================================
+    // 4. SMART FORECAST LOGIC (Dự báo cuối tháng)
     // ==========================================
     const now = new Date();
     const currentDay = now.getDate();
@@ -1314,8 +1345,8 @@ function renderAnalyticsView() {
 
     let currentMonthInc = 0;
     let currentMonthExp = 0;
-    let dailyExpenses = []; // Lưu chi tiêu từng ngày để lọc đột biến
-    let upcomingSubsCost = 0; // Chi phí dịch vụ định kỳ sắp tới
+    let dailyExpenses = [];
+    let upcomingSubsCost = 0;
 
     appState.transactions.forEach(tx => {
         if (tx.date && tx.date.startsWith(currentMonthKey)) {
@@ -1329,50 +1360,42 @@ function renderAnalyticsView() {
         }
     });
 
-    // 1. Xử lý Thu nhập (Nếu chưa có lương tháng này, dự phóng bằng lương tháng trước)
     let expectedInc = currentMonthInc;
     if (expectedInc === 0) {
-        // Tìm giao dịch lương gần nhất trong quá khứ
         const pastSalaries = appState.transactions
             .filter(t => t.type === 'INCOME' && t.category === 'salary' && t.date < currentMonthKey)
             .sort((a, b) => new Date(b.date) - new Date(a.date));
         if (pastSalaries.length > 0) {
-            expectedInc = parseFloat(pastSalaries[0].amount); 
+            expectedInc = parseFloat(pastSalaries[0].amount);
         }
     }
 
-    // 2. Tính chi tiêu trung bình hàng ngày (Loại bỏ chi tiêu đột biến > 50% tổng chi tiêu tháng)
     let validExpForAvg = currentMonthExp;
     let validDaysForAvg = currentDay;
-    
+
     if (dailyExpenses.length > 1) {
-        // Nếu có giao dịch quá lớn (đột biến), loại nó ra khỏi phép tính trung bình
         const largestExpense = Math.max(...dailyExpenses.map(d => d.amount));
         if (largestExpense > currentMonthExp * 0.4 && currentMonthExp > 0) {
             validExpForAvg -= largestExpense;
-            // Nếu ngày đó chỉ có 1 giao dịch đột biến, ta trừ đi 1 ngày để trung bình không bị nhỏ đi
-            validDaysForAvg = Math.max(1, currentDay - 1); 
+            validDaysForAvg = Math.max(1, currentDay - 1);
         }
     }
 
-    // 3. Tính chi phí các gói Subscriptions sắp tới trong tháng này
     if (appState.subscriptions) {
         const todayStr = now.toISOString().split('T')[0];
         const endOfMonthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${totalDaysInMonth}`;
-        
+
         appState.subscriptions.forEach(sub => {
             if (sub.nextBilling >= todayStr && sub.nextBilling <= endOfMonthStr) {
                 if (sub.cycle === 'monthly') upcomingSubsCost += parseFloat(sub.amount);
-                else if (sub.cycle === 'yearly') upcomingSubsCost += parseFloat(sub.amount); // Tính luôn nếu năm nay tới hạn
+                else if (sub.cycle === 'yearly') upcomingSubsCost += parseFloat(sub.amount);
             }
         });
     }
 
-    // 4. Tổng hợp dự báo
     const avgDailyExp = validExpForAvg / validDaysForAvg;
     const projectedExp = (avgDailyExp * totalDaysInMonth) + upcomingSubsCost;
-    
-    // Nếu tháng trống hoàn toàn (chưa có thu, chưa có chi) thì dự báo = 0
+
     let projectedBalance = 0;
     if (currentMonthInc > 0 || currentMonthExp > 0) {
         projectedBalance = expectedInc - projectedExp;
@@ -1380,11 +1403,10 @@ function renderAnalyticsView() {
 
     const forecastEl = document.getElementById('endOfMonthForecast');
     if (forecastEl) {
-        // Thêm màu sắc và icon cho trực quan
         const isPositive = projectedBalance >= 0;
         const colorClass = isPositive ? 'text-emerald-500' : 'text-rose-500';
         const iconClass = isPositive ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down';
-        
+
         forecastEl.innerHTML = `
             <div class="flex items-center justify-end gap-2">
                 <span class="text-xs text-slate-500 dark:text-slate-400">${translations[lang].forecast_balance} </span>
@@ -1395,25 +1417,45 @@ function renderAnalyticsView() {
             </div>
         `;
     }
-    // ==========================================
-    // KẾT THÚC: SMART FORECAST LOGIC
-    // ==========================================
 
-    // 3. Vẽ Biểu đồ dòng tiền ròng tích lũy (Cumulative Net Worth Trend)
+    // ==========================================
+    // 5. BIỂU ĐỒ ĐƯỜNG (Dùng bộ lọc cumulativeTimeRange)
+    // ==========================================
     const cumulativeCtx = document.getElementById('analyticsCumulativeChart').getContext('2d');
-    const sortedAllTxs = [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Đọc giá trị từ Dropdown riêng của biểu đồ đường
+    const cumulativeSelect = document.getElementById('cumulativeTimeRange');
+    const cumulativeRangeValue = cumulativeSelect ? cumulativeSelect.value : '3'; 
+    
+    let sortedTxsForLine = [...appState.transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Lọc thời gian cho biểu đồ đường
+    if (cumulativeRangeValue !== 'all') {
+        const limitMonths = parseInt(cumulativeRangeValue);
+        const latestDate = sortedTxsForLine.length > 0 ? new Date(sortedTxsForLine[sortedTxsForLine.length - 1].date) : new Date();
+        
+        const startDate = new Date(latestDate);
+        startDate.setMonth(startDate.getMonth() - limitMonths);
+        
+        sortedTxsForLine = sortedTxsForLine.filter(tx => new Date(tx.date) >= startDate);
+    }
 
     let runningTotal = 0;
     const cumulativeDates = [];
     const cumulativeValues = [];
 
-    sortedAllTxs.forEach(tx => {
+    sortedTxsForLine.forEach(tx => {
         const amt = parseFloat(tx.amount) * rate;
         if (tx.type === 'INCOME') runningTotal += amt;
         else runningTotal -= amt;
 
-        cumulativeDates.push(tx.date);
-        cumulativeValues.push(runningTotal);
+        // Gộp các giao dịch trong cùng 1 ngày để biểu đồ không bị răng cưa
+        if (cumulativeDates.length > 0 && cumulativeDates[cumulativeDates.length - 1] === tx.date) {
+            cumulativeValues[cumulativeValues.length - 1] = runningTotal;
+        } else {
+            cumulativeDates.push(tx.date);
+            cumulativeValues.push(runningTotal);
+        }
     });
 
     if (analyticsCumulativeChartInstance) analyticsCumulativeChartInstance.destroy();
