@@ -1500,15 +1500,43 @@ function renderBudgets() {
     if (!container) return;
     container.innerHTML = '';
 
+    const now = new Date();
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+
+    // KIỂM TRA: Nếu tháng hiện tại chưa có hạn mức, tự động khởi tạo
+    if (!appState.budgets[currentMonthKey]) {
+        // Nếu định dạng cũ (không chia theo tháng), tự động chuyển đổi
+        if (appState.budgets['food'] !== undefined) {
+            const oldBudgets = { ...appState.budgets };
+            appState.budgets = { [currentMonthKey]: oldBudgets };
+        } else {
+            // Nếu tháng mới hoàn toàn, lấy hạn mức của tháng gần nhất làm mặc định
+            const pastMonths = Object.keys(appState.budgets).sort();
+            if (pastMonths.length > 0) {
+                const lastMonth = pastMonths[pastMonths.length - 1];
+                appState.budgets[currentMonthKey] = { ...appState.budgets[lastMonth] };
+            } else {
+                // Mức mặc định nếu chưa từng có dữ liệu
+                appState.budgets[currentMonthKey] = { 'food': 200, 'transport': 50, 'housing': 160, 'utilities': 50, 'shopping': 150, 'entertainment': 100, 'health': 50, 'other_exp': 30 };
+            }
+        }
+        saveStateToLocalStorage();
+    }
+
+    const currentBudgets = appState.budgets[currentMonthKey];
+
     const catSpentMap = {};
-    appState.transactions.filter(tx => tx.type === 'EXPENSE').forEach(tx => {
+    // Chỉ lấy chi tiêu của tháng hiện tại
+    appState.transactions.filter(tx => 
+        tx.type === 'EXPENSE' && tx.date.startsWith(currentMonthKey)
+    ).forEach(tx => {
         catSpentMap[tx.category] = (catSpentMap[tx.category] || 0) + parseFloat(tx.amount);
     });
 
-    Object.keys(appState.budgets).forEach(catId => {
-        const limit = appState.budgets[catId];
+    Object.keys(currentBudgets).forEach(catId => {
+        const limit = currentBudgets[catId];
         const spent = catSpentMap[catId] || 0;
-        const pct = Math.min(100, Math.round((spent / limit) * 100));
+        const pct = limit > 0 ? Math.min(100, Math.round((spent / limit) * 100)) : (spent > 0 ? 100 : 0);
         const catObj = CATEGORIES.EXPENSE.find(c => c.id === catId) || { icon: 'fa-tag', name: catId };
 
         let progressBg = 'bg-indigo-500';
@@ -1538,20 +1566,23 @@ function renderBudgets() {
 
 function openBudgetModal() {
     const listEl = document.getElementById('budgetFormList');
-    const lang = localStorage.getItem('spendSmart_lang') || 'en';
     const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
-    const rate = exchangeRates[appState.currency] || 1; // Lấy tỷ giá
+    const rate = exchangeRates[appState.currency] || 1;
+    
+    const now = new Date();
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    // Lấy ngân sách của tháng hiện tại
+    const currentBudgets = appState.budgets[currentMonthKey] || {};
 
     listEl.innerHTML = '';
 
     CATEGORIES.EXPENSE.forEach(cat => {
-        // Quy đổi từ USD (lưu trong DB) sang tiền tệ hiện tại để hiển thị
-        const limitUSD = appState.budgets[cat.id] || 0;
-        const displayLimit = Math.round(limitUSD * rate);
+        const limitUSD = currentBudgets[cat.id] || 0;
+        const displayLimit = Math.round(limitUSD * rate); 
 
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800';
-
+        
         item.innerHTML = `
             <span class="text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
                 <i class="fa-solid ${cat.icon} text-slate-400 w-4"></i> ${getCategoryName(cat.id, 'EXPENSE')}
@@ -1576,19 +1607,22 @@ function closeBudgetModal() {
 
 function updateBudgetLimit(catId, val) {
     const rate = exchangeRates[appState.currency] || 1;
-
-    // 1. Chuyển đổi giá trị nhập vào thành số
     let parsedVal = parseFloat(val);
-
-    // 2. Nếu không phải là số (VD: 'abc', hoặc rỗng) thì gán bằng 0
-    if (isNaN(parsedVal)) {
-        parsedVal = 0;
-    }
-
-    // 3. Quy đổi ngược từ tiền tệ hiện tại về USD để lưu vào database
+    if (isNaN(parsedVal)) parsedVal = 0;
+    
+    // Chuyển về USD
     const valueInUSD = parsedVal / rate;
+    
+    const now = new Date();
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
-    appState.budgets[catId] = valueInUSD;
+    // Đảm bảo tháng hiện tại có object lưu trữ
+    if (!appState.budgets[currentMonthKey]) {
+        appState.budgets[currentMonthKey] = {};
+    }
+    
+    // Lưu vào đúng tháng hiện tại
+    appState.budgets[currentMonthKey][catId] = valueInUSD;
     saveStateToLocalStorage();
 }
 
