@@ -1843,10 +1843,17 @@ function openSubscriptionModal(editId = null) {
     const titleEl = document.getElementById('subModalTitle');
     const catSelect = document.getElementById('subCategory');
     const lang = localStorage.getItem('spendSmart_lang') || 'en';
+    
+    // 1. Cập nhật ký hiệu tiền tệ (Có kiểm tra an toàn chống lỗi null)
+    const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
+    const rate = exchangeRates[appState.currency] || 1;
+    const symbolEl = document.getElementById('subCurrencySymbol');
+    if (symbolEl) symbolEl.textContent = cfg.symbol;
 
     form.reset();
     document.getElementById('editSubId').value = '';
 
+    // Render danh mục
     catSelect.innerHTML = '';
     CATEGORIES.EXPENSE.forEach(cat => {
         const opt = document.createElement('option');
@@ -1855,26 +1862,30 @@ function openSubscriptionModal(editId = null) {
         catSelect.appendChild(opt);
     });
 
+    // Render chu kỳ
     const cycleSelect = document.getElementById('subCycle');
     Array.from(cycleSelect.options).forEach(opt => {
-        if (opt.value === 'monthly') {
-            opt.textContent = translations[lang].cycle_monthly;
-        } else if (opt.value === 'yearly') {
-            opt.textContent = translations[lang].cycle_yearly;
-        }
+        if (opt.value === 'monthly') opt.textContent = translations[lang].cycle_monthly;
+        else if (opt.value === 'yearly') opt.textContent = translations[lang].cycle_yearly;
     });
 
+    // Render phương thức thanh toán
     const pmSelect = document.getElementById('subPaymentMethod');
     Array.from(pmSelect.options).forEach(opt => {
         opt.textContent = getPaymentMethodName(opt.value);
     });
 
     if (editId) {
+        // 2. Nếu là SỬA: Quy đổi ngược từ USD sang tiền tệ hiện tại
         const sub = appState.subscriptions.find(s => s.id === editId);
         if (sub) {
             document.getElementById('editSubId').value = sub.id;
             document.getElementById('subName').value = sub.name;
-            document.getElementById('subAmount').value = sub.amount;
+            
+            // Quy đổi và làm tròn số tiền
+            const displayAmount = Math.round(parseFloat(sub.amount) * rate * 100) / 100;
+            document.getElementById('subAmount').value = displayAmount;
+            
             document.getElementById('subCategory').value = sub.category;
             document.getElementById('subCycle').value = sub.cycle;
             document.getElementById('subNextBilling').value = sub.nextBilling || '';
@@ -1882,6 +1893,7 @@ function openSubscriptionModal(editId = null) {
             titleEl.textContent = translations[lang].modal_title_edit_sub;
         }
     } else {
+        // Nếu là THÊM MỚI
         document.getElementById('subNextBilling').value = new Date().toISOString().split('T')[0];
         titleEl.textContent = translations[lang].modal_title_add_sub;
     }
@@ -1897,18 +1909,25 @@ function handleSubscriptionSubmit(e) {
     e.preventDefault();
     const editId = document.getElementById('editSubId').value;
     const name = document.getElementById('subName').value;
-    const amount = parseFloat(document.getElementById('subAmount').value);
+    
+    // Lấy số tiền từ input và quy đổi về USD
+    const inputAmount = parseFloat(document.getElementById('subAmount').value);
+    const rate = exchangeRates[appState.currency] || 1;
+    const amount = inputAmount / rate; 
+
     const category = document.getElementById('subCategory').value;
     const cycle = document.getElementById('subCycle').value;
     const nextBilling = document.getElementById('subNextBilling').value;
     const paymentMethod = document.getElementById('subPaymentMethod').value;
 
     if (editId) {
+        // Cập nhật
         const idx = appState.subscriptions.findIndex(s => s.id === editId);
         if (idx !== -1) {
             appState.subscriptions[idx] = { id: editId, name, amount, category, cycle, nextBilling, paymentMethod };
         }
     } else {
+        // Thêm mới
         appState.subscriptions.push({ id: 'sub_' + Date.now(), name, amount, category, cycle, nextBilling, paymentMethod });
     }
 
