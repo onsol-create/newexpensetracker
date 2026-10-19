@@ -1,0 +1,85 @@
+{
+  "currency": "USD",
+  "currentPage": "dashboard",
+  "heatmapMode": "both",
+  "transactions": [
+    { "id": "tx_0501", "title": "Lương tháng 5", "type": "INCOME", "category": "salary", "amount": 500.00, "date": "2026-05-05", "paymentMethod": "Bank Transfer", "notes": "Lương cứng (12.5 triệu VND)" },
+    { "id": "tx_0502", "title": "Tiền trọ tháng 5", "type": "EXPENSE", "category": "housing", "amount": 160.00, "date": "2026-05-03", "paymentMethod": "Bank Transfer", "notes": "Tiền nhà (4 triệu VND)" },
+    { "id": "tx_0503", "title": "Đi chợ tuần 1", "type": "EXPENSE", "category": "food", "amount": 30.00, "date": "2026-05-04", "paymentMethod": "Cash", "notes": "Thực phẩm (750k VND)" },
+    { "id": "tx_0504", "title": "Đổ xăng xe máy", "type": "EXPENSE", "category": "transport", "amount": 8.00, "date": "2026-05-06", "paymentMethod": "Cash", "notes": "Đổ xăng (200k VND)" },
+    { "id": "tx_0505", "title": "Đi chợ tuần 2", "type": "EXPENSE", "category": "food", "amount": 35.00, "date": "2026-05-11", "paymentMethod": "Cash", "notes": "Thực phẩm (875k VND)" },
+    { "id": "tx_0506", "title": "Tiền điện nước", "type": "EXPENSE", "category": "utilities", "amount": 45.00, "date": "2026-05-12", "paymentMethod": "Bank Transfer", "notes": "Điện nước (1.125 triệu VND)" },
+    { "id": "tx_0507", "title": "Đi ăn tối với bạn", "type": "EXPENSE", "category": "food", "amount": 16.00, "date": "2026-05-15", "paymentMethod": "Digital Wallet", "notes": "Ăn ngoài (400k VND)" },
+    { "id": "tx_0508", "title": "Đi chợ tuần 3", "type": "EXPENSE", "category": "food", "amount": 28.00, "date": "2026-05-18", "paymentMethod": "Cash", "notes": "Thực phẩm (700k VND)" },
+    { "id": "tx_0509", "title": "Mua quần áo hè", "type": "EXPENSE", "category": "shopping", "amount": 20.00, "date": "2026-05-20", "paymentMethod": "Credit Card", "notes": "Mua sắm (500k VND)" },
+    { "id": "tx_0510", "title": "Đi chợ tuần 4", "type": "EXPENSE", "category": "food", "amount": 32.00, "date": "2026-05-25", "paymentMethod": "Cash", "notes": "Thực phẩm (800k VND)" },
+    { "id": "tx_0511", "title": "Freelance viết bài", "type": "INCOME", "category": "freelance", "amount": 100.00, "date": "2026-05-28", "paymentMethod": "Bank Transfer", "notes": "Khách trả (2.5 triệu VND)" },
+
+    { "id": "tx_0601", "title": "Lương tháng 6", "type": "INCOME", "category": "salary", "amount": 500.00, "date": "2026-06-05", "paymentMethod": "Bank Transfer", "notes": "Lương cứng (12.5 triệu VND)" },
+    { "id": "tx_0602", "title": "Tiền trọ tháng 6", "type": "EXPENSE", "category": "housing", "amount": 160.00, "date": "2026-06-03", "paymentMethod": "Bank Transfer", "notes": "Tiền nhà (4 triệu VND)" },
+    { "id": "tx_0603", "title": "Đi chợ tuần 1", "type": "EXPENSE", "category": "food", "amount": 35.00, "date": "2026-06-04", "paymentMethod": "Cash", "notes": "Thực phẩm (875k VND)" },
+    { "id": "tx_0604", "title": "Sửa xe máy", "type": "EXPENSE", "category": "transport", "amount": 25.00, "date": "2026-06-06", "paymentMethod": "Cash", "notes": "Thay nhớt (625k VND)" },
+    { "id": "tx_0605", "title": "Tiền điện nước", "type": "EXPENSE", "category": "utilities", "amount": 40.00, "date": "2026-06-12", "paymentMethod": "Bank Transfer", "notes": "Điện nước (1 triệu VND)" },
+    { "id": "tx_0606", "title": "Khám răng", "type": "EXPENSE", "category": "health", "amount": 40.00, "date": "2026-06-15", "paymentMethod": "Cash", "notes": "Nha khoa (1 triệu VND)" },
+    { "id": "tx_0607", "title": "Đi chợ tuần 3", "type": "EXPENSE", "category": "food", "amount": 32.00, "date": "2026-06-18", "paymentMethod": "Cash", "notes": "Thực phẩm (800k VND)" },
+    { "id": "tx_0608", "title": "Đám cưới đồng nghiệp", "type": "EXPENSE", "category": "other_exp", "amount": 20.00, "date": "2026-06-20", "paymentMethod": "Cash", "notes": "Tiền mừng (500k VND)" },
+    { "id": "tx_0609", "title": "Đi chợ tuần 4", "type": "EXPENSE", "category": "food", "amount": 36.00, "date": "2026-06-25", "paymentMethod": "Cash", "notes": "Thực phẩm (900k VND)" },
+    { "id": "tx_0610", "title": "Lãi tiết kiệm", "type": "INCOME", "category": "investments", "amount": 35.00, "date": "2026-06-28", "paymentMethod": "Bank Transfer", "notes": "Lãi ngân hàng (875k VND)" },
+
+    { "id": "tx_0701", "title": "Lương tháng 7", "type": "INCOME", "category": "salary", "amount": 500.00, "date": "2026-07-05", "paymentMethod": "Bank Transfer", "notes": "Lương cứng (12.5 triệu VND)" },
+    { "id": "tx_0702", "title": "Thưởng dự án", "type": "INCOME", "category": "salary", "amount": 400.00, "date": "2026-07-10", "paymentMethod": "Bank Transfer", "notes": "Thưởng KPI (10 triệu VND)" },
+    { "id": "tx_0703", "title": "Tiền trọ tháng 7", "type": "EXPENSE", "category": "housing", "amount": 160.00, "date": "2026-07-03", "paymentMethod": "Bank Transfer", "notes": "Tiền nhà (4 triệu VND)" },
+    { "id": "tx_0704", "title": "Mua iPhone mới", "type": "EXPENSE", "category": "shopping", "amount": 320.00, "date": "2026-07-06", "paymentMethod": "Credit Card", "notes": "Mua trả góp (8 triệu VND)" },
+    { "id": "tx_0705", "title": "Đi chợ tuần 1", "type": "EXPENSE", "category": "food", "amount": 30.00, "date": "2026-07-07", "paymentMethod": "Cash", "notes": "Thực phẩm (750k VND)" },
+    { "id": "tx_0706", "title": "Tiền điện nước", "type": "EXPENSE", "category": "utilities", "amount": 42.00, "date": "2026-07-12", "paymentMethod": "Bank Transfer", "notes": "Điện nước (1.05 triệu VND)" },
+    { "id": "tx_0707", "title": "Sinh nhật bạn thân", "type": "EXPENSE", "category": "food", "amount": 28.00, "date": "2026-07-18", "paymentMethod": "Credit Card", "notes": "Nhà hàng (700k VND)" },
+    { "id": "tx_0708", "title": "Mua quà tặng mẹ", "type": "EXPENSE", "category": "shopping", "amount": 24.00, "date": "2026-07-24", "paymentMethod": "Debit Card", "notes": "Quà sinh nhật (600k VND)" },
+    { "id": "tx_0709", "title": "Đi chợ tuần 4", "type": "EXPENSE", "category": "food", "amount": 34.00, "date": "2026-07-28", "paymentMethod": "Cash", "notes": "Thực phẩm (850k VND)" },
+    { "id": "tx_0710", "title": "Bán đồ cũ", "type": "INCOME", "category": "other_inc", "amount": 40.00, "date": "2026-07-30", "paymentMethod": "Digital Wallet", "notes": "Bán quần áo (1 triệu VND)" },
+
+    { "id": "tx_0801", "title": "Lương tháng 8", "type": "INCOME", "category": "salary", "amount": 500.00, "date": "2026-08-05", "paymentMethod": "Bank Transfer", "notes": "Lương cứng (12.5 triệu VND)" },
+    { "id": "tx_0802", "title": "Tiền trọ tháng 8", "type": "EXPENSE", "category": "housing", "amount": 160.00, "date": "2026-08-03", "paymentMethod": "Bank Transfer", "notes": "Tiền nhà (4 triệu VND)" },
+    { "id": "tx_0803", "title": "Đi chợ tuần 1", "type": "EXPENSE", "category": "food", "amount": 33.00, "date": "2026-08-06", "paymentMethod": "Cash", "notes": "Thực phẩm (825k VND)" },
+    { "id": "tx_0804", "title": "Tiền điện nước", "type": "EXPENSE", "category": "utilities", "amount": 36.00, "date": "2026-08-12", "paymentMethod": "Bank Transfer", "notes": "Điện nước (900k VND)" },
+    { "id": "tx_0805", "title": "Tập Gym", "type": "EXPENSE", "category": "health", "amount": 20.00, "date": "2026-08-15", "paymentMethod": "Bank Transfer", "notes": "Gym (500k VND)" },
+    { "id": "tx_0806", "title": "Freelance thiết kế", "type": "INCOME", "category": "freelance", "amount": 200.00, "date": "2026-08-18", "paymentMethod": "Bank Transfer", "notes": "Khách trả (5 triệu VND)" },
+    { "id": "tx_0807", "title": "Mua giày thể thao", "type": "EXPENSE", "category": "shopping", "amount": 35.00, "date": "2026-08-25", "paymentMethod": "Credit Card", "notes": "Giày Nike (875k VND)" },
+    { "id": "tx_0808", "title": "Đi chợ tuần 4", "type": "EXPENSE", "category": "food", "amount": 35.00, "date": "2026-08-28", "paymentMethod": "Cash", "notes": "Thực phẩm (875k VND)" },
+
+    { "id": "tx_0901", "title": "Lương tháng 9", "type": "INCOME", "category": "salary", "amount": 500.00, "date": "2026-09-05", "paymentMethod": "Bank Transfer", "notes": "Lương cứng (12.5 triệu VND)" },
+    { "id": "tx_0902", "title": "Tiền trọ tháng 9", "type": "EXPENSE", "category": "housing", "amount": 160.00, "date": "2026-09-03", "paymentMethod": "Bank Transfer", "notes": "Tiền nhà (4 triệu VND)" },
+    { "id": "tx_0903", "title": "Đi chợ tuần 1", "type": "EXPENSE", "category": "food", "amount": 30.00, "date": "2026-09-06", "paymentMethod": "Cash", "notes": "Thực phẩm (750k VND)" },
+    { "id": "tx_0904", "title": "Tiền điện nước", "type": "EXPENSE", "category": "utilities", "amount": 35.00, "date": "2026-09-12", "paymentMethod": "Bank Transfer", "notes": "Điện nước (875k VND)" },
+    { "id": "tx_0905", "title": "Mua sách", "type": "EXPENSE", "category": "shopping", "amount": 16.00, "date": "2026-09-20", "paymentMethod": "Debit Card", "notes": "Sách (400k VND)" },
+    { "id": "tx_0906", "title": "Lãi cổ tức", "type": "INCOME", "category": "investments", "amount": 60.00, "date": "2026-09-25", "paymentMethod": "Bank Transfer", "notes": "Cổ tức chứng khoán (1.5 triệu VND)" },
+    { "id": "tx_0907", "title": "Đi khám sức khỏe", "type": "EXPENSE", "category": "health", "amount": 28.00, "date": "2026-09-29", "paymentMethod": "Cash", "notes": "Khám tổng quát (700k VND)" },
+
+    { "id": "tx_1001", "title": "Lương tháng 10", "type": "INCOME", "category": "salary", "amount": 500.00, "date": "2026-10-05", "paymentMethod": "Bank Transfer", "notes": "Lương cứng (12.5 triệu VND)" },
+    { "id": "tx_1002", "title": "Tiền trọ tháng 10", "type": "EXPENSE", "category": "housing", "amount": 160.00, "date": "2026-10-03", "paymentMethod": "Bank Transfer", "notes": "Tiền nhà (4 triệu VND)" },
+    { "id": "tx_1003", "title": "Đi chợ tuần 1", "type": "EXPENSE", "category": "food", "amount": 32.00, "date": "2026-10-05", "paymentMethod": "Cash", "notes": "Thực phẩm (800k VND)" },
+    { "id": "tx_1004", "title": "Tiền điện nước", "type": "EXPENSE", "category": "utilities", "amount": 35.00, "date": "2026-10-12", "paymentMethod": "Bank Transfer", "notes": "Điện nước (875k VND)" },
+    { "id": "tx_1005", "title": "Đi ăn tối với bạn", "type": "EXPENSE", "category": "food", "amount": 16.00, "date": "2026-10-15", "paymentMethod": "Digital Wallet", "notes": "Ăn ngoài (400k VND)" },
+    { "id": "tx_1006", "title": "Mua quần áo thu", "type": "EXPENSE", "category": "shopping", "amount": 24.00, "date": "2026-10-18", "paymentMethod": "Credit Card", "notes": "Mua sắm (600k VND)" }
+  ],
+  "budgets": {
+    "food": 200,
+    "transport": 50,
+    "housing": 160,
+    "utilities": 50,
+    "shopping": 150,
+    "entertainment": 100,
+    "health": 50,
+    "other_exp": 30
+  },
+  "goals": [
+    { "id": "goal_vn_1", "title": "Quỹ du lịch Đà Lạt", "target": 500, "current": 250 },
+    { "id": "goal_vn_2", "title": "Quỹ khẩn cấp", "target": 3000, "current": 1200 },
+    { "id": "goal_vn_3", "title": "Mua laptop mới", "target": 1000, "current": 400 }
+  ],
+  "subscriptions": [
+    { "id": "sub_vn_1", "name": "Netflix Premium", "category": "entertainment", "amount": 8.00, "cycle": "monthly", "nextBilling": "2026-10-22", "paymentMethod": "Credit Card" },
+    { "id": "sub_vn_2", "name": "Spotify Premium", "category": "entertainment", "amount": 2.40, "cycle": "monthly", "nextBilling": "2026-10-15", "paymentMethod": "Digital Wallet" },
+    { "id": "sub_vn_3", "name": "Internet FPT", "category": "utilities", "amount": 8.80, "cycle": "monthly", "nextBilling": "2026-10-05", "paymentMethod": "Bank Transfer" },
+    { "id": "sub_vn_4", "name": "Gói data Viettel", "category": "utilities", "amount": 4.00, "cycle": "monthly", "nextBilling": "2026-10-18", "paymentMethod": "Digital Wallet" }
+  ]
+}

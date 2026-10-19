@@ -235,28 +235,49 @@ describe('7. processAutoBilling()', () => {
 
 // ================================================================
 describe('8. renderBudgets()', () => {
+    let currentMonthKey;
+
+    beforeEach(() => {
+        // Lấy key tháng hiện tại (VD: "2026-10")
+        const now = new Date();
+        currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        
+        document.body.innerHTML = '<div id="budgetsList"></div>';
+        window.appState.currency = 'USD';
+    });
+
     test('Tính đúng % chi tiêu', () => {
+        // Set ngân sách cho tháng hiện tại: food = 400 USD
+        window.appState.budgets = { [currentMonthKey]: { food: 400 } };
+        
+        // Thêm 1 giao dịch chi 100 USD trong tháng này
         window.appState.transactions = [
-            { id: '1', type: 'EXPENSE', amount: 100, category: 'food', date: '2024-01-01', title: 'A' },
+            { type: 'EXPENSE', category: 'food', amount: 100, date: `${currentMonthKey}-15` }
         ];
-        window.appState.budgets = { food: 400 };
-        localStorage.setItem('spendSmart_lang', 'en');
+
         window.renderBudgets();
         const cards = document.querySelectorAll('#budgetsList > div');
         expect(cards.length).toBe(1);
+        // 100 / 400 = 25%
         expect(cards[0].textContent).toContain('25%');
     });
 
     test('Thanh đỏ khi ≥ 90%', () => {
-        window.appState.transactions = [{ id: '1', type: 'EXPENSE', amount: 380, category: 'food', date: '2024-01-01', title: 'A' }];
-        window.appState.budgets = { food: 400 };
+        window.appState.budgets = { [currentMonthKey]: { food: 400 } };
+        window.appState.transactions = [
+            { type: 'EXPENSE', category: 'food', amount: 380, date: `${currentMonthKey}-15` }
+        ];
+
         window.renderBudgets();
         expect(document.querySelector('#budgetsList .bg-rose-500')).not.toBeNull();
     });
 
     test('Thanh vàng khi 75–89%', () => {
-        window.appState.transactions = [{ id: '1', type: 'EXPENSE', amount: 320, category: 'food', date: '2024-01-01', title: 'A' }];
-        window.appState.budgets = { food: 400 };
+        window.appState.budgets = { [currentMonthKey]: { food: 400 } };
+        window.appState.transactions = [
+            { type: 'EXPENSE', category: 'food', amount: 320, date: `${currentMonthKey}-15` }
+        ];
+
         window.renderBudgets();
         expect(document.querySelector('#budgetsList .bg-amber-500')).not.toBeNull();
     });
