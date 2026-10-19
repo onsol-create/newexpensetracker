@@ -1570,14 +1570,23 @@ function openBudgetModal() {
     const now = new Date();
     const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
-    // Xử lý tương thích ngược
-    if (appState.budgets && appState.budgets['food'] !== undefined) {
-        const oldBudgets = { ...appState.budgets };
-        appState.budgets = { [currentMonthKey]: oldBudgets };
+    // BƯỚC SỬA LỖI: Nếu appState.budgets đang là dạng phẳng { food: 200 }, tự động chuyển thành dạng tháng
+    if (appState.budgets['food'] !== undefined && typeof appState.budgets['food'] === 'number') {
+        const oldData = { ...appState.budgets };
+        appState.budgets = { [currentMonthKey]: oldData };
+        saveStateToLocalStorage();
+    }
+
+    // Nếu tháng này chưa có dữ liệu, khởi tạo mặc định
+    if (!appState.budgets[currentMonthKey]) {
+        appState.budgets[currentMonthKey] = { 
+            'food': 200, 'transport': 50, 'housing': 160, 'utilities': 50, 
+            'shopping': 150, 'entertainment': 100, 'health': 50, 'other_exp': 30 
+        };
+        saveStateToLocalStorage();
     }
     
-    const currentBudgets = appState.budgets[currentMonthKey] || {};
-
+    const currentBudgets = appState.budgets[currentMonthKey];
     listEl.innerHTML = '';
 
     CATEGORIES.EXPENSE.forEach(cat => {
@@ -1594,7 +1603,7 @@ function openBudgetModal() {
             <div class="relative">
                 <span class="absolute left-2.5 top-1.5 text-xs text-slate-500 dark:text-slate-400">${cfg.symbol}</span>
                 <input type="number" data-cat="${cat.id}" value="${displayLimit}" step="10000" min="0" 
-                    onchange="updateBudgetLimit('${cat.id}', this.value)" 
+                    oninput="updateBudgetLimit('${cat.id}', this.value)" 
                     class="w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg pl-7 pr-2 py-1 text-xs text-slate-900 dark:text-white text-right outline-none focus:ring-1 focus:ring-amber-500">
             </div>
         `;
@@ -1606,7 +1615,8 @@ function openBudgetModal() {
 
 function closeBudgetModal() {
     document.getElementById('budgetModal').classList.add('hidden');
-    renderBudgets();
+    renderBudgets(); // Render lại giao diện bên ngoài
+    showToast('Đã lưu thay đổi ngân sách!'); // Thêm thông báo cho người dùng biết
 }
 
 function updateBudgetLimit(catId, val) {
@@ -1614,25 +1624,20 @@ function updateBudgetLimit(catId, val) {
     let parsedVal = parseFloat(val);
     if (isNaN(parsedVal)) parsedVal = 0;
     
+    // Chuyển từ VND về USD
     const valueInUSD = parsedVal / rate;
     
     const now = new Date();
     const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
-    // 1. LUÔN CẬP NHẬT DẠNG PHẲNG (Để Unit Test pass)
-    appState.budgets[catId] = valueInUSD;
-
-    // 2. CẬP NHẬT DẠNG THEO THÁNG (Để App thật hoạt động)
+    // Đảm bảo tháng hiện tại tồn tại
     if (!appState.budgets[currentMonthKey]) {
         appState.budgets[currentMonthKey] = {};
     }
-    // Đồng bộ toàn bộ dữ liệu phẳng sang tháng hiện tại
-    Object.keys(appState.budgets).forEach(key => {
-        if (key !== currentMonthKey && typeof appState.budgets[key] === 'number') {
-            appState.budgets[currentMonthKey][key] = appState.budgets[key];
-        }
-    });
 
+    // Lưu đúng vào vị trí
+    appState.budgets[currentMonthKey][catId] = valueInUSD;
+    
     saveStateToLocalStorage();
 }
 
