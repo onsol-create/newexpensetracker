@@ -1930,13 +1930,23 @@ function openTransactionModal(editId = null) {
     form.reset();
     document.getElementById('editTxId').value = '';
 
+    // Lấy ký hiệu và tỷ giá hiện tại
+    const cfg = CURRENCY_CONFIG[appState.currency] || CURRENCY_CONFIG['USD'];
+    const rate = exchangeRates[appState.currency] || 1;
+    document.getElementById('txCurrencySymbol').textContent = cfg.symbol;
+
     if (editId) {
         const tx = appState.transactions.find(t => t.id === editId);
         if (tx) {
             document.getElementById('editTxId').value = tx.id;
             setTxType(tx.type);
             document.getElementById('txTitle').value = tx.title;
-            document.getElementById('txAmount').value = tx.amount;
+            
+            // SỬA Ở ĐÂY: Quy đổi USD sang tiền tệ hiện tại (VND) để hiển thị
+            // Làm tròn số để không bị lẻ quá nhiều số 0 (tùy chọn)
+            const displayAmount = Math.round(parseFloat(tx.amount) * rate * 100) / 100;
+            document.getElementById('txAmount').value = displayAmount; 
+
             document.getElementById('txCategory').value = tx.category;
             document.getElementById('txDate').value = tx.date;
             document.getElementById('txPaymentMethod').value = tx.paymentMethod;
