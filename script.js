@@ -1981,7 +1981,14 @@ function handleTransactionSubmit(e) {
     const editId = document.getElementById('editTxId').value;
     const type = document.getElementById('txType').value;
     const title = document.getElementById('txTitle').value;
-    const amount = parseFloat(document.getElementById('txAmount').value);
+    
+    // Lấy số tiền người dùng nhập vào
+    const inputAmount = parseFloat(document.getElementById('txAmount').value);
+    
+    // Lấy tỷ giá hiện tại và quy đổi ngược về USD để lưu vào DB
+    const rate = exchangeRates[appState.currency] || 1;
+    const amount = inputAmount / rate;
+
     const category = document.getElementById('txCategory').value;
     const date = document.getElementById('txDate').value;
     const paymentMethod = document.getElementById('txPaymentMethod').value;
