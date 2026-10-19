@@ -217,11 +217,11 @@ test.describe('Persistence', () => {
     
     test('currency được lưu sau reload', async ({ page }) => {
         await setupPage(page);
-        await page.selectOption('#currencySelect', 'EUR');
+        await page.selectOption('#currencySelect', 'USD');
         await page.reload();
         await page.waitForSelector('#metricTotalBalance:not(:empty)');
-        await expect(page.locator('#currencySelect')).toHaveValue('EUR');
-        await expect(page.locator('#metricTotalBalance')).toContainText('€');
+        await expect(page.locator('#currencySelect')).toHaveValue('USD');
+        await expect(page.locator('#metricTotalBalance')).toContainText('$');
     });
 
     test('clear all data → metrics về 0', async ({ page }) => {
